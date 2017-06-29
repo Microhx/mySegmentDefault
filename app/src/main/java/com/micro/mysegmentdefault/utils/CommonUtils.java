@@ -201,6 +201,7 @@ public class CommonUtils {
             index = temp + keyWords.length();
         }
 
+        //not toString/ but this builder
         return mSpannedBuilder;
     }
 
