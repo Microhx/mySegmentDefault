@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_user_personal_website"
+                    android:textColor="@color/text_first_color"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/id_tv_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="3"
+                    android:hint="@string/str_user_no_website"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/str_user_personal_introduce"
+                    android:textColor="@color/text_first_color"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/id_tv_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:maxLines="3"
+                    android:hint="@string/str_user_no_introduce"
+                    android:ellipsize="end"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="10sp"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/user_page_fragment_list"
+                        android:text="@string/str_user_question"/>
+
+                    <TextView
+                        android:id="@+id/id_tv_question"
+                        style="@style/user_page_fragment_list_number"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/user_page_fragment_list"
+                        android:text="@string/str_user_answer"/>
+
+                    <TextView
+                        android:id="@+id/id_tv_answer"
+                        style="@style/user_page_fragment_list_number"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/user_page_fragment_list"
+                        android:text="@string/str_user_article"/>
+
+                    <TextView
+                        android:id="@+id/id_tv_article"
+                        style="@style/user_page_fragment_list_number"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/user_page_fragment_list"
+                        android:text="@string/str_user_share"/>
+
+                    <TextView
+                        android:id="@+id/id_tv_share"
+                        style="@style/user_page_fragment_list_number"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/user_page_fragment_list"
+                        android:text="@string/str_user_collection"/>
+
+                    <TextView
+                        android:id="@+id/id_tv_collection"
+                        style="@style/user_page_fragment_list_number"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="@string/str_active_tags"
+            android:textSize="12sp"/>
+
+        <com.micro.mysegmentdefault.view.widget.TagContainerLayout
+            android:id="@+id/id_layout_tags"
+            android:layout_width="match_parent"
+            android:background="@color/white_color"
+            android:padding="12dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/app_theme_color">
+
+        <ImageButton
+            android:id="@+id/id_iv_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?selectableItemBackground"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_back_white"/>
+
+        <ImageButton
+            android:id="@+id/id_iv_right"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackground"
+            android:padding="12dp"
+            android:src="@drawable/ic_search"/>
+
+        <RelativeLayout
+            android:id="@+id/id_layout_title"
+            android:layout_width="match_parent"
+            android:layout_toLeftOf="@id/id_iv_right"
+            android:layout_toRightOf="@id/id_iv_back"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_tag_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

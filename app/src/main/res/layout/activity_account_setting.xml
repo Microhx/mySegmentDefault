@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_pub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_title="@string/str_account_password"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/id_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/id_tv_bind_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_email"
+                    android:textColor="@color/text_first_color"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/id_tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/id_tv_bind_email"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/id_tv_bind_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_binding_phone"
+                    android:textColor="@color/text_first_color"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/id_tv_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/id_tv_bind_phone"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/id_tv_update_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/str_update_password"
+                android:textColor="@color/text_first_color"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/activity_bg_color"
+                android:padding="16dp"
+                android:text="@string/str_third_platform_binding"
+                android:textColor="@color/app_theme_color"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_item_wechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_wechat"
+                app:push_show_switch="true"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_item_weibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_webo"
+                app:push_show_switch="true"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_item_qq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_qq"
+                app:push_show_switch="true"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_item_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_google"
+                app:push_show_switch="true"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_item_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_bottom_line="false"
+                app:push_content="@string/str_github"
+                app:push_show_switch="true"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/activity_bg_color"/>
+
+            <TextView
+                android:id="@+id/id_tv_social_account_showing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:padding="12dp"
+                android:text="@string/str_show_social_account"
+                android:textColor="@color/text_first_color"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

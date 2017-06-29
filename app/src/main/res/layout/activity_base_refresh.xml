@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/id_title_content"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/app_theme_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/app_theme_color">
+
+            <ImageButton
+                android:id="@+id/id_iv_back"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="?selectableItemBackground"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back_white"/>
+
+            <ImageButton
+                android:id="@+id/id_iv_right"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="?selectableItemBackground"
+                android:padding="12dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/id_tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="?selectableItemBackground"
+                android:padding="12dp"
+                android:textColor="@color/white_color"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+
+            <RelativeLayout
+                android:id="@+id/id_layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/id_iv_right"
+                android:layout_toRightOf="@+id/id_iv_back"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/id_tag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/white_color"
+                    android:textSize="18sp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_layout_up_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include layout="@layout/fragment_base_refresh"/>
+
+
+
+</LinearLayout>

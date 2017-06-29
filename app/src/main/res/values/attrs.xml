@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--     圆图 -->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension"/>
+        <attr name="civ_border_color" format="color"/>
+        <attr name="civ_border_overlay" format="boolean"/>
+        <attr name="civ_fill_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="PublicHeadLayout">
+        <attr name="pub_title" format="reference"/>
+        <attr name="pub_ri_visible" format="boolean"/>
+        <attr name="pub_ri_resource" format="reference"/>
+        <attr name="pub_tv_txt" format="reference"/>
+    </declare-styleable>
+    
+    <declare-styleable name="MessagePushItemLayout">
+        <attr name="push_checked" format="boolean"/>
+        <attr name="push_content" format="reference"/>
+        <attr name="push_bottom_line" format="boolean"/>
+        <attr name="push_show_switch" format="boolean"/>
+        <attr name="push_tag" format="reference"/>
+
+    </declare-styleable>
+
+
+
+</resources>

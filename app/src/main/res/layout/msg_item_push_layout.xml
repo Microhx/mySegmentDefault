@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/id_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"/>
+
+    <Switch
+        android:id="@+id/id_switch"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/id_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="60dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_first_color"
+        android:padding="16dp"/>
+
+    <View
+        android:id="@+id/id_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color"
+        android:layout_below="@id/id_tv_content"/>
+
+</RelativeLayout>

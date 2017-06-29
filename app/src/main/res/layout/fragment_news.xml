@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.micro.mysegmentdefault.view.widget.NestedChildCoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/id_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            android:minHeight="56dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextAppearance="@style/CoordinatorLayoutAppearance">
+
+            <View
+                android:id="@+id/id_layout_search"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_placeholder"/>
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_theme_color"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/id_tv_tab_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:elevation="2dp"
+                app:tabBackground="@color/app_theme_color"
+                app:tabIndicatorColor="@color/white_color"
+                app:tabIndicatorHeight="2dp"
+                app:tabMinWidth="56dp"
+                app:tabPaddingEnd="12dp"
+                app:tabPaddingStart="12dp"
+                app:tabSelectedTextColor="@color/white_color"
+                app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
+                app:tabTextColor="@color/white_color"/>
+
+            <ImageView
+                android:id="@+id/id_iv_right"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_right"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+</com.micro.mysegmentdefault.view.widget.NestedChildCoordinatorLayout>

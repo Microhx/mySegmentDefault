@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/id_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/id_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_first_color"
+            android:textSize="18sp"/>
+
+        <com.micro.mysegmentdefault.view.widget.CircleImageView
+            android:id="@+id/id_iv_user_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/id_tv_title"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/id_tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/id_tv_title"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/id_iv_user_icon"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_second_color"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/id_tv_attention_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_iv_user_icon"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_second_color"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_below="@id/id_layout_content"
+        android:background="@color/text_third_color"/>
+
+
+</RelativeLayout>

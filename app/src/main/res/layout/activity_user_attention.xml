@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_user_attention"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.user.attention.UserAttentionActivity">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_ri_visible="false"
+        app:pub_title="@string/str_min_attention"/>
+
+    <TextView
+        android:id="@+id/id_tv_attention_person"
+        android:text="@string/str_attention_person"
+        style="@style/user_attention_item_layout_style"/>
+
+    <Space
+        style="@style/user_attention_item_space"/>
+
+
+    <TextView
+        style="@style/user_attention_item_layout_style"
+        android:id="@+id/id_tv_attention_tag"
+        android:text="@string/str_tags"
+        />
+
+    <Space
+        style="@style/user_attention_item_space"/>
+
+    <TextView
+
+        style="@style/user_attention_item_layout_style"
+        android:id="@+id/id_tv_attention_question"
+        android:text="@string/str_question"
+        />
+
+
+    <Space
+        style="@style/user_attention_item_space"/>
+
+
+    <TextView
+        style="@style/user_attention_item_layout_style"
+        android:id="@+id/id_tv_attention_category"
+        android:text="@string/str_user_attention_category"
+        />
+
+
+    <Space
+        style="@style/user_attention_item_space"/>
+
+    <TextView
+        style="@style/user_attention_item_layout_style"
+        android:id="@+id/id_tv_attention_collect"
+        android:text="@string/str_collection"
+        />
+
+
+
+
+</LinearLayout>

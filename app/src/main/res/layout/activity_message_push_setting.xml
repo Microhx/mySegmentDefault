@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_pub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_title="@string/str_message_push_setting"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/activity_bg_color"
+        android:padding="12dp"
+        android:text="@string/str_open_push_info"
+        android:textColor="@color/app_theme_color"
+        android:textSize="18sp"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_new_attention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_attention_new_answer"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_attention_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_someone_attention_me"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_vote_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_someone_vote_me"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_private_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_private_message"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_comment_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_comment_me"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_mention_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_content="@string/str_push_mention_me"/>
+
+            <com.micro.mysegmentdefault.view.widget.MessagePushItemLayout
+                android:id="@+id/id_invite_me_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:push_bottom_line="false"
+                app:push_content="@string/str_push_invite_answer_question"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <Switch
+                android:id="@+id/id_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/id_tv_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_disturb_mode"
+                android:textColor="@color/text_first_color"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/id_tv_mode"
+                android:text="@string/id_model_intro"
+                android:textColor="@color/text_second_color"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

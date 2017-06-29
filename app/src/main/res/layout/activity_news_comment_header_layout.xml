@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:orientation="vertical"
+                                    android:padding="12dp"
+                                    app:cardElevation="4dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="12dp">
+
+        <TextView
+            android:id="@+id/id_tv_title"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_four_color"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/id_tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_first_color"
+            android:textSize="14sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#F1F1F1"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/id_iv_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+
+            <TextView
+                android:id="@+id/id_tv_news_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/id_iv_icon"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/id_layout_zan"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/id_tv_zan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/ic_like_selector"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/text_color_selector"
+                    android:gravity="center"
+                    android:text="@string/str_zero"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/id_layout_collect"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/id_tv_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/ic_action_archive_selector"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/text_color_selector"
+                    android:text="@string/str_zero"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/id_layout_comment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/id_tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/ic_comment"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/text_second_color"
+                    android:gravity="center"
+                    android:text="@string/str_comment"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

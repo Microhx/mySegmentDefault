@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="main_item">
+        <item>头条</item>
+        <item>专栏</item>
+        <item>问答</item>
+        <item>发现</item>
+        <item>我的</item>
+    </array>
+
+    <array name="user_tag">
+        <item>已关注</item>
+        <item>热门标签</item>
+    </array>
+
+    <array name="tag_detail">
+        <item>问题</item>
+        <item>文章</item>
+        <item>排行榜</item>
+    </array>
+
+    <array name="user_zone_list">
+        <item>个人主页</item>
+        <item>个人档案</item>
+    </array>
+
+    <array name="user_note">
+        <item>推荐笔记</item>
+        <item>个人笔记</item>
+    </array>
+
+    <array name="language_note">
+        <item>纯文本</item>
+        <item>Markdown</item>
+        <item>Javascript</item>
+        <item>CSS</item>
+        <item>HTML</item>
+        <item>PHP</item>
+        <item>Python</item>
+        <item>Ruby</item>
+        <item>Go</item>
+        <item>C/C++</item>
+        <item>Java</item>
+        <item>Shell/Bash</item>
+    </array>
+
+    <array name="picture_choose">
+        <item>从相册选取</item>
+        <item>拍照</item>
+    </array>
+
+    <array name="sex_choose">
+        <item>@string/sex_secret</item>
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
+    </array>
+
+
+    <array name="toutiao_type">
+        <item>最热的</item>
+        <item>最新的</item>
+    </array>
+
+</resources>

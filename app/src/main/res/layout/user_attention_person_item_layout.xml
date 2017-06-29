@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+    <com.micro.mysegmentdefault.view.widget.CircleImageView
+        android:id="@+id/id_iv_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/id_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/id_iv_icon"
+        android:textColor="@color/text_first_color"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_slug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@id/id_tv_title"
+        android:textColor="@color/text_second_color"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_reputation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_tv_title"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/id_iv_icon"
+        android:textColor="@color/text_second_color"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_fans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_tv_title"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/id_tv_reputation"
+        android:textColor="@color/text_second_color"
+        android:textSize="13sp"/>
+
+
+</RelativeLayout>

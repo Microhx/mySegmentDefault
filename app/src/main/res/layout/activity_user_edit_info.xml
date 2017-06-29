@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_user_edit_info"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.user.UserEditInfoActivity">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_ri_visible="false"
+        app:pub_title="@string/str_user_info"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/id_layout_user_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:layout_centerVertical="true"
+                    android:text="@string/str_user_photo"/>
+
+                <com.micro.mysegmentdefault.view.widget.CircleImageView
+                    android:id="@+id/id_iv_user_icon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_rank_1"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+            <LinearLayout
+                android:id="@+id/id_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:text="@string/str_user_name"/>
+
+                <TextView
+                    android:id="@+id/id_tv_username"
+                    style="@style/user_edit_text_view"
+                    android:lines="1"
+                    android:text="@string/str_user_name"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+            <LinearLayout
+                android:id="@+id/id_layout_sex"
+                android:layout_width="match_parent"
+                android:background="?selectableItemBackground"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:text="@string/str_user_sex"/>
+
+                <TextView
+                    android:id="@+id/id_tv_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+            <LinearLayout
+                android:id="@+id/id_layout_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:text="@string/str_user_website"
+                    />
+
+                <TextView
+                    android:id="@+id/id_tv_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+
+            <LinearLayout
+                android:id="@+id/id_layout_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:text="@string/str_user_intro"/>
+
+                <TextView
+                    android:id="@+id/id_tv_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/page_bg_color"/>
+
+            <LinearLayout
+                android:id="@+id/id_layout_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/user_edit_text_view"
+                    android:text="@string/str_user_city"
+                    />
+
+                <TextView
+                    android:id="@+id/id_tv_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/page_bg_color"
+                android:padding="12dp"
+                android:text="@string/str_user_skill"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.micro.mysegmentdefault.view.widget.TagContainerLayout
+                    android:id="@+id/id_tag_container"
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/text_third_color"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/id_add_user_skill"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/str_add_skill"
+                    android:textColor="@color/app_theme_color"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/page_bg_color"
+                android:padding="12dp"
+                android:text="@string/str_user_project"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.micro.mysegmentdefault.view.widget.TagListLayout
+                    android:id="@+id/id_layout_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:id="@+id/id_tv_add_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/str_add_project_and_article"
+                    android:textColor="@color/app_theme_color"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/page_bg_color"
+                android:padding="12dp"
+                android:text="@string/str_user_study"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.micro.mysegmentdefault.view.widget.TagListLayout
+                    android:id="@+id/id_layout_study"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:id="@+id/id_tv_add_study"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/str_add_study"
+                    android:textColor="@color/app_theme_color"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_third_color"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/page_bg_color"
+                android:padding="12dp"
+                android:text="@string/str_user_work"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.micro.mysegmentdefault.view.widget.TagListLayout
+                    android:id="@+id/id_layout_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+                <TextView
+                    android:id="@+id/id_tv_add_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/str_add_work"
+                    android:textColor="@color/app_theme_color"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

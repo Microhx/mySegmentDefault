@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_widget_pb_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_ri_visible="false"
+        app:pub_title="@string/str_create_collection"
+        app:pub_tv_txt="@string/str_commit"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/id_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:hintAnimationEnabled="true">
+
+        <EditText
+            android:id="@+id/id_et_collect_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_collection_name"
+            android:textSize="16sp"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <EditText
+        android:id="@+id/id_et_desc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:gravity="left|top"
+        android:hint="@string/str_collection_desc"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textSize="16sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/appbar_line_invert"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/id_tv_set_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/str_collection_private"/>
+
+        <Switch
+            android:id="@+id/id_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/id_tv_set_name"/>
+
+
+        <TextView
+            android:id="@+id/id_tv_choose_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="8dp"
+            android:drawableRight="@drawable/ic_more"
+            android:padding="16dp"
+            android:text="Markdown"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

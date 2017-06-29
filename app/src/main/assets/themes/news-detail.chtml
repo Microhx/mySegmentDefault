@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>news detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="lib/css/sourcecode.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/common.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/news.css">
+    <script type="text/javascript" src="lib/javascript/common.js"></script>
+    <script type="text/javascript" src="dist/javascript/news/detail.js"></script>
+</head>
+<body>
+<div class="news__warp">
+    <div class="news__title">
+        <h1>{{news.title}}</h1>
+    </div>
+    <div class="news__meta">
+        <span class="news__meta-item">{{news.createdDate}}</span><span
+            class="news__meta-item">来源：<a href="{{news.originPath}}" target="_blank">{{news.host}}</a></span>
+    </div>
+
+    <div class="news__content ">
+        <div class="fmt">
+            {{news.readParsedText}}
+            <div class="news__footer-meta">
+                <div class="news__footer-meta-right">© 著作权归原作者所有</div>
+                <div class="news__footer-source">
+                    <a class="news__footer-source-link" href="{{news.originPath}}">查看原文</a>
+                    <span>浏览量 {{news.realViews}}</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="news__author">
+        <div class="news__author-main">
+            <a href="{{news.user.url}}" target="_blank"><img class="news__author-avatar" src="{{news.user.avatarUrl}}">
+                <div class="news__author-main--inner"><span class="news__author-name">{{news.user.name}}</span>
+                    <span class="news__author-share-type">分享于 {{news.newsTypes.name}}</span></div></a>
+        </div>
+        {% if (news.user.isFollowed) %}
+        <a class="news__author-follow followed" data-id="{{news.user.id}}">已关注</a>
+        {% else %}
+        <a class="news__author-follow" data-id="{{news.user.id}}">关注</a>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

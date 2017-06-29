@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_setting"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.setting.SettingActivity">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_pub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_title="@string/str_min_setting"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_push_msg_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/str_set_push_message"
+                android:textColor="@color/text_first_color"
+                android:textSize="18sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/text_second_color"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/id_account_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/str_set_username_pass"
+                android:textColor="@color/text_first_color"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/str_set_advice"
+                android:textColor="@color/text_first_color"
+                android:textSize="18sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/text_second_color"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"
+                android:text="@string/str_current_version"
+                android:textColor="@color/text_first_color"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_tv_version"
+                android:layout_width="match_parent"
+                android:textColor="@color/text_second_color"
+                android:textSize="14sp"
+                android:text="4.2.4"
+                android:paddingTop="2dp"
+                android:paddingLeft="12dp"
+                android:paddingBottom="12dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="@string/str_exit"
+            android:textColor="@color/red"
+            android:textSize="18sp"/>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

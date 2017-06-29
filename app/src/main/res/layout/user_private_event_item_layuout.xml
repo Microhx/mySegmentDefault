@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+    <com.micro.mysegmentdefault.view.widget.CircleImageView
+        android:id="@+id/id_iv_image"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/id_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="3月16日"
+        android:textColor="@color/text_second_color"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/id_tv_time"
+        android:layout_toRightOf="@id/id_iv_image"
+        android:lines="1"
+        android:textColor="@color/text_first_color"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/id_tv_title"
+        android:layout_alignRight="@+id/id_tv_title"
+        android:layout_below="@id/id_tv_title"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/text_second_color"
+        android:textSize="13sp"/>
+
+
+</RelativeLayout>

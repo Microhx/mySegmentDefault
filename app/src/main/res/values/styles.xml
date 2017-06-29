@@ -1,0 +1,73 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="windowNoTitle">true</item>
+        <!--设置背景色-->
+        <item name="android:windowBackground">@color/white_color</item>
+    </style>
+
+
+    <style name="CustomTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="CoordinatorLayoutAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="user_page_fragment_list">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_first_color</item>
+    </style>
+
+    <style name="user_page_fragment_list_number">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/app_theme_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
+    <style name="user_edit_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_first_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="user_attention_item_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">@color/text_first_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+
+
+    <style name="user_attention_item_space">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/text_second_color</item>
+
+    </style>
+
+
+
+
+
+
+
+</resources>

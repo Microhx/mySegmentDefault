@@ -1,0 +1,111 @@
+@charset "utf-8";
+.comment-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.comment-container ul li {
+  background: #fff;
+  padding: 16px;
+  border-bottom: 1px solid #DFDFDF;
+}
+.comment-container ul li img.avatar {
+  width: 40px;
+  height: 40px;
+  float: left;
+  border-radius: 50%;
+}
+.comment-container ul li div.content {
+  margin-left: 55px;
+}
+.comment-container ul li::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.comment-container ul li.eof {
+  text-align: center;
+  border: none;
+  color: #CCCCCC;
+  background: #eee;
+}
+.comment-container .reply {
+  color: #666;
+}
+.comment-container .author .no {
+  color: #797979;
+}
+.comment-container .author .name {
+  color: #009A61;
+  margin-right: 5px;
+}
+.comment-container .author .info {
+  color: #999999;
+}
+.comment-container .author .time {
+  color: #B2B2B2;
+}
+.comment-container .author .reply {
+  margin-right: 5px;
+  color: #727272;
+}
+.comment-container i.like {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url("../images/like.png");
+  background-size: 12px auto;
+}
+.comment-container .like-info {
+  float: right;
+  color: #009A61;
+}
+.comment-container .more {
+  float: right;
+}
+.comment-container .block {
+  display: block;
+}
+.comment-container .hidden {
+  display: none;
+}
+.comment-container .content .markdown img {
+  max-width: 100%;
+}
+.comment-container div.markdown {
+  cursor: pointer;
+}
+.comment-container body {
+  background: #eee;
+}
+.comment-container .board-bottom {
+  margin-top: 0;
+}
+.comment-container .board-bottom .mdl-button {
+  margin-right: 0;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: text-bottom;
+}
+.comment-container .board-bottom .material-icons {
+  color: #727272;
+  font-size: 18px;
+}
+.comment-container .board-bottom .pull-right .mdl-button--raised {
+  background-color: #009A61;
+  color: #FFF;
+  font-size: 12px;
+}
+.comment-container .board-bottom .mdl-menu {
+  padding: 0;
+}
+.comment-container .board-bottom .mdl-menu__item {
+  height: 40px;
+}
+.comment-container .board-bottom .mdl-button--icon {
+  min-width: 24px;
+  width: 24px;
+}
+.comment-container .material-icons.liked {
+  color: #009A61;
+}

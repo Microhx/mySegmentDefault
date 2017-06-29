@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="lib/css/default.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/solarized_light.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/md-fonts.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/sourcecode.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/common.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/question.css"/>
+    <script type="text/javascript" src="lib/javascript/highlight.pack.js"></script>
+    <script type="text/javascript" src="lib/javascript/common.js"></script>
+    <script type="text/javascript" src="dist/javascript/question.js"></script>
+</head>
+<body>
+<div id="main-container">
+    <div class="clear-bg" style="width:100%;padding:15px">
+        <h1 class="mb10">{{question.title|htmlescape}}</h1>
+        <div class="clearfix mb15">
+            {%for tag in question.tags %}
+            <a href="{{tag.url}}" class="tag">{{tag.name}}</a>
+            {% endfor %}
+        </div>
+
+        <div class="fmt mb15">{{question.parsedText}}</div>
+        <div>
+            <a href="{{question.user.url}}">{{question.user.name}}</a>
+            <span class="text-muted">&nbsp;发布于&nbsp;{{question.createdDate}}</span>
+        </div>
+
+        <div class="board-bottom">
+            <div class="pull-left">
+                <button class="action-button question-action"
+                        data-action="vote"
+                        data-id="{{question.id}}">
+                    <i class="like-btn material-icons
+
+                    {% if question.isLiked %} liked
+                    {% else if question.isHated %} hated
+                    {% else %}
+                    {% endif %}
+                    "></i>
+
+                    <span>{{question.votes}}</span>
+                </button>
+                <button class="action-button question-action"
+                        data-action="comment"
+                        data-id="{{question.id}}">
+                    <i class="material-icons">&#xE0B9;</i>
+                    <span>{{question.comments}}</span>
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="text-muted action-button question-more">
+                    <i class="material-icons">&#xE5D4;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    {%if question.answer|length != 0 %}
+
+    <div class="border-top mt10">
+        {%for answer in question.answer %}
+
+        {%if answer.type|equals 'available' %}
+        <div class="board answer-item" style="overflow: visible;width: 100%; padding:15px 15px 0 15px">
+            <div class="board-top">
+                <a href="{{answer.user.url}}">
+                    <img src="{{answer.user.avatarUrl}}" class="avatar mr10" />
+                    {{answer.user.name}}
+                </a>
+                <span class="text-muted">&nbsp;&nbsp;{{answer.createdDate}}</span>
+
+                {% if answer.type == "accepted" %}
+                <span class="pull-right adopt-label">已采纳</span>;
+                {% endif %}
+            </div>
+
+            <div class="fmt mt15">{{answer.parsedText}}</div>
+            <div class="board-bottom">
+                <button class="action-button answer-action"
+                        data-action="vote"
+                        data-id="{{answer.id}}">
+                    <i class="material-icons like-btn
+                    {% if answer.isLiked %} liked
+                    {% else if answer.isHated %} hated
+                    {% else %}
+                    {% endif %}"></i>
+                    <span>{{answer.votes}}</span>
+                </button>
+                <button class="action-button answer-action"
+                        data-action="comment"
+                        data-id="{{answer.id}}">
+                    <i class="material-icons">&#xE0B9;</i>
+                    <span>{{answer.comments}}</span>
+                </button>
+                <div class="pull-right">
+                    <button class="text-muted action-button answer-more" data-id="{{answer.id}}">
+                        <i class="material-icons">&#xE5D4;</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {%endif %}
+        {%endfor %}
+    </div>
+    {%endif %}
+
+    {%if ignored != 0 %}
+    <div class="ignore-info">有{{ignored}}个答案被忽略</div>
+    {%endif %}
+
+    <div class="answer__invite">
+        <div class="answer__invite-desc">
+            {% if (question.answer|length != 0) %}
+            答案不满意？邀请你心中的大神来回答吧
+            {% else %}
+            如果你知道答案，就赶紧写下吧
+            {% endif %}
+        </div>
+        <div class="answer__invite-trigger">
+            <a class="answer__invite-btn invite">邀请回答</a>
+            <a class="answer__invite-btn answer__invite-btn--active answer">我来回答</a>
+        </div>
+    </div>
+
+    <div>
+        <p class="text-muted relate-title">相似问题</p>
+    </div>
+    <div class="clear-bg" style="width: 100%">
+        <ul class="recommends">
+            {%for item in question.relate %}
+            <li key="{{item.id}}" class="rec-item">
+                <h2><a href="{{item.url}}">{{item.title}}</a></h2>
+                <p class="text-muted mt5">
+                    {{item.answers}}个答案
+                </p>
+            </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

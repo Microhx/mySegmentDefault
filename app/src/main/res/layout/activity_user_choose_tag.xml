@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_widget_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_ri_resource="@drawable/ic_submit"
+        app:pub_ri_visible="true"
+        app:pub_title="@string/str_choose_tag"/>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        app:hintAnimationEnabled="true"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:hint="@string/str_tags"
+            android:id="@+id/id_et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@id/menu_share"
+        android:icon="@drawable/ic_share_mtrl_alpha"
+        android:orderInCategory="10"
+        android:title="@string/str_share"
+        android:visible="true"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@id/menu_share_weibo"
+                android:icon="@drawable/logo_weibo"
+                android:title="@string/share_weibo"/>
+
+            <item
+                android:id="@id/menu_share_weixin"
+                android:icon="@drawable/logo_wechat"
+                android:title="@string/share_weixin"/>
+
+            <item
+                android:id="@id/menu_share_weixin_timeline"
+                android:icon="@drawable/logo_wechatmoments"
+                android:title="@string/share_weixin_timeline"/>
+
+            <item
+                android:id="@id/menu_share_qq"
+                android:icon="@drawable/logo_qq"
+                android:title="@string/share_qq"/>
+
+        </menu>
+    </item>
+    <item
+        android:id="@id/delete"
+        android:title="@string/delete"
+        app:showAsAction="never"/>
+    <item
+        android:id="@id/edit"
+        android:title="@string/edit"
+        app:showAsAction="never"/>
+    <item
+        android:id="@id/report"
+        android:title="@string/report"
+        app:showAsAction="never"/>
+</menu>

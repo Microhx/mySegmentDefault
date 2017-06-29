@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#039A63</color>
+    <color name="colorPrimaryDark">#028556</color>
+    <color name="colorAccent">#039A63</color>
+
+    <color name="app_theme_color">#039A63</color>
+    <color name="activity_bg_color">#EFEEF0</color>
+    <color name="app_shallow_theme_color">#E9F2EE</color>
+
+
+    <color name="white_color">#FFF</color>
+
+    <color name="tag_gray_background">#020102</color>
+    <color name="text_first_color">#010001</color>
+    <color name="text_second_color">#A8A7A8</color>
+    <color name="text_third_color">#C8C7C8</color>
+    <color name="text_four_color">#777577</color>
+    <color name="page_bg_color">#F2F2F2</color>
+
+    <color name="red">#F00</color>
+    <color name="line_color">#E4E3E5</color>
+
+
+
+</resources>

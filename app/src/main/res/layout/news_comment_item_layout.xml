@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:padding="12dp">
+
+    <com.micro.mysegmentdefault.view.widget.CircleImageView
+        android:id="@+id/id_iv_user_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp">
+
+        <TextView
+            android:id="@+id/id_tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app_theme_color"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/id_tv_publish_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@id/id_tv_username"
+            android:textColor="@color/text_second_color"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/id_tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_tv_username"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_first_color"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/id_tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_tv_comment"
+            android:layout_marginTop="4dp"
+            android:drawableLeft="@drawable/ic_like_normal"
+            android:drawablePadding="4dp"
+            android:text="@string/str_zero"/>
+
+        <ImageView
+            android:id="@+id/id_iv_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_tv_like"
+            android:layout_alignTop="@+id/id_tv_like"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/id_tv_like"
+            android:src="@drawable/ic_reply"/>
+
+
+        <com.micro.mysegmentdefault.view.widget.ReplyItemLayout
+            android:id="@+id/id_layout_comment_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_tv_like"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

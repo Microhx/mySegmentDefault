@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+    <CheckBox
+        android:id="@+id/id_ch_box"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:clickable="false"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/id_tv_collect_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@id/id_ch_box"
+        android:lines="1"
+        android:textColor="@color/text_first_color"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/id_tv_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_tv_collect_title"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/id_ch_box"
+        android:textColor="@color/text_second_color"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/id_tv_private"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/id_tv_collect_title"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_private"
+        android:textColor="@color/text_second_color"
+        android:textSize="12sp"/>
+
+
+</RelativeLayout>

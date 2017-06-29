@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>article detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="lib/css/sourcecode.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/default.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/solarized_light.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/common.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/article.css">
+    <script type="text/javascript" src="lib/javascript/highlight.pack.js"></script>
+    <script type="text/javascript" src="lib/javascript/common.js"></script>
+    <script type="text/javascript" src="dist/javascript/article.js"></script>
+</head>
+<body class="article-detail android">
+    <div class="article-detail__main">
+        <div style="padding: 15px">
+            <h1 class="article-detail__title mb10">{{article.title}}</h1>
+            <div class="clearfix mb15">
+                {%for tag in article.tags %}
+                    <a href="{{tag.url}}" class="tag">{{tag.name}}</a>
+                {%endfor%}
+
+            </div>
+            <div class="fmt">
+                {{article.parsedText}}
+            </div>
+
+            {%if article.blog.reward == 1 %}
+            <div class="article-reward">
+                <div class="reward-icon"></div>
+                {% if article.rewards|length  == 0) %}
+                    <p style="padding-top:15px;">还没有人赞赏，首席“赞赏”官正虚位以待！</p>
+                {% else %}
+                    <p style="padding-top:15px;">文章很不错，赞赏犒劳作者一下！</p>
+                <div class="text-muted reward-user">
+                    {%for p in article.rewards %}
+                        <a><img src="{p.avatar_url}" class="avatar pull-left mr5"></a>
+                    {%endfor%}等<a>
+
+                    {{article.reward_count}} </a>人已赞赏
+
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="publish-date">
+                <span class="text-muted">&nbsp;发布于&nbsp;{{article.createdDate}}</span>
+                <div class="pull-right article-more">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-detail__author">
+            <div class="article-detail__author-inner pull-left">
+                <a href="{{article.user.url}}">
+                    <img src="{{article.user.avatarUrl}}"
+                         class="avatar pull-left mr10">
+                    <div class="pull-left">
+                        <span class="article-detail__author-name">{{article.user.name}}</span>
+                        <br>
+                        <span class="article-detail__author-rank">声望数:&nbsp;{{article.user.rankWord}}&nbsp;&nbsp;粉丝数:&nbsp;{{article.user.followersWord}}</span>
+                    </div>
+                </a>
+            </div>
+
+            {% if article.user.isFollowed %}
+            <a class="article-detail__author-btn pull-right followed">已关注</a>
+            {% else %}
+            <a class="article-detail__author-btn pull-right">关注</a>
+            {% endif %}
+        </div>
+
+        <div class="article-detail__author-blog">
+            <div class="article-detail__author-blog-info">
+                <a href="{{article.blog.url}}">
+                    <span class="article-detail__author-blog-name"><span>{{article.blog.name}}</span></span>
+                    <br>
+                    <div class="article-detail__author-blog-desc">{{article.blog.parsedText}}</div>
+                </a>
+            </div>
+
+            {% if article.blog.isFollowed %}
+            <a class="article-detail__author-btn followed">已关注</a>
+            {% else %}
+            <a class="article-detail__author-btn ">关注</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="article-detail__comment">
+        {% if article.commentDetail|length != 0 %}
+        <ul class="comments">
+            {%for comment in article.commentDetail %}
+            <li>
+                <img class="avatar" width="40" src="{{comment.user.avatarUrl}}">
+                <div class="content">
+                    <div class="author">
+                        <a href="{{comment.user.url}}" class="name">{{comment.user.name}}</a>
+                        {% if ($comment.reply_user) %}
+                            <span class="reply">
+                                回复 <a href="{{comment.replyUser.url}}">{{comment.replyUser.name}}</a>
+                            </span>
+                        {% endif %}
+                        <span class="info time">{{comment.createdDate}}</span>
+                    </div>
+                    <div class="markdown fmt">{{comment.parsedText}}</div>
+                </div>
+                <div class="board-bottom">
+                    <button style="margin-left: 35px" class="mdl-button mdl-js-button mdl-js-ripple-effect comment-action
+                         {% if comment.isLiked %}
+                            article-detail__comment-item-zan--active
+                         {% endif %}
+                        "
+                            data-action="vote" data-id="{{comment.id}}">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        <span style="color: #727272">{{comment.votes}}</span>
+                    </button>
+                    <div class="pull-right" style="line-height: 1">
+                        <button class="text-muted mdl-button mdl-js-button mdl-button--icon comment-more" data-id="{{comment.id}}"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i> </button>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+            {% if ($article.commentDetail|length != $article.comments) %}
+            <li class="comments-more">查看更多评论</li>
+            {%endif%}
+        </ul>
+
+        {% endif %}
+    </div>
+    <div class="article-detail__related">
+        <div>
+            <p class="mt10 mb10 text-muted ml15 fz16">你可能感兴趣的文章</p>
+        </div>
+        <ul class="article-detail__related-list">
+            {%for relate in article.relate %}
+            <li key="{{relate.id}}" class="rec-item">
+                <div class="mb10"><img src="{{relate.user.avatarUrl}}" width="20" height="20"
+                         style="margin-right: 10px"><a href="{{relate.user.url}}" style="vertical-align:top">{{relate.user.name}}</a></div>
+                <h2 class="relate-title"><a href="{{relate.url}}">{{relate.title}}</a></h2>
+                <p class="text-muted mt5 relate-excerpt">{{relate.excerpt}}</p>
+            </li>
+
+            {%endfor%}
+        </ul>
+    </div>
+</body>
+</html>

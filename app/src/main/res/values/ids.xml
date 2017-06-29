@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="menu_share">false</item>
+    <item type="id" name="menu_share_weibo">false</item>
+    <item type="id" name="menu_share_weixin">false</item>
+    <item type="id" name="menu_share_weixin_timeline">false</item>
+    <item type="id" name="menu_share_qq">false</item>
+    <item type="id" name="delete">false</item>
+    <item type="id" name="edit">false</item>
+    <item type="id" name="report">false</item>
+
+    <item type="id" name="tab_toutiao"></item>
+    <item type="id" name="tab_article"></item>
+    <item type="id" name="tab_question"></item>
+    <item type="id" name="tab_discover"></item>
+    <item type="id" name="tab_mine"></item>
+
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.micro.mysegmentdefault"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <application
+        android:name=".base.SegmentApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.UserTagManageActivity"/>
+        <activity android:name=".ui.UserSearchTagActivity"/>
+        <activity android:name=".ui.UserTagDetailActivity"/>
+        <activity android:name=".ui.HomeDataDetailActivity"/>
+        <activity android:name=".ui.SchemeActivity"/>
+        <activity android:name=".ui.ArticleDetailActivity"/>
+        <activity android:name=".ui.QuestionDetailActivity"/>
+        <activity android:name=".ui.ActivityDetailActivity"/>
+        <activity android:name=".ui.NoteListActivity"/>
+        <activity android:name=".ui.NoteDetailActivity"/>
+        <activity android:name=".ui.ActionActivity"/>
+        <activity android:name=".ui.TopUserListActivity">
+        </activity>
+        <activity android:name=".ui.user.UserZoneActivity"/>
+        <activity android:name=".ui.user.UserAddCollectionActivity"/>
+        <activity
+            android:name=".ui.user.UserNewCollectionTagActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.user.UserNewsCommentActivity"/>
+
+        <!-- 用户添加评论页面 -->
+        <activity android:name=".ui.user.UserAddCommentActivity"/>
+
+        <!-- 加载目标网页 -->
+        <activity android:name=".ui.comment.WebBrowserActivity"/>
+        <activity
+            android:name=".ui.user.UserNewNoteActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.user.UserEditInfoActivity">
+        </activity>
+        <activity android:name=".ui.user.UserBaseInfoEditActivity"/>
+        <activity android:name=".ui.LocationChooseActivity"/>
+        <activity android:name=".ui.user.UserChooseTagActivity"/>
+        <activity android:name=".ui.user.UserEditMultipleActivity"/>
+        <activity android:name=".ui.user.message.UserMessageActivity"/>
+        <activity android:name=".ui.user.message.UserPrivateEventActivity"/>
+        <activity android:name=".ui.user.message.UserPrivateEventDetailActivity"/>
+        <activity android:name=".ui.user.attention.UserAttentionActivity"/>
+        <activity android:name=".ui.user.attention.UserAttentionPersonActivity"/>
+        <activity android:name=".ui.user.attention.UserAttentionTagActivity"/>
+        <activity android:name=".ui.user.attention.UserAttentionQuestionActivity"/>
+        <activity android:name=".ui.user.collection.UserCollectionActivity"/>
+        <activity android:name=".ui.user.collection.UserCollectionDetailActivity"/>
+        <activity android:name=".ui.setting.SettingActivity"/>
+        <activity android:name=".ui.setting.MessagePushSettingActivity"/>
+        <activity android:name=".ui.setting.AccountSettingActivity"/>
+        <activity android:name=".ui.setting.UpdatePasswordActivity">
+        </activity>
+        <activity android:name=".ui.setting.SocialAccountShowingActivity">
+        </activity>
+        <activity android:name=".ui.setting.FeedBackActivity"/>
+        <activity android:name=".ui.UserPublishToutiaoActivity"/>
+        <activity android:name=".ui.ChannelChooseActivity">
+        </activity>
+        <activity android:name=".ui.MultipleSearchActivity">
+        </activity>
+    </application>
+
+</manifest>
