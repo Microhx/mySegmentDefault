@@ -208,7 +208,6 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
     }
 
 
-
     public void updatePosition(int mPosition) {
         this.mPosition = mPosition;
     }

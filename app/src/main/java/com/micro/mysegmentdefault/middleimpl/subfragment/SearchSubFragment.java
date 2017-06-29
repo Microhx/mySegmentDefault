@@ -8,6 +8,7 @@ import com.micro.mysegmentdefault.middle.BaseRefreshFragment;
 import com.micro.mysegmentdefault.middleimpl.adapter.MultipleSearchAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.SearchSubModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.SearchSubPresenter;
+import com.micro.mysegmentdefault.view.widget.EmptyLayout;
 
 /**
  * author : micro_hx <p>
@@ -22,7 +23,9 @@ public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,Se
     //当前position
     private int mPosition ;
 
-    private String mKeyWords = "Android";
+    public static String mKeyWords ;
+
+    private MultipleSearchAdapter mMultipleSearchAdapter;
 
     @Override
     protected void initOnCreateMethod() {
@@ -40,8 +43,12 @@ public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,Se
         return !TextUtils.isEmpty(mKeyWords);
     }
 
-    public void setKeyWords(String keywords){
-        this.mKeyWords = keywords;
+    public void reLoadNewData(){
+        //开始刷新
+        mMultipleSearchAdapter.setKeyWords(mKeyWords);
+
+        mEmptyLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), PAGE_STEP);
     }
 
 
@@ -59,6 +66,7 @@ public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,Se
     //TODO 设置divider
     @Override
     protected BaseRecyclerAdapter<SearchDataEntity.SearchItem> getRecyclerAdapter() {
-        return new MultipleSearchAdapter(getActivity());
+        mMultipleSearchAdapter = new MultipleSearchAdapter(getActivity(),mKeyWords);
+        return mMultipleSearchAdapter;
     }
 }

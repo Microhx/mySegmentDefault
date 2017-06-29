@@ -1,5 +1,7 @@
 package com.micro.mysegmentdefault.middle;
 
+import android.content.Context;
+
 import com.micro.mysegmentdefault.base.mvp.model.BaseModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseView;
@@ -21,10 +23,12 @@ public interface MultipleSearchContract {
     interface AbsMultipleSearchView extends BaseView {
         void showHistorySearchResult(List<String> result);
 
+        Context getContext();
+
     }
 
     interface AbsMultipleSearchModel extends BaseModel {
-        Observable<List<String>> loadUserHistorySearch();
+        Observable<List<String>> loadUserHistorySearch(Context ctx);
     }
 
     abstract class AbsMutipleSearchPresenter extends BasePresenter<AbsMultipleSearchView,AbsMultipleSearchModel> {

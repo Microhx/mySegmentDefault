@@ -7,6 +7,7 @@ import com.micro.mysegmentdefault.entity.SearchDataEntity;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewSupport;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewTypeAdapter;
 import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -19,7 +20,9 @@ import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity.SearchItem> {
 
-    public MultipleSearchAdapter(Context ctx) {
+    private String mKeyWords;
+
+    public MultipleSearchAdapter(Context ctx,String keyWords) {
         super(ctx, new MultiViewSupport<SearchDataEntity.SearchItem>() {
             @Override
             public int getLayoutId(int itemType) {
@@ -49,6 +52,8 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
                     }
             }
         });
+
+        this.mKeyWords = keyWords;
     }
 
     @Override
@@ -60,7 +65,7 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
                 break;
 
             case "question":
-                holder.setTextView(R.id.id_tv_answer_content,CommonUtils.replaceTargetWordWithRed(item.title,"android"));
+                holder.setTextView(R.id.id_tv_answer_content,CommonUtils.replaceTargetWordWithRed(item.title,mKeyWords));
                 holder.setTextView(R.id.id_tv_answer_count,item.answers);
                 holder.setAcceptText(R.id.id_tv_answer_count,item.answers,CommonUtils.safeParseBoolean(item.isAccepted));
                 holder.setTextView(R.id.id_tag_layout , CommonUtils.convertTag2String(item.tags));
@@ -79,8 +84,11 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
                 holder.setTextView(R.id.id_iv_user_name,item.name);
                 holder.setTextView(R.id.id_tv_user_id," @"+item.slug);
                 holder.setTextView(R.id.id_tv_rank,item.rank);
-
                 break;
         }
+    }
+
+    public void setKeyWords(String mKeyWords) {
+        this.mKeyWords = mKeyWords;
     }
 }

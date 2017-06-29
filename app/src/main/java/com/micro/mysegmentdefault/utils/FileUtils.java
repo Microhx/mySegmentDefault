@@ -248,8 +248,9 @@ public class FileUtils {
     }
 
 
-
-
-
-
+    public static void deleteTargetFile(File file) {
+        if(null != file && file.exists()) {
+            file.delete();
+        }
+    }
 }

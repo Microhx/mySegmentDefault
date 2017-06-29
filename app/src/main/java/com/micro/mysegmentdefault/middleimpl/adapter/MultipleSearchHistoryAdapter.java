@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseListRecyclerAdapter;
@@ -16,12 +17,29 @@ import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 public class MultipleSearchHistoryAdapter extends BaseListRecyclerAdapter<String> {
 
+    private OnItemSelectListener mListener;
+
     public MultipleSearchHistoryAdapter(Context ctx, int itemLayoutId, int type) {
         super(ctx, itemLayoutId, type);
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, String item, int position) {
+    protected void convertData(ViewHolderHelper holder, final String item, int position) {
         holder.setTextView(R.id.id_tv_history_title,item);
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != mListener) mListener.onItemSelect(item);
+            }
+        }) ;
     }
+
+    public void setOnItemSelectListener(OnItemSelectListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnItemSelectListener{
+        void onItemSelect(String item);
+    }
+
 }

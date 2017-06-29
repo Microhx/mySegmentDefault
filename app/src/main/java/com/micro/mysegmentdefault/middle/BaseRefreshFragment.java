@@ -142,7 +142,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
             mRefreshLayout.setCanLoadMore(false);
         } else {
             mPageEntity = entity;
-            mBaseRecyclerAdapter.setState(entity.current < entity.total ? BaseRecyclerAdapter.STATE_NO_MORE : BaseRecyclerAdapter.STATE_LOADING, true);
+            mBaseRecyclerAdapter.setState(entity.current <= entity.total ? BaseRecyclerAdapter.STATE_NO_MORE : BaseRecyclerAdapter.STATE_LOADING, true);
             mRefreshLayout.setCanLoadMore(entity.current < entity.total);
         }
 

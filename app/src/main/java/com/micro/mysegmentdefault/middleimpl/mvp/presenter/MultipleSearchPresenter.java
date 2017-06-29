@@ -19,7 +19,8 @@ public class MultipleSearchPresenter extends MultipleSearchContract.AbsMutipleSe
 
     @Override
     public void loadUserHistorySearch() {
-        mModel.loadUserHistorySearch().subscribe(new Action1<List<String>>() {
+        mModel.loadUserHistorySearch(mView.getContext()).
+                subscribe(new Action1<List<String>>() {
             @Override
             public void call(List<String> strings) {
                 mView.showHistorySearchResult(strings);
