@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.base.SegmentApplication;
+import com.micro.mysegmentdefault.entity.SearchDataEntity;
 import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
@@ -69,6 +70,13 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
 
         return (T) target;
     }
+
+    public ViewHolderHelper setTextView(int id, CharSequence msg) {
+        TextView tv = getView(id);
+        tv.setText(msg);
+        return this;
+    }
+
 
     public ViewHolderHelper setTextView(int id, String msg) {
         TextView tv = getView(id);
@@ -165,6 +173,16 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
         return this;
     }
 
+
+    public ViewHolderHelper setAcceptText(int id, String answers, boolean b) {
+        TextView tv = getView(id);
+        tv.setText(answers);
+        tv.setTextColor(b ? Color.parseColor("#838283"):Color.parseColor("#039A63"));
+        tv.setBackgroundColor(b?Color.parseColor("#EFEEF0") : Color.parseColor("#EFF9F6"));
+        return this;
+    }
+
+
     public ViewHolderHelper setViewOnClickListener(int id, View.OnClickListener listener) {
         getView(id).setOnClickListener(listener);
         return this;
@@ -189,6 +207,8 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
         return this;
     }
 
+
+
     public void updatePosition(int mPosition) {
         this.mPosition = mPosition;
     }
@@ -210,5 +230,6 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
         }
         return mLayoutParams;
     }
+
 
 }

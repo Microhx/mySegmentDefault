@@ -37,11 +37,8 @@
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/id_tv_tab_layout"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 app:elevation="2dp"
                 app:tabBackground="@color/app_theme_color"
                 app:tabIndicatorColor="@color/white_color"

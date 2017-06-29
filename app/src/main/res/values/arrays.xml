@@ -55,10 +55,19 @@
         <item>@string/sex_female</item>
     </array>
 
-
     <array name="toutiao_type">
         <item>最热的</item>
         <item>最新的</item>
     </array>
+
+    <array name="search_type_item">
+        <item>全部</item>
+        <item>问题</item>
+        <item>文章</item>
+        <item>标签</item>
+        <item>用户</item>
+    </array>
+
+
 
 </resources>

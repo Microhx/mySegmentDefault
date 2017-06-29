@@ -205,6 +205,8 @@
     <string name="str_input_channel_success">吐槽成功</string>
     <string name="str_menu_write">撰写</string>
     <string name="str_search_hint">搜索问答、文章和人</string>
+    <string name="str_history_record">历史记录</string>
+    <string name="str_clear">清除</string>
 
 
 </resources>

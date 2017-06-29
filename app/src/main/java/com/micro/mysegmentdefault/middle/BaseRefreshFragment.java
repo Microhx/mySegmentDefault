@@ -80,7 +80,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         mRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.app_theme_color));
         mRefreshLayout.setSuperRefreshLayoutListener(this);
 
-        if (null != mPresenter)
+        if (null != mPresenter && shouldStartRequest())
             mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), mStartPages);
     }
 
@@ -176,6 +176,14 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         return 0;
     }
 
+
+    /**
+     * 是否开始网络请求
+     * @return
+     */
+    protected boolean shouldStartRequest() {
+        return true ;
+    }
 
     protected void checkLayoutVisible() {
         if (mBaseRecyclerAdapter.getCount() > 0) {

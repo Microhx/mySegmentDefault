@@ -19,6 +19,7 @@ import com.micro.mysegmentdefault.entity.NoteDetailDataEntity;
 import com.micro.mysegmentdefault.entity.OnlyData;
 import com.micro.mysegmentdefault.entity.PushMessageDataEntity;
 import com.micro.mysegmentdefault.entity.QuestionDetailDataEntity;
+import com.micro.mysegmentdefault.entity.SearchDataEntity;
 import com.micro.mysegmentdefault.entity.SocialAccountBindDataEntity;
 import com.micro.mysegmentdefault.entity.TagDataEntity;
 import com.micro.mysegmentdefault.entity.TagDetailArticleEntity;
@@ -332,4 +333,13 @@ public interface ApiService {
                                        @Query("type") String type ,
                                        @Query("description") String description,
                                        @Query("token") String token);
+
+    //search?q=Android&page=1&type=article
+
+    @GET("search")
+    Observable<SearchDataEntity> getSearchDataEntity(@Query("q") String q ,
+                                                     @Query("page") int page ,
+                                                     @Query("type") String type);
+
+
 }

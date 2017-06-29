@@ -19,6 +19,6 @@ public class MultipleSearchModel implements MultipleSearchContract.AbsMultipleSe
     //TODO　just do IT test
     @Override
     public Observable<List<String>> loadUserHistorySearch() {
-        return Observable.just("java","php","android","ios").buffer(4);
+        return Observable.just("java","php","android","ios","javascript","NoSql").buffer(4);
     }
 }

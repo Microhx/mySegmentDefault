@@ -37,7 +37,7 @@ public abstract class BaseListRecyclerAdapter<T> extends BaseRecyclerAdapter<T> 
 
     }
 
-    protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
+    protected ViewHolderHelper onCreateDefaultViewHolder(ViewGroup parent, int type) {
         ViewHolderHelper helper = ViewHolderHelper.get(mContext, null, parent, mItemLayoutId, -1);
         return helper;
     }
