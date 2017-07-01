@@ -7,19 +7,28 @@
               android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/id_iv_image"
         android:layout_width="36dp"
         android:src="@drawable/ic_search_tag"
         android:layout_height="36dp"/>
 
     <TextView
         android:id="@+id/id_tv_tag"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:textColor="@color/text_first_color"
         android:textSize="14sp"
         android:text="c"
         android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_height="wrap_content"/>
 
-
+    <TextView
+        android:id="@+id/id_create_tag"
+        android:layout_width="wrap_content"
+        android:textColor="@color/app_theme_color"
+        android:textSize="14sp"
+        android:text="@string/str_create_tag"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

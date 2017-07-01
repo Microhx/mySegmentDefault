@@ -100,7 +100,6 @@ public class UserChooseTagActivity extends BaseActivity implements AdapterView.O
         ctx.startActivityForResult(_intent,requestCode);
     }
 
-
     @Override
     protected void initBeforeView(Bundle savedInstanceState) {
         mBestTagList = getIntent().getParcelableArrayListExtra("tags");

@@ -63,7 +63,6 @@ public class MultipleSearchActivity extends BaseActivity<MultipleSearchPresenter
     //保存用户临时搜索的词汇
     private Set<String> mTempSearchWords = new HashSet<>();
 
-
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);

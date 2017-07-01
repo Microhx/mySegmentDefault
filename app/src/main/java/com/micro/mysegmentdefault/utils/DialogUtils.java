@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.micro.mysegmentdefault.R;
@@ -22,6 +23,24 @@ public class DialogUtils {
                 setPositiveButton(R.string.str_i_know,null).
                 show();
     }
+
+    public static void showAlertDialog(Context ctx, String title , String msg , String positiveText , DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle(title).
+                setMessage(msg).
+                setPositiveButton(positiveText,listener).
+                show();
+    }
+
+
+
+
+
+    public static void showAlertItemDialog(Context ctx, String[] items , DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setItems(items,listener).show();
+    }
+
 
 
 }

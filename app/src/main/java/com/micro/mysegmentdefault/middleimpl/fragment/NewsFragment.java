@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.middleimpl.fragment;
 
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import com.micro.mysegmentdefault.entity.TagDataEntity;
 import com.micro.mysegmentdefault.middleimpl.adapter.NewsFragmentPagerAdapter;
 import com.micro.mysegmentdefault.ui.MultipleSearchActivity;
 import com.micro.mysegmentdefault.ui.UserTagManageActivity;
+import com.micro.mysegmentdefault.ui.write.AskQuestionActivity;
+import com.micro.mysegmentdefault.utils.DialogUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,7 +40,7 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class NewsFragment extends BaseFragment {
+public class NewsFragment extends BaseFragment implements DialogInterface.OnClickListener {
 
     @Bind(R.id.id_toolbar_layout)
     Toolbar mToolBar;
@@ -91,7 +94,8 @@ public class NewsFragment extends BaseFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.id_menu_write) {
-            //TODO write the question and article
+            String[] items = getResources().getStringArray(R.array.write_question_article);
+            DialogUtils.showAlertItemDialog(getActivity(),items,this);
         }
 
         return true;
@@ -116,7 +120,6 @@ public class NewsFragment extends BaseFragment {
         EventBus.getDefault().unregister(this);
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (null != event && event.type == -1) {
@@ -126,4 +129,24 @@ public class NewsFragment extends BaseFragment {
         }
     }
 
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        if(which == 0) { //提问题
+            DialogUtils.showAlertDialog(getActivity(),
+                    getString(R.string.str_ask_question_title),
+                    getString(R.string.str_ask_question_content),
+                    getString(R.string.str_ask_question_i_kown),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            goWithActivity(AskQuestionActivity.class);
+                        }
+                    });
+        }else { //写文章
+                //TODO write article activity
+        }
+
+
+    }
 }

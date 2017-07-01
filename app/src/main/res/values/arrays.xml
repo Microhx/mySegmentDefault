@@ -68,6 +68,13 @@
         <item>用户</item>
     </array>
 
+    <array name="write_question_article">
+        <item>提问题</item>
+        <item>写文章</item>
+
+    </array>
+
+
 
 
 </resources>

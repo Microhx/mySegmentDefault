@@ -78,6 +78,12 @@
         </activity>
         <activity android:name=".ui.MultipleSearchActivity">
         </activity>
+        <activity android:name=".ui.write.AskQuestionActivity">
+        </activity>
+        <activity android:name=".ui.write.AskTitleActivity">
+        </activity>
+        <activity android:name=".ui.write.AskTagActivity">
+        </activity>
     </application>
 
 </manifest>

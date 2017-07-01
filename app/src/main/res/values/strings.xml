@@ -207,6 +207,21 @@
     <string name="str_search_hint">搜索问答、文章和人</string>
     <string name="str_history_record">历史记录</string>
     <string name="str_clear">清除</string>
-
+    <string name="str_ask_question_title">如果提问，这是一门学问</string>
+    <string name="str_ask_question_content">先使用搜索 ，或许能更快找到答案哦\n
+ 1.清楚、详细地描述问题\n
+ 2.简要准确地突出主旨标题\n
+ 3.贴上问题相关代码和报错信息等\n
+ 4.已经尝试过的解决方法\n
+ 当然，利用编辑器排版提高可读性，准确地添加问题相关标签，更会提高你的问题被回答的几率。 </string>
+    <string name="str_ask_question_i_kown">知道了，开始提问</string>
+    <string name="str_ask_question">提问题</string>
+    <string name="str_ask_question_title_2">标题：一句话说请你遇到的开发问题</string>
+    <string name="str_ask_question_title_tag">标签，如：php</string>
+    <string name="str_ask_question_desc">添加问题描述</string>
+    <string name="str_create_question">创建问题</string>
+    <string name="possible_question_results">下列问题可能有你需要的答案</string>
+    <string name="str_hint">标题</string>
+    <string name="str_create_tag">创建标签</string>
 
 </resources>

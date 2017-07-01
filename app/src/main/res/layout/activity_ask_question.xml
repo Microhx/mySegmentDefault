@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_ask_question"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.write.AskQuestionActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:pub_ri_resource="@drawable/ic_submit"
+            app:pub_ri_visible="true"
+            app:pub_title="@string/str_ask_question"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:id="@+id/id_et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginTop="12dp"
+        android:focusable="false"
+        android:hint="@string/str_ask_question_title_2"/>
+
+    <EditText
+        android:id="@+id/id_et_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:focusable="false"
+        android:hint="@string/str_ask_question_title_tag"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:id="@+id/id_ask_question_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_ask_question_desc"
+            android:textColor="@color/text_second_color"
+            android:textSize="14sp"/>
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_ask_title"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.write.AskTitleActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:pub_title="@string/str_create_question"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:hint="@string/str_hint"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingTop="9.0dip"
+        app:counterEnabled="true"
+        app:counterMaxLength="64">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/id_et_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:maxLength="64"
+            android:maxLines="1"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/id_tv_search_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:background="@color/text_third_color"
+        android:paddingTop="12.0dip"
+        android:text="@string/possible_question_results"
+        android:visibility="gone"/>
+
+    <com.micro.mysegmentdefault.view.recyclerview.RecyclerRefreshLayout
+        android:id="@+id/id_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/id_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.micro.mysegmentdefault.view.recyclerview.RecyclerRefreshLayout>
+
+
+</LinearLayout>
