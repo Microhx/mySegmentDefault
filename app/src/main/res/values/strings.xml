@@ -223,5 +223,30 @@
     <string name="possible_question_results">下列问题可能有你需要的答案</string>
     <string name="str_hint">标题</string>
     <string name="str_create_tag">创建标签</string>
+    <string name="str_create_tag_desc">对新建标签的描述</string>
+    <string name="str_desc">描述</string>
+    <string name="str_tag_desc_should_not_null">对标签的描述不能为空</string>
+    <string name="str_create_tag_success">创建标签成功</string>
+    <string name="str_question_desc">问题描述</string>
+    <string name="str_question_content">1.描述你的问题\n
+ 2.贴上相关代码\n
+ 3.贴上报错信息\n
+ 4.贴上相关截图\n
+ 5.已经尝试过哪些方法仍然没解决（附上相关链接）</string>
+    <string name="str_content_empty_error">提问不能为空</string>
+    <string name="str_content_length_short_error">提问需要超过10个字</string>
+    <string name="str_add_ask_title">请填写问题的标题</string>
+    <string name="str_add_ask_tag">请添加问题标签</string>
+    <string name="str_add_question_success">提问成功</string>
+    <string name="title_activity_write_article">WriteArticleActivity</string>
+    <string name="str_write_article">写文章</string>
+    <string name="str_publish">发布</string>
+    <string name="str_choose_special_column">请选择一个专栏</string>
+    <string name="str_article_content">文章内容</string>
+    <string name="str_create_new_column">创建新专栏</string>
+    <string name="str_user_custom_website">自定义网址(https://segementfault.com/blog/你的后缀)</string>
+    <string name="set_website_not_allow_null">自定义网站不能为空</string>
+    <string name="str_add_acticle_tag">请添加文章标签</string>
+    <string name="str_article_length_too_short">文章内容至少10字</string>
 
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_ask_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.write.AskContentActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:pub_ri_resource="@drawable/ic_submit"
+            app:pub_ri_visible="true"
+            app:pub_title="@string/str_question_desc"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:id="@+id/id_et_content"
+        android:layout_width="match_parent"
+        android:gravity="left|top"
+        android:background="@null"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:hint="@string/str_question_content"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

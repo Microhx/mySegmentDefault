@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
 import com.micro.mysegmentdefault.middle.BaseRefreshFragment;
+import com.micro.mysegmentdefault.middle.view.AbsAksTagView;
 import com.micro.mysegmentdefault.middleimpl.adapter.MultipleSearchAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.SearchSubModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.SearchSubPresenter;
@@ -18,7 +19,7 @@ import com.micro.mysegmentdefault.view.widget.EmptyLayout;
  * interface :
  */
 
-public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,SearchSubModel,SearchDataEntity.SearchItem> {
+public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,SearchSubModel,SearchDataEntity.SearchItem> implements AbsAksTagView<SearchDataEntity.SearchItem> {
 
     //当前position
     private int mPosition ;
@@ -68,5 +69,16 @@ public class SearchSubFragment extends BaseRefreshFragment<SearchSubPresenter,Se
     protected BaseRecyclerAdapter<SearchDataEntity.SearchItem> getRecyclerAdapter() {
         mMultipleSearchAdapter = new MultipleSearchAdapter(getActivity(),mKeyWords);
         return mMultipleSearchAdapter;
+    }
+
+    @Override
+    protected void initPresenter() {
+        if (null == mPresenter) return;
+        mPresenter.setVM(this, mModel);
+    }
+
+    @Override
+    public void showUserNewTag(boolean result) {
+
     }
 }

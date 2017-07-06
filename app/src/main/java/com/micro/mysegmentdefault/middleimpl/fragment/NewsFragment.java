@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BasePagerAdapter;
 import com.micro.mysegmentdefault.base.module.BaseFragment;
@@ -20,6 +21,7 @@ import com.micro.mysegmentdefault.middleimpl.adapter.NewsFragmentPagerAdapter;
 import com.micro.mysegmentdefault.ui.MultipleSearchActivity;
 import com.micro.mysegmentdefault.ui.UserTagManageActivity;
 import com.micro.mysegmentdefault.ui.write.AskQuestionActivity;
+import com.micro.mysegmentdefault.ui.write.WriteArticleActivity;
 import com.micro.mysegmentdefault.utils.DialogUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
 
@@ -129,7 +131,6 @@ public class NewsFragment extends BaseFragment implements DialogInterface.OnClic
         }
     }
 
-
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if(which == 0) { //提问题
@@ -144,9 +145,7 @@ public class NewsFragment extends BaseFragment implements DialogInterface.OnClic
                         }
                     });
         }else { //写文章
-                //TODO write article activity
+                goWithActivity(WriteArticleActivity.class);
         }
-
-
     }
 }

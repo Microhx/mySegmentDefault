@@ -84,6 +84,12 @@
         </activity>
         <activity android:name=".ui.write.AskTagActivity">
         </activity>
+        <activity android:name=".ui.write.AskContentActivity">
+        </activity>
+        <activity android:name=".ui.write.WriteArticleActivity">
+        </activity>
+        <activity android:name=".ui.write.CreateSpecialColumnActivity">
+        </activity>
     </application>
 
 </manifest>

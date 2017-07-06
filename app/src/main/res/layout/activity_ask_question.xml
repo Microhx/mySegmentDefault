@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/str_ask_question_desc"
-            android:textColor="@color/text_second_color"
+            android:textColor="@color/text_first_color"
             android:textSize="14sp"/>
 
     </ScrollView>

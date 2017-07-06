@@ -102,10 +102,14 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         startActivity(new Intent(this, activity));
     }
 
-
     protected void goForResult(Class<? extends Activity> activity , int requestCode) {
         startActivityForResult(new Intent(this,activity),requestCode);
     }
+
+    protected void goForResult(Intent intent , int requestCode) {
+        startActivityForResult(intent,requestCode);
+    }
+
 
     protected void showToast(String msg) {
         ToastUtils.showMessage(this,msg);

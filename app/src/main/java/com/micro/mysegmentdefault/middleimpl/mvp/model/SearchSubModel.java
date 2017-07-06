@@ -1,7 +1,9 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
+import com.micro.mysegmentdefault.entity.OnlyData;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
+import com.micro.mysegmentdefault.middle.model.AbsAskTagModel;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.network.RxSchedulers;
 
@@ -15,7 +17,7 @@ import rx.Observable;
  * interface :
  */
 
-public class SearchSubModel implements BaseRefreshModel<SearchDataEntity> {
+public class SearchSubModel implements AbsAskTagModel<SearchDataEntity> {
 
     @Override
     public Observable<SearchDataEntity> getCommentListDatas(int type, String channel, int startPages) {
@@ -24,6 +26,12 @@ public class SearchSubModel implements BaseRefreshModel<SearchDataEntity> {
                 getSearchDataEntity(channel,startPages , getType(type)).
                 compose(RxSchedulers.<SearchDataEntity>io_main());
     }
+
+    @Override
+    public Observable<OnlyData> addNewUserTag(String tagName, String tagDesc, String token) {
+        return Api.getApiService(0).addUserNewTagDataEntity(tagName,tagDesc,token).compose(RxSchedulers.<OnlyData>io_main());
+    }
+
 
     public String getType(int type) {
         switch (type) {
@@ -39,5 +47,7 @@ public class SearchSubModel implements BaseRefreshModel<SearchDataEntity> {
             case 4:return "user";
         }
     }
+
+
 
 }

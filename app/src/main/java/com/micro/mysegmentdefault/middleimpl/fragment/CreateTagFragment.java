@@ -2,16 +2,17 @@ package com.micro.mysegmentdefault.middleimpl.fragment;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
-import com.micro.mysegmentdefault.utils.LogUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.regex.Pattern;
 
@@ -23,13 +24,17 @@ import java.util.regex.Pattern;
  * interface :
  */
 
-public class UpdateEmailFragment extends DialogFragment {
+public class CreateTagFragment extends DialogFragment {
 
     private TextInputLayout mInputLayout;
 
     private EditText mEditInput ;
 
+    private TextView mSureText ;
+
     private OnEmailFinishListener mListener;
+
+    private String mTagName ;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,7 +42,10 @@ public class UpdateEmailFragment extends DialogFragment {
         View rootView = View.inflate(getActivity(),R.layout.fragment_send_email_layout,null);
         mInputLayout = (TextInputLayout) rootView.findViewById(R.id.id_input_layout);
         mEditInput = (EditText) rootView.findViewById(R.id.id_et_content);
-        mInputLayout.setHint(getString(R.string.str_email));
+        mSureText = (TextView) rootView.findViewById(R.id.id_tv_sure);
+
+        mInputLayout.setHint(getString(R.string.str_desc));
+        mSureText.setText(R.string.str_commit);
 
         rootView.findViewById(R.id.id_tv_sure).
                 setOnClickListener(new View.OnClickListener() {
@@ -47,7 +55,7 @@ public class UpdateEmailFragment extends DialogFragment {
             }
         });
 
-        builder.setTitle(getString(R.string.str_update_eamil)).
+        builder.setTitle(getString(R.string.str_create_tag_desc)).
                 setView(rootView).
                 setCancelable(false);
         return builder.create();
@@ -57,16 +65,11 @@ public class UpdateEmailFragment extends DialogFragment {
         String email = mEditInput.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)) {
-            mInputLayout.setError(getString(R.string.str_email_should_not_null));
+            mInputLayout.setError(getString(R.string.str_tag_desc_should_not_null));
             return;
         }
 
-        if(!Pattern.matches("[\\w_$]+@[\\w_$.]+" , email)){
-            mInputLayout.setError(getString(R.string.str_email_format_error));
-            return;
-        }
-
-        if(null != mListener) mListener.onFinish(email);
+        if(null != mListener) mListener.onFinish(mTagName,email);
 
         dismiss();
     }
@@ -75,8 +78,12 @@ public class UpdateEmailFragment extends DialogFragment {
         this.mListener = mListener;
     }
 
+    public void setTagName(String mTagName) {
+        this.mTagName = mTagName;
+    }
+
     public interface OnEmailFinishListener{
-        void onFinish(String email); //
+        void onFinish(String tagName ,String tagDesc); //
     }
 
 }

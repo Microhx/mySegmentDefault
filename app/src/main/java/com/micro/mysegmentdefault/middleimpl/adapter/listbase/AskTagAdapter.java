@@ -76,6 +76,10 @@ public class AskTagAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public String getTagName(){
+        return mKeyWords;
+    }
+
 
     public void setDatas(List<SearchDataEntity.SearchItem> mDatas, boolean dataIsNull) {
         this.mDatas = mDatas;

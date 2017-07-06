@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:textColor="@color/app_theme_color"
         android:textSize="14sp"
+        android:visibility="gone"
         android:text="@string/str_create_tag"
         android:layout_height="wrap_content"/>
 

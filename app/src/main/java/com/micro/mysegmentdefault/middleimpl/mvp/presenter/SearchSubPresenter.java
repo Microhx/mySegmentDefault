@@ -1,9 +1,11 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
-import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
-import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
+import com.micro.mysegmentdefault.entity.OnlyData;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
+import com.micro.mysegmentdefault.middle.model.AbsAskTagModel;
+import com.micro.mysegmentdefault.middle.view.AbsAksTagView;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
 import rx.functions.Action1;
@@ -16,7 +18,7 @@ import rx.functions.Action1;
  * interface :
  */
 
-public class SearchSubPresenter extends BaseRefreshPresenter<BaseRefreshView<SearchDataEntity.SearchItem>,BaseRefreshModel<SearchDataEntity>>  {
+public class SearchSubPresenter extends BaseRefreshPresenter<AbsAksTagView<SearchDataEntity.SearchItem>,AbsAskTagModel<SearchDataEntity>>  {
 
     @Override
     public void getCommonListDatas(int type, String channel, final int startPages) {
@@ -37,4 +39,22 @@ public class SearchSubPresenter extends BaseRefreshPresenter<BaseRefreshView<Sea
             }
         });
     }
+
+    public void addUserNewTag(String tagName , String tagDesc) {
+        mModel.addNewUserTag(tagName,tagDesc, UserLogic.getUserToken()).subscribe(new Action1<OnlyData>() {
+            @Override
+            public void call(OnlyData onlyData) {
+                mView.showUserNewTag(null != onlyData && onlyData.status == 0);
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                LogUtils.d("add User new tag error : " + throwable);
+                mView.showUserNewTag(false);
+            }
+        });
+
+    }
+
+
 }

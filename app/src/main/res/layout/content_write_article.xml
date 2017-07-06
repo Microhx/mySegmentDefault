@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/content_write_article"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.micro.mysegmentdefault.ui.write.WriteArticleActivity">
+
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pub_ri_visible="false"
+        app:pub_title="@string/str_write_article"
+        app:pub_tv_txt="@string/str_publish"/>
+
+    <LinearLayout
+        android:id="@+id/id_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/id_tv_column"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/str_choose_special_column"
+            android:textColor="@color/text_first_color"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_hate_grey_large"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/id_et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginTop="12dp"
+        android:hint="@string/str_hint"/>
+
+    <EditText
+        android:id="@+id/id_et_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:focusable="false"
+        android:hint="@string/str_ask_question_title_tag"/>
+
+    <EditText
+        android:id="@+id/id_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|top"
+        android:hint="@string/str_article_content"
+        android:padding="12dp"
+        android:background="@null"
+        android:textColor="@color/text_first_color"
+        android:textSize="16sp"/>
+
+</LinearLayout>

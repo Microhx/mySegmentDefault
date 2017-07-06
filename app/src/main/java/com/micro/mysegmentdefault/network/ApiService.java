@@ -33,6 +33,7 @@ import com.micro.mysegmentdefault.entity.TopUserEntity;
 import com.micro.mysegmentdefault.entity.UpdatePasswordEntity;
 import com.micro.mysegmentdefault.entity.UserAttentionPersonDataEntity;
 import com.micro.mysegmentdefault.entity.UserAttentionTagDataEntity;
+import com.micro.mysegmentdefault.entity.UserBlogDataEntity;
 import com.micro.mysegmentdefault.entity.UserCollectEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
 import com.micro.mysegmentdefault.entity.UserDataEntity;
@@ -342,4 +343,26 @@ public interface ApiService {
                                                      @Query("type") String type);
 
 
+    @POST("tags/add")
+    Observable<OnlyData> addUserNewTagDataEntity(@Query("name") String name ,
+                                                 @Query("text") String desc,
+                                                 @Query("token") String token);
+
+    @POST("questions/add")
+    Observable<OnlyData> addUserNewQuestionDataEntity(@QueryMap Map<String,String> map);
+
+
+    @GET("blogs/me")
+    Observable<UserBlogDataEntity> getUserBlogDataEntity(@Query("token") String token);
+
+
+    @POST("blogs/add")
+    Observable<OnlyData> commitUserSpecialColumn(@Query("name") String name,
+                                                 @Query("slug") String slug ,
+                                                 @Query("description") String description,
+                                                 @Query("token") String token);
+
+    //文章添加
+    @POST("articles/add")
+    Observable<OnlyData> commitUserArticles(@QueryMap Map<String,String> options);
 }

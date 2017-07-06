@@ -17,6 +17,7 @@ import com.micro.mysegmentdefault.base.module.BaseActivity;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
 import com.micro.mysegmentdefault.entity.PageEntity;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
+import com.micro.mysegmentdefault.middle.view.AbsAksTagView;
 import com.micro.mysegmentdefault.middleimpl.adapter.SelectSameQuestionAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.SearchSubModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.SearchSubPresenter;
@@ -34,7 +35,7 @@ import butterknife.OnTextChanged;
 /**
  * 创建问题 选择问题的title
  */
-public class AskTitleActivity extends BaseActivity<SearchSubPresenter, SearchSubModel> implements BaseRefreshView<SearchDataEntity.SearchItem>, RecyclerRefreshLayout.SuperRefreshLayoutListener {
+public class AskTitleActivity extends BaseActivity<SearchSubPresenter, SearchSubModel> implements BaseRefreshView<SearchDataEntity.SearchItem>, RecyclerRefreshLayout.SuperRefreshLayoutListener, AbsAksTagView<SearchDataEntity.SearchItem> {
 
     private final static int PAGE_STEP = 1;
 
@@ -55,6 +56,7 @@ public class AskTitleActivity extends BaseActivity<SearchSubPresenter, SearchSub
     private PageEntity mPageEntity;
 
     private String mKeyWords;
+
 
     @OnTextChanged(R.id.id_et_title)
     public void onTextChange(CharSequence s, int start, int before, int count) {
@@ -102,6 +104,11 @@ public class AskTitleActivity extends BaseActivity<SearchSubPresenter, SearchSub
 
     @Override
     protected void initViews() {
+        String originalTitle = getIntent().getStringExtra("title");
+        if(!TextUtils.isEmpty(originalTitle)) {
+            mTitleContent.setText(originalTitle);
+        }
+
         mSelectSameQuestionAdapter = new SelectSameQuestionAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new RecycleViewDivider2(this, LinearLayout.VERTICAL));
@@ -181,4 +188,6 @@ public class AskTitleActivity extends BaseActivity<SearchSubPresenter, SearchSub
         }
     };
 
+    @Override
+    public void showUserNewTag(boolean result) {}
 }
