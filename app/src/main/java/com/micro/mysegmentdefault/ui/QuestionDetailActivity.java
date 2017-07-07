@@ -138,6 +138,7 @@ public class QuestionDetailActivity extends CommonWebActivity<QuestionDetailPres
 
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
+        if(null == mDataEntity) return;
         mPresenter.loadQuestionFollow(mDataEntity.isIsFollowed(),mDataEntity.getId());
     }
 

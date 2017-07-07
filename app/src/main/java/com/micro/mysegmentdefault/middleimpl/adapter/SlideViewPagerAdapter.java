@@ -76,7 +76,5 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         mListItems.clear();
         mListItems.addAll(listItems);
         notifyDataSetChanged();
-
-        LogUtils.d("-------------mListItems--------->>" + mListItems);
     }
 }

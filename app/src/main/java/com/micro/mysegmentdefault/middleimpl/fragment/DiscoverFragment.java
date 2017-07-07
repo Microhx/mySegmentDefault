@@ -6,13 +6,14 @@ import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseFragment;
 import com.micro.mysegmentdefault.entity.DiscoverDataEntity;
 import com.micro.mysegmentdefault.middle.DiscoverContract;
+import com.micro.mysegmentdefault.middleimpl.adapter.SlideViewPagerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.DiscoverModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.DiscoverPresenter;
 import com.micro.mysegmentdefault.ui.ActionActivity;
 import com.micro.mysegmentdefault.ui.NoteListActivity;
 import com.micro.mysegmentdefault.ui.TopUserListActivity;
-import com.micro.mysegmentdefault.utils.LogUtils;
-import com.micro.mysegmentdefault.view.widget.SlideshowView;
+import com.micro.mysegmentdefault.view.widget.CustomViewPager;
+import com.micro.mysegmentdefault.view.widget.ViewPagerIndicator;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -25,10 +26,15 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView {
+public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView, CustomViewPager.onLeftOrRightListener {
 
-    @Bind(R.id.id_slide_view)
-    SlideshowView mSlideView;
+    @Bind(R.id.id_view_pager)
+    CustomViewPager mCustomViewPager;
+
+    @Bind(R.id.id_pager_indicator)
+    ViewPagerIndicator mViewPagerIndicator;
+
+    SlideViewPagerAdapter mSlideViewPagerAdapter;
 
     @Override
     protected int getContentLayoutId() {
@@ -43,9 +49,12 @@ public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverMod
 
     @Override
     public void showDiscoverData(DiscoverDataEntity dataEntity) {
-        LogUtils.d("--------showDiscoverData--------->>" + dataEntity.status);
         if(null != dataEntity ){
-            mSlideView.setDatas(dataEntity.data.rows);
+            mSlideViewPagerAdapter = new SlideViewPagerAdapter(getContext(),dataEntity.data.rows);
+            mViewPagerIndicator.setPagerAdapter(mSlideViewPagerAdapter);
+
+            mCustomViewPager.setAdapter(mSlideViewPagerAdapter);
+            mCustomViewPager.setLeftOrRightListener(this);
        }
     }
 
@@ -67,4 +76,19 @@ public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverMod
         goWithActivity(TopUserListActivity.class);
     }
 
+
+    @Override
+    public void onPageScrolled(int startPosition, int endPosition, float positionOffset, boolean isRight) {
+            mViewPagerIndicator.onPageScrolled(startPosition,endPosition,positionOffset,isRight);
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }
