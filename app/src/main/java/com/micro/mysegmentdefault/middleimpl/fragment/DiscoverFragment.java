@@ -38,7 +38,7 @@ public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverMod
     @Override
     protected void initViews() {
         mPresenter.setVM(this,mModel);
-        //mPresenter.getRecommendActivityList();
+        mPresenter.getRecommendActivityList();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverMod
         LogUtils.d("--------showDiscoverData--------->>" + dataEntity.status);
         if(null != dataEntity ){
             mSlideView.setDatas(dataEntity.data.rows);
-        }
+       }
     }
 
     @Override

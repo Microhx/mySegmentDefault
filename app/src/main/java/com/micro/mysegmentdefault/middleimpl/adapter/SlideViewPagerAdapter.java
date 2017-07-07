@@ -1,13 +1,16 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.DiscoverDataEntity;
+import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
@@ -33,7 +36,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
+        return CommonUtils.collectionIsNull(mListItems) ? 0 : mListItems.size();
     }
 
     @Override
@@ -48,11 +51,13 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        DiscoverDataEntity.DiscoverItem item = mListItems.get(position % mListItems.size());
-        
         ImageView iv = new ImageView(mContext);
+
+        DiscoverDataEntity.DiscoverItem item = mListItems.get(position % mListItems.size());
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
         ImageUtils.showUrlImageFixXY(item.bannerUrl, iv);
+        LogUtils.d("bannerUrl:" + item.bannerUrl);
+
         container.addView(iv,getDefaultLayoutParams());
 
         return iv;
@@ -65,5 +70,13 @@ public class SlideViewPagerAdapter extends PagerAdapter {
             mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         }
         return mLayoutParams;
+    }
+
+    public void updateData(List<DiscoverDataEntity.DiscoverItem> listItems) {
+        mListItems.clear();
+        mListItems.addAll(listItems);
+        notifyDataSetChanged();
+
+        LogUtils.d("-------------mListItems--------->>" + mListItems);
     }
 }

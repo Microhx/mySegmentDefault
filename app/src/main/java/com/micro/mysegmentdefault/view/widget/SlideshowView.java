@@ -9,7 +9,9 @@ import android.widget.RelativeLayout;
 
 import com.micro.mysegmentdefault.entity.DiscoverDataEntity;
 import com.micro.mysegmentdefault.middleimpl.adapter.SlideViewPagerAdapter;
+import com.micro.mysegmentdefault.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,7 +69,6 @@ public class SlideshowView extends RelativeLayout {
     public void setDatas(List<DiscoverDataEntity.DiscoverItem> listItems) {
         mSlideViewPagerAdapter = new SlideViewPagerAdapter(getContext(), listItems);
         mViewPager.setAdapter(mSlideViewPagerAdapter);
-        mViewPager.setCurrentItem(Integer.MAX_VALUE / 2);
     }
 
 
