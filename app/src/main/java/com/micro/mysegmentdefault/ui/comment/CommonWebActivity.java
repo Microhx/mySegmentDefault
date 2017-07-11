@@ -1,6 +1,8 @@
 package com.micro.mysegmentdefault.ui.comment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.micro.mysegmentdefault.base.module.BaseActivity;
 import com.micro.mysegmentdefault.base.mvp.model.BaseModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
 import com.micro.mysegmentdefault.ui.CustomWebViewClient;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
 import butterknife.Bind;
@@ -56,6 +59,12 @@ public abstract class CommonWebActivity<T extends BasePresenter, E extends BaseM
 
     @Bind(R.id.id_layout_zan)
     protected LinearLayout mZanLayout;
+
+    @Bind(R.id.id_layout_collect)
+    protected LinearLayout mCollectLayout;
+
+    @Bind(R.id.id_layout_comment)
+    protected LinearLayout mCommentLayout;
 
 
     public static final String CONTENT_ID = "content_id";
@@ -141,5 +150,17 @@ public abstract class CommonWebActivity<T extends BasePresenter, E extends BaseM
     @Override
     public void onPageFinished(WebView view, String url) {
 
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        Uri localUri = Uri.parse(url);
+        Context localContext = view.getContext();
+        Intent _intent = new Intent(localContext,SchemeActivity.class);
+        _intent.setData(localUri);
+        _intent.putExtra("inner",true);
+        localContext.startActivity(_intent);
+
+        return true;
     }
 }

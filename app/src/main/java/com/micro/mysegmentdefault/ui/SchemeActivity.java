@@ -11,6 +11,7 @@ import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
 import com.micro.mysegmentdefault.ui.comment.WebBrowserActivity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.utils.LogUtils;
+import com.micro.mysegmentdefault.utils.SchemeUtils;
 
 /**
  * URL跳转中转Activity
@@ -25,17 +26,21 @@ public class SchemeActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        boolean bool = getIntent().getBooleanExtra("inner", false);
+        //boolean bool = getIntent().getBooleanExtra("inner", false);
+
         Uri uri = getIntent().getData();
+        LogUtils.d("target uri : " + uri);
 
         String urlPath = uri.getPath();
+        String host = uri.getHost();
 
-        LogUtils.d("bool : " + bool);
-        LogUtils.d("uri  : " + uri);
-        LogUtils.d("host : " + uri.getHost());
-        LogUtils.d("path : " + uri.getPath());
+        if(SchemeUtils.URL.contains(urlPath) && SchemeUtils.URL_SHEME.contains(host)){
+            gotoTargetActivity(uri);
+        }else {
+            WebBrowserActivity.start(SchemeActivity.this,uri.toString());
+        }
 
-        if(!TextUtils.isEmpty(urlPath) && urlPath.contains("/")) {
+        /*if(!TextUtils.isEmpty(urlPath) && urlPath.contains("/")) {
             String tag = urlPath.split("/")[1];
             String info = urlPath.split("/")[2];
 
@@ -58,8 +63,17 @@ public class SchemeActivity extends AppCompatActivity {
                     WebBrowserActivity.start(this,uri.toString());
             }
         }
-
+*/
 
         finish();
+    }
+
+    private void gotoTargetActivity(Uri uri) {
+        LogUtils.d("host : " + uri.getHost());
+
+        LogUtils.d("uri  : " + uri);
+
+        LogUtils.d("path : " + uri.getPath());
+
     }
 }

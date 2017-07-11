@@ -66,22 +66,16 @@ public class CustomWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         LogUtils.d("target url is : " + url);
-
-
-        Uri localUri = Uri.parse(url);
-        Context localContext = view.getContext();
-        Intent _intent = new Intent(localContext,SchemeActivity.class);
-        _intent.setData(localUri);
-        _intent.putExtra("inner",true);
-        localContext.startActivity(_intent);
-
-        return true ;
+        if(null != mListener) return mListener.shouldOverrideUrlLoading(view,url);
+        return false ;
     }
 
 
     public interface WebViewClientLoadingListener {
         void onPageStart();
         void onPageFinished(WebView view, String url);
+        boolean shouldOverrideUrlLoading(WebView view,String url);
+
     }
 
 

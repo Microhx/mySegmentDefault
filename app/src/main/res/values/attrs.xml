@@ -25,6 +25,13 @@
 
     </declare-styleable>
 
+    <declare-styleable name="SelectorImageButton">
+        <attr name="select_color" format="reference"/>
+        
+        
+    </declare-styleable>
+    
+    
 
 
 </resources>
