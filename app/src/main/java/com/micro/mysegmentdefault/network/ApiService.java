@@ -38,6 +38,7 @@ import com.micro.mysegmentdefault.entity.UserCollectEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
 import com.micro.mysegmentdefault.entity.UserDataEntity;
 import com.micro.mysegmentdefault.entity.UserDetailDataEntity;
+import com.micro.mysegmentdefault.entity.UserLoginDataEntity;
 import com.micro.mysegmentdefault.entity.UserPageEntity;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDataEntity;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDetailDataEntity;
@@ -365,4 +366,20 @@ public interface ApiService {
     //文章添加
     @POST("articles/add")
     Observable<OnlyData> commitUserArticles(@QueryMap Map<String,String> options);
+
+
+    @POST("user/login")
+    Observable<UserLoginDataEntity> userLogin(@Query("username") String username ,
+                                              @Query("password") String password );
+
+    @POST("user/phone/register")
+    Observable<OnlyData> userRegister(@Query("name") String name ,
+                                      @Query("phone") String phone ,
+                                      @Query("password") String password);
+
+    @POST("user/phone/register/check")
+    Observable<UserLoginDataEntity> userRegisterCheck(@Query("name") String name,
+                                                      @Query("phone") String phone,
+                                                      @Query("code") String code,
+                                                      @Query("password") String password);
 }

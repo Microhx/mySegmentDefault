@@ -12,9 +12,9 @@
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:title="@string/app_name"
-            app:titleTextColor="@color/white_color"
-            android:layout_height="wrap_content"/>
+            app:titleTextColor="@color/white_color"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -34,16 +34,19 @@
             android:padding="12dp">
 
             <com.micro.mysegmentdefault.view.widget.CircleImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:id="@+id/id_iv_user_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_tab_mine"/>
 
             <TextView
+                android:id="@+id/id_tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
                 android:layout_gravity="center_vertical"
                 android:text="@string/str_login_register"
-                android:textSize="16sp"/>
+                android:textSize="18sp"/>
 
         </LinearLayout>
 

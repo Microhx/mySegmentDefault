@@ -37,8 +37,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:background="@color/text_second_color"
-                android:layout_height="1dp"/>
+                android:layout_height="1dp"
+                android:background="@color/text_second_color"/>
 
             <TextView
                 android:id="@+id/id_account_password"
@@ -74,8 +74,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:background="@color/text_second_color"
-                android:layout_height="1dp"/>
+                android:layout_height="1dp"
+                android:background="@color/text_second_color"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,13 +89,13 @@
             <TextView
                 android:id="@+id/id_tv_version"
                 android:layout_width="match_parent"
-                android:textColor="@color/text_second_color"
-                android:textSize="14sp"
-                android:text="4.2.4"
-                android:paddingTop="2dp"
-                android:paddingLeft="12dp"
+                android:layout_height="wrap_content"
                 android:paddingBottom="12dp"
-                android:layout_height="wrap_content"/>
+                android:paddingLeft="12dp"
+                android:paddingTop="2dp"
+                android:text="4.2.4"
+                android:textColor="@color/text_second_color"
+                android:textSize="14sp"/>
         </LinearLayout>
 
 
@@ -106,6 +106,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/id_login_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
@@ -115,7 +116,6 @@
 
 
     </android.support.v7.widget.CardView>
-
 
 
 </LinearLayout>

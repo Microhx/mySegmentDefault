@@ -248,5 +248,20 @@
     <string name="set_website_not_allow_null">自定义网站不能为空</string>
     <string name="str_add_acticle_tag">请添加文章标签</string>
     <string name="str_article_length_too_short">文章内容至少10字</string>
+    <string name="str_register">注册</string>
+    <string name="str_email_phone">Email或手机号</string>
+    <string name="str_phone">手机号码</string>
+    <string name="str_password">密码</string>
+    <string name="str_login">登录</string>
+    <string name="str_input_phone_or_email">请输入Email或者手机号</string>
+    <string name="str_input_name">名字 不能为空</string>
+    <string name="str_pass_not_null">密码不能为空</string>
+    <string name="str_phone_format_error">手机号格式错误</string>
+    <string name="str_re_send_code">重发验证码</string>
+    <string name="str_phone_code">手机验证码</string>
+    <string name="str_finish_register">完成注册</string>
+    <string name="str_check_phone">验证手机号</string>
+    <string name="time_finish">已发送(%d)</string>
+    <string name="str_code_is_null">验证码不能为空</string>
 
 </resources>

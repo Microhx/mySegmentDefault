@@ -1,16 +1,21 @@
 package com.micro.mysegmentdefault.middleimpl.fragment;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseFragment;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.ui.setting.SettingActivity;
 import com.micro.mysegmentdefault.ui.user.attention.UserAttentionActivity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.ui.user.collection.UserCollectionActivity;
 import com.micro.mysegmentdefault.ui.user.message.UserMessageActivity;
 import com.micro.mysegmentdefault.ui.user.message.UserPrivateEventActivity;
+import com.micro.mysegmentdefault.utils.ImageUtils;
+import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -23,37 +28,69 @@ import butterknife.OnClick;
 
 public class MineFragment extends BaseFragment {
 
+    @Bind(R.id.id_iv_user_icon)
+    CircleImageView mUserIcon;
+
+    @Bind(R.id.id_tv_user_name)
+    TextView mTvUserName;
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_mine;
     }
 
+    @Override
+    protected void initViews() {
+        if (UserLogic.checkUserLogin()) {
+            ImageUtils.showUrlImage(UserLogic.getUserPhoto(), mUserIcon);
+            mTvUserName.setText(UserLogic.getUserName());
+        } else {
+            mUserIcon.setImageResource(R.drawable.ic_tab_mine);
+            mTvUserName.setText(R.string.str_login_register);
+        }
+
+    }
+
     @OnClick(R.id.id_layout_userinfo)
     public void enterUserZone(View v) {
-        //goWithActivity(UserEditInfoActivity.class);
-        UserZoneActivity.start(getActivity(),"misaka_orange");
+        if (checkUserLogin()) {
+            UserZoneActivity.start(getActivity(), UserLogic.getUserSlug());
+        }
     }
 
     @OnClick(R.id.id_tv_message)
     public void enterUserMessage(View v) {
-        goWithActivity(UserMessageActivity.class);
+        if (checkUserLogin()) {
+            goWithActivity(UserMessageActivity.class);
+        }
     }
 
     @OnClick(R.id.iv_tv_private_event)
     public void enterUserPrivateEvent(View v) {
-        goWithActivity(UserPrivateEventActivity.class);
+        if (checkUserLogin()) {
+            goWithActivity(UserPrivateEventActivity.class);
+        }
     }
 
     @OnClick(R.id.id_tv_attention)
     public void enterUserAttentionEvent(View v) {
-        goWithActivity(UserAttentionActivity.class);
+        if(checkUserLogin()){
+            goWithActivity(UserAttentionActivity.class);
+        }
     }
 
     @OnClick(R.id.id_tv_collection)
-    public void enterUserCollectionEvent(View v) { goWithActivity(UserCollectionActivity.class);}
+    public void enterUserCollectionEvent(View v) {
+        if(checkUserLogin()) {
+            goWithActivity(UserCollectionActivity.class);
+        }
+    }
 
     @OnClick(R.id.id_setting)
-    public void enterUserSetting(View v) {goWithActivity(SettingActivity.class);}
+    public void enterUserSetting(View v) {
+        if(checkUserLogin()) {
+            goWithActivity(SettingActivity.class);
+        }
+    }
 
 }

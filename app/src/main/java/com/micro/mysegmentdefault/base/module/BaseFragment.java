@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
+import com.micro.mysegmentdefault.logic.UserLogic;
+import com.micro.mysegmentdefault.middleimpl.fragment.UserLoginFragment;
 import com.micro.mysegmentdefault.utils.ClassUtils;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
@@ -80,6 +82,22 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
     protected void goWithActivity(Class<? extends Activity> clazz) {
         startActivity(new Intent(getActivity(),clazz));
     }
+
+
+
+    /**
+     * 用户登录界面
+     */
+    protected boolean checkUserLogin(){
+        if(!UserLogic.checkUserLogin()) {
+            UserLoginFragment loginFragment = new UserLoginFragment();
+            loginFragment.show(getFragmentManager(),"login");
+            return false;
+        }
+        return true;
+
+    }
+
 
 
 }

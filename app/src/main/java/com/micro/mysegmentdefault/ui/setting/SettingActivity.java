@@ -1,9 +1,13 @@
 package com.micro.mysegmentdefault.ui.setting;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
+import com.micro.mysegmentdefault.logic.UserLogic;
+import com.micro.mysegmentdefault.utils.DialogUtils;
 
 import butterknife.OnClick;
 
@@ -30,6 +34,21 @@ public class SettingActivity extends BaseActivity {
     @OnClick(R.id.id_account_password)
     public void accountAndPassword(View v) {
         go(AccountSettingActivity.class);
+    }
+
+    @OnClick(R.id.id_login_out)
+    public void userLogout(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("您确定退出吗？").
+                setPositiveButton(R.string.str_sure, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO
+                        UserLogic.clearAll();
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton(R.string.str_cancel,null).
+                show();
     }
 
 
