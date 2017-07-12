@@ -100,12 +100,13 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
             return;
         }
 
+        //这里直接加载网页 手机宽度过小时，底部会出现bottomView
         mWebView.loadUrl(mDataEntity.getOriginPath());
     }
 
-
     @Override
     public void loadDataError() {
+        showToast(R.string.str_operation_error);
         LogUtils.d("-------error------>>");
         // mWebView.loadDataWithBaseURL();
     }
@@ -202,9 +203,7 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
 
             //TODO 成功之后 需要reloadCss
         }
-
     }
-
 
     class Sf {
         @JavascriptInterface

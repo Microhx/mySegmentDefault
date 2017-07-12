@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.ui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.micro.mysegmentdefault.ui.comment.WebBrowserActivity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.SchemeUtils;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 
 /**
  * URL跳转中转Activity
@@ -40,40 +42,60 @@ public class SchemeActivity extends AppCompatActivity {
             WebBrowserActivity.start(SchemeActivity.this,uri.toString());
         }
 
-        /*if(!TextUtils.isEmpty(urlPath) && urlPath.contains("/")) {
-            String tag = urlPath.split("/")[1];
-            String info = urlPath.split("/")[2];
-
-            LogUtils.d("tag : " + tag + " , info : " + info);
-
-            switch (tag) {
-                case "u":  //用户中心
-                    UserZoneActivity.start(this,info);
-                    break;
-
-                case "a": //文章
-                    CommonWebActivity.start(info,ArticleDetailActivity.class);
-                   break;
-
-                case "q" : //问答
-                    CommonWebActivity.start(info,QuestionDetailActivity.class);
-                    break;
-
-                default:
-                    WebBrowserActivity.start(this,uri.toString());
-            }
-        }
-*/
-
         finish();
     }
 
     private void gotoTargetActivity(Uri uri) {
-        LogUtils.d("host : " + uri.getHost());
-
         LogUtils.d("uri  : " + uri);
 
-        LogUtils.d("path : " + uri.getPath());
+        String path = uri.getPath();
+        if(TextUtils.isEmpty(path)) {
+            WebBrowserActivity.start(this,uri.toString());
+        }else {
+            String[] pathArray = path.substring(1).split("/") ;
+
+            String tagName = null ;
+            String detailInfo = null ;
+
+            if(pathArray.length >= 2) {
+                tagName = pathArray[0];
+                detailInfo = pathArray[1];
+            }
+
+            if(!TextUtils.isEmpty(tagName)){
+                switch (tagName) {
+                    case "u" :
+                        UserZoneActivity.start(this,detailInfo);
+                        break;
+
+                    case "a" :
+                        CommonWebActivity.start(detailInfo,ArticleDetailActivity.class);
+                        break;
+
+                    case "q" :
+                        CommonWebActivity.start(detailInfo,QuestionDetailActivity.class);
+                        break;
+
+
+                    case "t": //tagActivity  TODO 缺少tagId
+                        //UserTagDetailActivity.start(detailInfo,"1111");
+                        ToastUtils.showMessage(this,"TODO");
+                        break;
+
+                    case "p" :  //新闻详细内容
+                        HomeDataDetailActivity.start(detailInfo,HomeDataDetailActivity.class);
+                        break;
+
+                    case "blog":
+                    default:
+                        ToastUtils.showMessage(this,"activity not found !!!");
+                        break;
+                }
+
+            }else {
+                LogUtils.d(" target url is unknown ");
+            }
+        }
 
     }
 }

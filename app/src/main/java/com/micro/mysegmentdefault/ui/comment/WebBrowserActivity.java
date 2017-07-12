@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.ui.comment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +11,12 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import com.micro.mysegmentdefault.R;
+import com.micro.mysegmentdefault.logic.UserLogic;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.widget.SelectorImageButton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * author : micro_hx <p>
@@ -41,13 +47,13 @@ public class WebBrowserActivity extends CommonWebActivity implements View.OnClic
     }
 
 
-
     @Override
     protected void initViews() {
         super.initViews();
 
         //设置底部标签
         settingBottomViews();
+
 
         //加载目标网页
         mWebView.loadUrl(mUrl);
@@ -61,6 +67,7 @@ public class WebBrowserActivity extends CommonWebActivity implements View.OnClic
         mZanLayout.addView(mUndoButton, getDefaultLayoutParams());
 
         mRedoButton = new SelectorImageButton(getApplicationContext());
+        mRedoButton.setImageResource(R.drawable.ic_redo_black_24dp);
         mRedoButton.setColorStateList(getResources().getColorStateList(R.color.brower_bg_selector));
         mCollectLayout.removeAllViews();
         mCollectLayout.addView(mRedoButton, getDefaultLayoutParams());

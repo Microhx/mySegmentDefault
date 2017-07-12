@@ -46,7 +46,13 @@
         <activity android:name=".ui.user.UserAddCommentActivity"/>
 
         <!-- 加载目标网页 -->
-        <activity android:name=".ui.comment.WebBrowserActivity"/>
+        <activity android:name=".ui.comment.WebBrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".ui.user.UserNewNoteActivity"
             android:windowSoftInputMode="adjustResize"/>
