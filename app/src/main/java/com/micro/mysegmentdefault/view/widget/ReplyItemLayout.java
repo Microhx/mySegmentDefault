@@ -6,12 +6,15 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
+import com.micro.mysegmentdefault.middleimpl.adapter.UserNewsCommentRecyclerAdapter;
+import com.micro.mysegmentdefault.utils.CLICK_TYPE;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 
 import java.util.List;
@@ -27,38 +30,48 @@ import java.util.List;
 public class ReplyItemLayout extends LinearLayout {
 
     public ReplyItemLayout(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public ReplyItemLayout(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public ReplyItemLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public void addDatas(List<NewsCommentDataEntity.RepliedItem> mItems) {
+    public void addDatas(int position,
+                         UserNewsCommentRecyclerAdapter.onItemViewClickLister mItemViewClickListener,
+                         NewsCommentDataEntity.CommentItem data) {
         removeAllViews();
-        if(CommonUtils.collectionIsNull(mItems)) {
+
+        List<NewsCommentDataEntity.RepliedItem> mItems = data.repliedComments;
+        if (CommonUtils.collectionIsNull(mItems)) {
             setVisibility(GONE);
             return;
         }
 
         int len = mItems.size();
-        for(int i =0 ; i < len ; i++) {
+        for (int i = 0; i < len; i++) {
             NewsCommentDataEntity.RepliedItem item = mItems.get(i);
-            View rootView = addReplyItems(item);
+            View rootView = addReplyItems(item, mItemViewClickListener, position, i, data);
             addView(rootView);
-            if(i < len - 1) {
+            if (i < len - 1) {
                 addDecorationItem();
             }
         }
     }
 
     @NonNull
-    private View addReplyItems(NewsCommentDataEntity.RepliedItem item) {
-        View rootView = LayoutInflater.from(getContext()).inflate(R.layout.reply_item_layout,this,false);
+    private View addReplyItems(NewsCommentDataEntity.RepliedItem item,
+                               final UserNewsCommentRecyclerAdapter.onItemViewClickLister mItemViewClickListener,
+                               final int position,
+                               final int subPosition,
+                               final NewsCommentDataEntity.CommentItem data) {
+
+
+        View rootView = LayoutInflater.from(getContext()).inflate(R.layout.reply_item_layout, this, false);
         TextView tvName = (TextView) rootView.findViewById(R.id.id_tv_username);
         TextView tvPublishTime = (TextView) rootView.findViewById(R.id.id_tv_publish_time);
         TextView tvComment = (TextView) rootView.findViewById(R.id.id_tv_comment);
@@ -69,19 +82,44 @@ public class ReplyItemLayout extends LinearLayout {
         tvPublishTime.setText(item.createdDate);
         tvComment.setText(item.originalText);
         tvLike.setText(item.votes);
+
+
+        tvLike.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mItemViewClickListener)
+                    mItemViewClickListener.onClick(CLICK_TYPE.ZAN,
+                            position,
+                            subPosition,
+                            data);
+            }
+        });
+
+        ivReply.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mItemViewClickListener)
+                    mItemViewClickListener.onClick(CLICK_TYPE.REPLY,
+                            position,
+                            subPosition,
+                            data);
+            }
+        });
+
         return rootView;
     }
 
     private void addDecorationItem() {
         View view = new View(getContext());
         view.setBackgroundResource(R.color.text_second_color);
-        addView(view,getDefaultLayoutParams());
+        addView(view, getDefaultLayoutParams());
     }
 
     private LinearLayout.LayoutParams mLayoutParams;
+
     private LinearLayout.LayoutParams getDefaultLayoutParams() {
-        if(null == mLayoutParams) {
-            mLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,1);
+        if (null == mLayoutParams) {
+            mLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
         }
         return mLayoutParams;
     }

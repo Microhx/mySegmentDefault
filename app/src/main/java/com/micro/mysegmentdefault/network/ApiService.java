@@ -188,11 +188,15 @@ public interface ApiService {
                                                          @Query("token") String token);
 
     //news/1210000009528444/like
-    @POST("news/{newsId}/like")
-    Observable<BaseDataEntity> userLikeNewsDataEntity(@Path("newsId") String newsId , @Query("token") String token);
+    @POST("{type}/{newsId}/like")
+    Observable<BaseDataEntity> userLikeNewsDataEntity(@Path("type") String type ,
+                                                      @Path("newsId") String newsId ,
+                                                      @Query("token") String token);
 
-    @POST("news/{newsId}/like/cancel")
-    Observable<BaseDataEntity> userDisLikeNewsDataEntity(@Path("newsId") String newsId , @Query("token") String token);
+    @POST("{type}/{newsId}/like/cancel")
+    Observable<BaseDataEntity> userDisLikeNewsDataEntity(@Path("type") String type ,
+                                                         @Path("newsId") String newsId ,
+                                                         @Query("token") String token);
 
 
     @GET("user/bookmarkArchives")

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="vertical"
-                                    android:padding="12dp"
-                                    app:cardElevation="4dp">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    app:cardElevation="4dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
@@ -48,17 +49,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:textSize="14sp"
                 android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@id/id_iv_icon"/>
+                android:layout_toRightOf="@id/id_iv_icon"
+                android:textSize="14sp"/>
 
         </RelativeLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
             android:layout_height="48dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -75,9 +76,9 @@
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_like_selector"
                     android:drawablePadding="8dp"
-                    android:textColor="@color/text_color_selector"
                     android:gravity="center"
-                    android:text="@string/str_zero"/>
+                    android:text="@string/str_zero"
+                    android:textColor="@color/text_color_selector"/>
 
             </LinearLayout>
 
@@ -95,9 +96,9 @@
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_action_archive_selector"
                     android:drawablePadding="4dp"
-                    android:textColor="@color/text_color_selector"
+                    android:gravity="center"
                     android:text="@string/str_zero"
-                    android:gravity="center"/>
+                    android:textColor="@color/text_color_selector"/>
 
             </LinearLayout>
 
@@ -115,14 +116,13 @@
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_comment"
                     android:drawablePadding="4dp"
-                    android:textColor="@color/text_second_color"
                     android:gravity="center"
-                    android:text="@string/str_comment"/>
+                    android:text="@string/str_comment"
+                    android:textColor="@color/text_second_color"/>
 
             </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

@@ -31,9 +31,9 @@ public class UserNewsCommentModel implements AbsNewsCommentModel<NewsCommentData
     @Override
     public Observable<BaseDataEntity> getZanOperationDataEntity(boolean isCancel, String newsId) {
         if(isCancel) {
-            return Api.getApiService(0).userDisLikeNewsDataEntity(newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
+            return Api.getApiService(0).userDisLikeNewsDataEntity("news",newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
         }else {
-            return Api.getApiService(0).userLikeNewsDataEntity(newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
+            return Api.getApiService(0).userLikeNewsDataEntity("news",newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
         }
 
     }

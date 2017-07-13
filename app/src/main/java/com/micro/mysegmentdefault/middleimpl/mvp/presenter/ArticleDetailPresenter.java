@@ -1,6 +1,10 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
+import android.util.Log;
+
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.ArticleDetailContract;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
@@ -35,5 +39,21 @@ public class ArticleDetailPresenter extends ArticleDetailContract.DetailPresente
                 mView.loadDataError();
             }
         });
+    }
+
+    public void zanOperation(boolean selected, String mNewsId) {
+        mModel.zanOperation(selected,mNewsId, UserLogic.getUserToken()).subscribe(new Action1<BaseDataEntity>() {
+            @Override
+            public void call(BaseDataEntity entity) {
+                mView.zanOperation(entity);
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                LogUtils.d("article zan error : " + throwable);
+                mView.zanOperation(null);
+            }
+        });
+
     }
 }

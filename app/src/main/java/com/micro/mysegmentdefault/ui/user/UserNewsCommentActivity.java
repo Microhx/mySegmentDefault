@@ -21,6 +21,7 @@ import com.micro.mysegmentdefault.middle.BaseRefreshActivity;
 import com.micro.mysegmentdefault.middleimpl.adapter.UserNewsCommentRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserNewsCommentModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserNewsCommentPresenter;
+import com.micro.mysegmentdefault.utils.CLICK_TYPE;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
@@ -41,7 +42,7 @@ import butterknife.ButterKnife;
 
 public class UserNewsCommentActivity
         extends BaseRefreshActivity<UserNewsCommentPresenter,UserNewsCommentModel,NewsCommentDataEntity.CommentItem>
-        implements BaseRecyclerAdapter.OnLoadingHeaderCallBack, AbsUserNewsCommentView<NewsCommentDataEntity.CommentItem> {
+        implements BaseRecyclerAdapter.OnLoadingHeaderCallBack, AbsUserNewsCommentView<NewsCommentDataEntity.CommentItem>,UserNewsCommentRecyclerAdapter.onItemViewClickLister {
 
     private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
 
@@ -63,7 +64,6 @@ public class UserNewsCommentActivity
         super.initViews();
         EventBus.getDefault().register(this);
     }
-
 
     @Override
     protected void initPresenter() {
@@ -96,6 +96,14 @@ public class UserNewsCommentActivity
         return mNewsId;
     }
 
+
+    //当数据为空，或者数据不存在时，是否显示empty页面
+    @Override
+    protected boolean showEmptyPageWhenDataIsNull() {
+        return false ;
+    }
+
+
     @Override
     protected void initTitleSetting(FrameLayout mTitleContent) {
         mTvTitle.setText(R.string.str_comment);
@@ -121,6 +129,9 @@ public class UserNewsCommentActivity
     protected BaseRecyclerAdapter getRecyclerAdapter() {
         mUserNewsCommentAdapter = new UserNewsCommentRecyclerAdapter(this);
         mUserNewsCommentAdapter.setOnLoadingHeaderCallBack(this);
+        mUserNewsCommentAdapter.setItemViewClickListener(this);
+
+
         return mUserNewsCommentAdapter;
     }
 
@@ -215,6 +226,19 @@ public class UserNewsCommentActivity
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(CLICK_TYPE type,
+                        int position,
+                        int subPosition,
+                        NewsCommentDataEntity.CommentItem item) {
+
+        if(type == CLICK_TYPE.USER_CENTER) {
+            //TODO
+        }
+
+
     }
 
 

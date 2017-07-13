@@ -37,6 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/id_tv_username"
             android:layout_marginTop="4dp"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:textColor="@color/text_first_color"
             android:textSize="14sp"/>
 
@@ -48,6 +51,7 @@
             android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/ic_like_normal"
             android:drawablePadding="4dp"
+            android:padding="4dp"
             android:text="@string/str_zero"/>
 
         <ImageView
@@ -56,10 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/id_tv_like"
             android:layout_alignTop="@+id/id_tv_like"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/id_tv_like"
+            android:padding="4dp"
             android:src="@drawable/ic_reply"/>
 
 

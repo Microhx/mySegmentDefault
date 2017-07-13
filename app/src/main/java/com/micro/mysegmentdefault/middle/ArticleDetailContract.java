@@ -4,7 +4,9 @@ import com.micro.mysegmentdefault.base.mvp.model.BaseModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseView;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.NewsDetailDataEntity;
+import com.micro.mysegmentdefault.entity.OnlyData;
 
 import rx.Observable;
 
@@ -24,11 +26,15 @@ public interface ArticleDetailContract {
 
         //加载数据失败
         void loadDataError();
+
+        void zanOperation(BaseDataEntity entity) ;
     }
 
 
     interface ArticleDetailModel extends BaseModel {
         Observable<ArticleDetailEntity> getArticleDetailDataEntity(String newsId) ;
+
+        Observable<BaseDataEntity> zanOperation(boolean isCancel,String newsId,String token);
     }
 
     abstract class DetailPresenter extends BasePresenter<ArticleDetailView,ArticleDetailModel> {

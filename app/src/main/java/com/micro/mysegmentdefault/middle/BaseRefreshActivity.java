@@ -162,8 +162,11 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
         if (startPages == PAGE_STEP) {
             if (CommonUtils.collectionIsNull(mDataList)) {
                 LogUtils.d("startPages:" + startPages + ",mDataList is null");
-                mEmptyLayout.setVisibility(View.VISIBLE);
-                mEmptyLayout.setErrorType(NODATA);
+                if(showEmptyPageWhenDataIsNull()) {
+                    mEmptyLayout.setVisibility(View.VISIBLE);
+                    mEmptyLayout.setErrorType(NODATA);
+                }
+
                 return;
             }
 
@@ -193,6 +196,17 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
      */
     protected void afterRequestFinish() {
     }
+
+
+    /**
+     * 当不存在数据时，是否应该显示empty页面
+     * @return
+     */
+    protected boolean showEmptyPageWhenDataIsNull(){
+        return true;
+    }
+
+
 
     @Override
     public void getRequestError(int startPage) {

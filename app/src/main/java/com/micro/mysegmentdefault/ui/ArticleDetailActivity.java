@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.CollectionMessageEvent;
 import com.micro.mysegmentdefault.middle.ArticleDetailContract;
 import com.micro.mysegmentdefault.middleimpl.fragment.BottomShareFragment;
@@ -14,6 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.model.ArticleDetailModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ArticleDetailPresenter;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.ui.user.UserAddCollectionActivity;
+import com.micro.mysegmentdefault.ui.user.UserNewsCommentActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
@@ -48,7 +50,6 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
 
     @Override
     protected void initHeadLayouts() {
-        LogUtils.d("-----initHeadLayouts--------222-333-------->>");
         mIvRightImage.setImageResource(R.drawable.ic_share_mtrl_alpha);
     }
 
@@ -136,10 +137,25 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
      */
     @OnClick(R.id.id_layout_zan)
     public void addZan(View v) {
-        //TODO 1.判断声望 小于 < 15时 不能进入评论
+        if(null == mDataEntity) return;
 
-        // mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
+         mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
     }
+
+    @Override
+    public void zanOperation(BaseDataEntity entity) {
+        if(null != entity){
+            if(entity.status != 0) {
+                showToast(entity.message);
+            }else{
+                mTvZan.setText(entity.data);
+                mTvZan.setSelected(!mTvZan.isSelected());
+            }
+        }else {
+            showToast(R.string.str_operation_error);
+        }
+    }
+
 
     /**
      * 添加到自己的markbook
@@ -148,6 +164,7 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
      */
     @OnClick(R.id.id_layout_collect)
     public void addCollection(View v) {
+        if(null == mDataEntity) return;
         UserAddCollectionActivity.start(this, 1,mNewsId);
     }
 
@@ -159,8 +176,10 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
      */
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
-        showToast("进入评论页面");
+        if(null == mDataEntity) return;
+        showToast("进入评论区 开始进行评论");
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCollectionEvent(CollectionMessageEvent event) {
@@ -179,4 +198,5 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     public void loadDataError() {
         LogUtils.d("get Article detail error ");
     }
+
 }

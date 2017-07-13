@@ -59,7 +59,6 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
 
     @Override
     protected void initHeadLayouts() {
-        LogUtils.d("-----initHeadLayouts--------222-333-------->>");
         mIvRightImage.setImageResource(R.drawable.ic_share_mtrl_alpha);
     }
 

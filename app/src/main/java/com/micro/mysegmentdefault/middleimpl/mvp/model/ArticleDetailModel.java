@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.ArticleDetailContract;
 import com.micro.mysegmentdefault.network.Api;
@@ -24,5 +25,15 @@ public class ArticleDetailModel implements ArticleDetailContract.ArticleDetailMo
                 getApiService(0).
                 getArticleDetailData(newsId, UserLogic.getUserToken()).
                 compose(RxSchedulers.<ArticleDetailEntity>io_main());
+    }
+
+
+    @Override
+    public Observable<BaseDataEntity> zanOperation(boolean isCancel, String newsId, String token) {
+        if(isCancel) {
+            return Api.getApiService(0).userDisLikeNewsDataEntity("article",newsId,token).compose(RxSchedulers.<BaseDataEntity>io_main());
+        }else {
+            return Api.getApiService(0).userLikeNewsDataEntity("article",newsId,token).compose(RxSchedulers.<BaseDataEntity>io_main());
+        }
     }
 }

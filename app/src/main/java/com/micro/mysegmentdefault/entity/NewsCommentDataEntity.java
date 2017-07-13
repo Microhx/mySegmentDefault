@@ -29,6 +29,8 @@ public class NewsCommentDataEntity {
 
         public boolean canDelete;
         public boolean canEdit ;
+        public boolean isLiked ;  //是否被点赞
+
         public String createdDate ;
         public String id ;
         public String originalText;
