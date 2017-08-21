@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/id_tv_comment"
             android:layout_marginTop="4dp"
-            android:drawableLeft="@drawable/ic_like_normal"
+            android:drawableLeft="@drawable/ic_like_selector"
             android:drawablePadding="4dp"
             android:padding="4dp"
             android:text="@string/str_zero"/>

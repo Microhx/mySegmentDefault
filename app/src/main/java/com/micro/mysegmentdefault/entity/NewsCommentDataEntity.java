@@ -49,7 +49,7 @@ public class NewsCommentDataEntity {
         public boolean canEdit;
         public String createdDate;
         public String id ;
-        public boolean isLike;
+        public boolean isLiked;
         public String originalText;
         public String votes ;
 

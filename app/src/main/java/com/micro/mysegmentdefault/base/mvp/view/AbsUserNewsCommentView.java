@@ -1,5 +1,7 @@
 package com.micro.mysegmentdefault.base.mvp.view;
 
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
+
 /**
  * author : micro_hx <p>
  * desc : <p>
@@ -11,8 +13,8 @@ package com.micro.mysegmentdefault.base.mvp.view;
 public interface AbsUserNewsCommentView<D> extends BaseRefreshView<D>{
 
     //赞数据
-    void zanOperationFinish(String number) ;
+    void zanOperationFinish(String type , String number) ;
 
     //赞失败
-    void zanOperationError();
+    void zanOperationError(BaseDataEntity entity);
 }

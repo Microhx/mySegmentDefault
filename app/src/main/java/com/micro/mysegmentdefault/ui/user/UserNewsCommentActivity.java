@@ -15,13 +15,16 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.base.mvp.view.AbsUserNewsCommentView;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.CollectionMessageEvent;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.BaseRefreshActivity;
 import com.micro.mysegmentdefault.middleimpl.adapter.UserNewsCommentRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserNewsCommentModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserNewsCommentPresenter;
 import com.micro.mysegmentdefault.utils.CLICK_TYPE;
+import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
@@ -44,8 +47,6 @@ public class UserNewsCommentActivity
         extends BaseRefreshActivity<UserNewsCommentPresenter,UserNewsCommentModel,NewsCommentDataEntity.CommentItem>
         implements BaseRecyclerAdapter.OnLoadingHeaderCallBack, AbsUserNewsCommentView<NewsCommentDataEntity.CommentItem>,UserNewsCommentRecyclerAdapter.onItemViewClickLister {
 
-    private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
-
     private String mNewsId ;
     private String mAuthor;
     private String mNewsType;
@@ -58,6 +59,13 @@ public class UserNewsCommentActivity
 
     private boolean mIsLike;
     private boolean mIsCollect;
+
+    @Deprecated
+    private NewsCommentDataEntity.CommentItem mCommentItem;
+
+    private String mComemntId ;
+
+    private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
 
     @Override
     protected void initViews() {
@@ -157,23 +165,38 @@ public class UserNewsCommentActivity
 
 
     @Override
-    public void zanOperationFinish(String number) {
-        mNewsLikeCount = number;
-        mIsLike = !mIsLike;
-        mBaseRecyclerAdapter.notifyItemChanged(0);
+    public void zanOperationFinish(String type , String number) {
+        LogUtils.d(type + "-------------->>" + number);
 
-        CollectionMessageEvent event = new CollectionMessageEvent();
-        event.type = 2 ;
-        event.number = number;
-        event.isBookMarked = mIsLike;
-        EventBus.getDefault().post(event);
+
+        if("news".equals(type)) {
+            mNewsLikeCount = number;
+            mIsLike = !mIsLike;
+            mBaseRecyclerAdapter.notifyItemChanged(0);
+
+            CollectionMessageEvent event = new CollectionMessageEvent();
+            event.type = 2 ;
+            event.number = number;
+            event.isBookMarked = mIsLike;
+            EventBus.getDefault().post(event);
+
+        }else if("comment".equals(type)) {  //评论
+           // mCommentItem.votes = number ;
+           // mCommentItem.isLiked = !mCommentItem.isLiked;
+           // mUserNewsCommentAdapter.updateCommentItem(mCommentItem);
+
+            mUserNewsCommentAdapter.updateCommentItem2(number,mComemntId);
+        }
     }
 
 
-
     @Override
-    public void zanOperationError() {
-        showToast(R.string.data_request_error);
+    public void zanOperationError(BaseDataEntity entity) {
+        if(null != entity) {
+            showToast(entity.message);
+        }else {
+            showToast(R.string.data_request_error);
+        }
     }
 
     /**
@@ -205,7 +228,7 @@ public class UserNewsCommentActivity
         newsHolder.mLayoutZan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.zanOperation(mIsLike,mNewsId);
+                mPresenter.zanOperation("news",mIsLike,mNewsId);
             }
         });
 
@@ -234,10 +257,31 @@ public class UserNewsCommentActivity
                         int subPosition,
                         NewsCommentDataEntity.CommentItem item) {
 
-        if(type == CLICK_TYPE.USER_CENTER) {
-            //TODO
-        }
+        LogUtils.d("----------" + type + "---------->>" + position + "---->>>" + subPosition + "---->>" + item);
 
+
+        if(type == CLICK_TYPE.USER_CENTER) {
+            UserZoneActivity.start(this, item.user.slug);
+
+        }else if(type == CLICK_TYPE.ZAN){
+
+            if(subPosition < 0) {
+                mComemntId = item.id;
+                mPresenter.zanOperation("comment",item.isLiked,item.id);
+
+            }else {
+                if(!CommonUtils.collectionIsNull(item.repliedComments)) {
+                    NewsCommentDataEntity.RepliedItem replyItem = item.repliedComments.get(subPosition);
+                    mComemntId = replyItem.id;
+                    mPresenter.zanOperation("comment",replyItem.isLiked,item.id);
+                }
+            }
+
+        }else if(type == CLICK_TYPE.REPLY) {
+
+
+
+        }
 
     }
 

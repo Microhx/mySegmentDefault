@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.middle.model;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.entity.OnlyData;
 
 import rx.Observable;
 
@@ -15,5 +16,7 @@ import rx.Observable;
 
 public interface AbsNewsCommentModel<D> extends BaseRefreshModel<D> {
 
-    Observable<BaseDataEntity> getZanOperationDataEntity(boolean isCancel , String newsId);
+    Observable<BaseDataEntity> getZanOperationDataEntity(String type , boolean isCancel , String newsId);
+
+
 }

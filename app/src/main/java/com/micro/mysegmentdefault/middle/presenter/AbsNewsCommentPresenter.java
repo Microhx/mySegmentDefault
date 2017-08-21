@@ -15,6 +15,6 @@ import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
 
 public abstract class AbsNewsCommentPresenter<V extends BaseRefreshView,M extends BaseRefreshModel> extends BaseRefreshPresenter<V,M> {
 
-    public abstract void zanOperation(boolean isCancel, String newsId) ;
+    public abstract void zanOperation(String type , boolean isCancel, String newsId) ;
 
 }

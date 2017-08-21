@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
 import com.micro.mysegmentdefault.ui.user.UserAddCommentActivity;
 import com.micro.mysegmentdefault.utils.CLICK_TYPE;
+import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.widget.ReplyItemLayout;
 
 import butterknife.Bind;
@@ -79,7 +82,7 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
             @Override
             public void onClick(View v) {
                 if (null != mItemViewClickListener)
-                    mItemViewClickListener.onClick(CLICK_TYPE.ZAN, position, 0, item);
+                    mItemViewClickListener.onClick(CLICK_TYPE.ZAN, position, -1, item);
             }
         });
 
@@ -88,7 +91,7 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
             @Override
             public void onClick(View v) {
                 if (null != mItemViewClickListener)
-                    mItemViewClickListener.onClick(CLICK_TYPE.REPLY, position, 0, item);
+                    mItemViewClickListener.onClick(CLICK_TYPE.REPLY, position, -1, item);
             }
         });
 
@@ -101,6 +104,7 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
         commentHolder.mTvPublishTime.setText(item.createdDate);
         commentHolder.mTvComment.setText(item.originalText);
         commentHolder.mTvLike.setText(item.votes);
+        commentHolder.mTvLike.setSelected(item.isLiked);
 
         //用户回复
         commentHolder.mReplayComment.addDatas(position, mItemViewClickListener, item);
@@ -110,6 +114,52 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
     public void setItemViewClickListener(onItemViewClickLister mItemViewClickListener) {
         this.mItemViewClickListener = mItemViewClickListener;
     }
+
+
+    public void updateCommentItem2(String number , String id) {
+        int position = -1 ;
+        for (int i = 0 , len = mItems.size() ; i < len; i++) {
+            NewsCommentDataEntity.CommentItem item = mItems.get(i);
+
+
+            LogUtils.d(id + "---------------xxxx--------------- " + item.id);
+
+
+            if(id.equals(item.id)) {
+                position = i;
+
+                item.votes = number;
+                item.isLiked = !mItems.get(i).isLiked;
+
+                break;
+            }
+
+            if(!CommonUtils.collectionIsNull(item.repliedComments)) {
+                for (int j = 0 , len2 = item.repliedComments.size(); j < len2; j++) {
+                   final NewsCommentDataEntity.RepliedItem replayItem = item.repliedComments.get(j);
+                    if(id.equals(replayItem.id)) {
+                        position = i;
+
+                        replayItem.isLiked = !replayItem.isLiked;
+                        replayItem.votes = number;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        LogUtils.d("---------------the position is --------->>" + position);
+
+
+        if(position >= 0) {
+            //因为存在一个head 此时需要将改targetPosition+1
+            notifyItemChanged(position+1);
+        }
+
+
+    }
+
 
 
     class NewsCommentViewHolder extends RecyclerView.ViewHolder {

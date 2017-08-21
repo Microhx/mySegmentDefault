@@ -78,7 +78,6 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
         mTvCollect.setSelected(mDataEntity.isIsBookmarked());
         mTvZan.setSelected(mDataEntity.isIsLiked());
 
-
         if (!TextUtils.isEmpty(mDataEntity.getReadParsedText()) || checkHost(mDataEntity.getOriginPath())) {
             Map<String, Object> tempMap = new HashMap<>();
             tempMap.put("news", entity.getData());
@@ -107,7 +106,6 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
     public void loadDataError() {
         showToast(R.string.str_operation_error);
         LogUtils.d("-------error------>>");
-        // mWebView.loadDataWithBaseURL();
     }
 
 
