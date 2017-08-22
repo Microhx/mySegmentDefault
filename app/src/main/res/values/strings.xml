@@ -263,5 +263,6 @@
     <string name="str_check_phone">验证手机号</string>
     <string name="time_finish">已发送(%d)</string>
     <string name="str_code_is_null">验证码不能为空</string>
+    <string name="str_error_input_content">请输入内容</string>
 
 </resources>

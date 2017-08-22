@@ -1,6 +1,8 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
+import com.micro.mysegmentdefault.base.SegmentApplication;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
-import com.micro.mysegmentdefault.ui.HomeDataDetailActivity;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
+import com.micro.mysegmentdefault.ui.ToutiaoDataDetailActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 
@@ -57,11 +61,12 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<HomeDataEntity.Item
         homeHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeDataDetailActivity.start(item.id,HomeDataDetailActivity.class);
+                Intent _intent = new Intent(mContext,SchemeActivity.class);
+                _intent.setData(Uri.parse(item.originPath));
+                _intent.putExtra("inner",true);
+                mContext.startActivity(_intent);
             }
         });
-
-
     }
 
     class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {

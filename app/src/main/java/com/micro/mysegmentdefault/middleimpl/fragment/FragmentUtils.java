@@ -17,13 +17,13 @@ public class FragmentUtils {
         switch (index) {
             default:
             case 0:
-                return new HomeFragment();
+                return new ToutiaoFragment();
             case 1:
-                return new NewsFragment();
+                return new ArticleFragment();
             case 2:
                 return new QuestionsFragment() ;
             case 3 :
-                return new DiscoverFragment() ;
+                return new DiscoveryFragment() ;
             case 4:
                 return new MineFragment() ;
         }

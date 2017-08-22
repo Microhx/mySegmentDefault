@@ -46,21 +46,21 @@ public class UserNewsCommentPresenter extends AbsNewsCommentPresenter<AbsUserNew
     }
 
 
-    public void zanOperation(boolean isCancel, String newsId) {
-        mModel.getZanOperationDataEntity(isCancel,newsId).subscribe(new Action1<BaseDataEntity>() {
+    public void zanOperation(final String type , boolean isCancel, String newsId) {
+        mModel.getZanOperationDataEntity(type,isCancel,newsId).subscribe(new Action1<BaseDataEntity>() {
             @Override
             public void call(BaseDataEntity baseDataEntity) {
                 if(baseDataEntity!=null && baseDataEntity.status == 0) {
-                    mView.zanOperationFinish(baseDataEntity.data);
+                    mView.zanOperationFinish(type,baseDataEntity.data);
                 }else{
-                    mView.zanOperationError();
+                    mView.zanOperationError(baseDataEntity);
                 }
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
                 LogUtils.d("zan error : " + throwable);
-                mView.zanOperationError();
+                mView.zanOperationError(null);
             }
         }) ;
     }

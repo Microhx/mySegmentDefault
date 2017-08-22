@@ -38,6 +38,7 @@ public class HomeDataEntity {
         public String cateType ;
         public String readFirstImg;
         public User user ;
+        public String originPath;
 
         public List<NewsTypes> newsTypes ;
     }

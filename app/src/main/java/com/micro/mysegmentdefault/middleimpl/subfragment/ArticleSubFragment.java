@@ -15,7 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.NewsPresenter;
  * interface :
  */
 
-public class NewsSubFragment extends BaseRefreshFragment<NewsPresenter, NewsModel, NewsDataEntity.Item> {
+public class ArticleSubFragment extends BaseRefreshFragment<NewsPresenter, NewsModel, NewsDataEntity.Item> {
 
     private int mPosition;
     private String mChannel;

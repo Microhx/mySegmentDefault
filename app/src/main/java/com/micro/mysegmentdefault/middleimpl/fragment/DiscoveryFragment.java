@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class DiscoverFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView, CustomViewPager.onLeftOrRightListener {
+public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView, CustomViewPager.onLeftOrRightListener {
 
     @Bind(R.id.id_view_pager)
     CustomViewPager mCustomViewPager;

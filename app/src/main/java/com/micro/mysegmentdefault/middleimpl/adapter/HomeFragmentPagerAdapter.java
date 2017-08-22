@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.micro.mysegmentdefault.base.adapter.BasePagerAdapter;
 import com.micro.mysegmentdefault.entity.TitleEntity;
-import com.micro.mysegmentdefault.middleimpl.subfragment.HomeSubFragment;
+import com.micro.mysegmentdefault.middleimpl.subfragment.ToutiaoSubFragment;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class HomeFragmentPagerAdapter extends BasePagerAdapter<TitleEntity> {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new HomeSubFragment();
+        Fragment fragment = new ToutiaoSubFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("position", position);
         bundle.putString("title", mTitleEntityList.get(position).channel);

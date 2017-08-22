@@ -36,6 +36,7 @@ import com.micro.mysegmentdefault.entity.UserAttentionTagDataEntity;
 import com.micro.mysegmentdefault.entity.UserBlogDataEntity;
 import com.micro.mysegmentdefault.entity.UserCollectEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
+import com.micro.mysegmentdefault.entity.UserCommentResultDataEntity;
 import com.micro.mysegmentdefault.entity.UserDataEntity;
 import com.micro.mysegmentdefault.entity.UserDetailDataEntity;
 import com.micro.mysegmentdefault.entity.UserLoginDataEntity;
@@ -386,4 +387,16 @@ public interface ApiService {
                                                       @Query("phone") String phone,
                                                       @Query("code") String code,
                                                       @Query("password") String password);
+
+    @POST("news/{newsId}/comments/add")
+    Observable<UserCommentResultDataEntity> addUserNewsComment(@Path("newsId") String newsId ,
+                                                               @Query("text") String text ,
+                                                               @Query("token") String token);
+
+    //comment/1050000010761581/reply
+    @POST("comment/{replyId}/reply")
+    Observable<UserCommentResultDataEntity> addUserNewsReplyComment(@Path("replyId") String newsId ,
+                                                                    @Query("text") String text ,
+                                                                    @Query("token") String token);
+
 }

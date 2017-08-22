@@ -85,7 +85,6 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
         mDataEntity = entity.getData();
         setBottomText();
 
-
         if (!TextUtils.isEmpty(entity.getData().getParsedText())) {
             Map<String, Object> tempMap = new HashMap<>();
             tempMap.put("article", entity.getData());

@@ -1,13 +1,11 @@
 package com.micro.mysegmentdefault.ui;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 
-import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
-import com.micro.mysegmentdefault.entity.QuestionDetailDataEntity;
 import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
 import com.micro.mysegmentdefault.ui.comment.WebBrowserActivity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
@@ -33,8 +31,8 @@ public class SchemeActivity extends AppCompatActivity {
         Uri uri = getIntent().getData();
         LogUtils.d("target uri : " + uri);
 
-        String urlPath = uri.getPath();
-        String host = uri.getHost();
+        String urlPath = uri.getHost();
+        String host = uri.getScheme();
 
         if(SchemeUtils.URL.contains(urlPath) && SchemeUtils.URL_SHEME.contains(host)){
             gotoTargetActivity(uri);
@@ -62,6 +60,9 @@ public class SchemeActivity extends AppCompatActivity {
                 detailInfo = pathArray[1];
             }
 
+            LogUtils.d("--------------tagName---------" + tagName + "----" + detailInfo);
+
+
             if(!TextUtils.isEmpty(tagName)){
                 switch (tagName) {
                     case "u" :
@@ -83,7 +84,7 @@ public class SchemeActivity extends AppCompatActivity {
                         break;
 
                     case "p" :  //新闻详细内容
-                        HomeDataDetailActivity.start(detailInfo,HomeDataDetailActivity.class);
+                        ToutiaoDataDetailActivity.start(detailInfo,ToutiaoDataDetailActivity.class);
                         break;
 
                     case "blog":

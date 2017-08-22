@@ -63,6 +63,7 @@ public class NewsDetailDataEntity {
         private String cateType;
         private String original_text;
         private String readFirstImg;
+        private String parsedText;
 
         private UserEntity user;
 
@@ -238,6 +239,14 @@ public class NewsDetailDataEntity {
 
         public String getShortPath() {
             return Uri.parse(originPath).getHost();
+        }
+
+        public String getParsedText() {
+            return parsedText;
+        }
+
+        public void setParsedText(String parsedText) {
+            this.parsedText = parsedText;
         }
 
         public static class UserEntity {

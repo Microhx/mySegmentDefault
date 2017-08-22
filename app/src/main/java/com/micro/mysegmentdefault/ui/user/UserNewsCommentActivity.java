@@ -18,7 +18,6 @@ import com.micro.mysegmentdefault.base.mvp.view.AbsUserNewsCommentView;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.CollectionMessageEvent;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
-import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.BaseRefreshActivity;
 import com.micro.mysegmentdefault.middleimpl.adapter.UserNewsCommentRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserNewsCommentModel;
@@ -37,7 +36,7 @@ import butterknife.ButterKnife;
 
 /**
  * author : micro_hx <p>
- * desc : 文章评论区 <p>
+ * desc : 文章评论区【只针对文章 还存在一种评论 只是针对用户评论列表而来】 <p>
  * email: javainstalling@163.com <p>
  * date : 2017/5/27 - 10:31 <p>
  * interface :
@@ -63,9 +62,12 @@ public class UserNewsCommentActivity
     @Deprecated
     private NewsCommentDataEntity.CommentItem mCommentItem;
 
+    private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
+
     private String mComemntId ;
 
-    private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
+    private int mCommentPosition ;
+    private int mCommentSubPosition;
 
     @Override
     protected void initViews() {
@@ -166,8 +168,6 @@ public class UserNewsCommentActivity
 
     @Override
     public void zanOperationFinish(String type , String number) {
-        LogUtils.d(type + "-------------->>" + number);
-
 
         if("news".equals(type)) {
             mNewsLikeCount = number;
@@ -256,9 +256,9 @@ public class UserNewsCommentActivity
                         int position,
                         int subPosition,
                         NewsCommentDataEntity.CommentItem item) {
-
+        mCommentPosition = position;
+        mCommentSubPosition = subPosition;
         LogUtils.d("----------" + type + "---------->>" + position + "---->>>" + subPosition + "---->>" + item);
-
 
         if(type == CLICK_TYPE.USER_CENTER) {
             UserZoneActivity.start(this, item.user.slug);
@@ -277,14 +277,27 @@ public class UserNewsCommentActivity
                 }
             }
 
-        }else if(type == CLICK_TYPE.REPLY) {
+        }else if(type == CLICK_TYPE.REPLY) {  //不能回复嵌套的评论
+            //TODO
 
 
+            if(subPosition < 0) {
+                        UserNewsCommentReplyActivity.start(this,item.id,true,item.user.name,COMMENT_REQUEST_CODE);
+            }else {
+                NewsCommentDataEntity.RepliedItem repliedItem = item.repliedComments.get(subPosition);
+                UserNewsCommentReplyActivity.start(this,repliedItem.id,true,repliedItem.user.name,COMMENT_REQUEST_CODE);
+            }
 
         }
-
     }
 
+    public static final int COMMENT_REQUEST_CODE = 0x01;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == COMMENT_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+            mUserNewsCommentAdapter.updateUserComment(mCommentPosition,mCommentSubPosition,data);
+        }
+    }
 
     class NewsHeaderViewHolder extends RecyclerView.ViewHolder {
 

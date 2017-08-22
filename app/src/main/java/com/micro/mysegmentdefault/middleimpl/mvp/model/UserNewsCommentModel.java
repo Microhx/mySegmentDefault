@@ -1,6 +1,5 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
-import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
@@ -29,11 +28,11 @@ public class UserNewsCommentModel implements AbsNewsCommentModel<NewsCommentData
     }
 
     @Override
-    public Observable<BaseDataEntity> getZanOperationDataEntity(boolean isCancel, String newsId) {
+    public Observable<BaseDataEntity> getZanOperationDataEntity(String type , boolean isCancel, String newsId) {
         if(isCancel) {
-            return Api.getApiService(0).userDisLikeNewsDataEntity("news",newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
+            return Api.getApiService(0).userDisLikeNewsDataEntity(type,newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
         }else {
-            return Api.getApiService(0).userLikeNewsDataEntity("news",newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
+            return Api.getApiService(0).userLikeNewsDataEntity(type,newsId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
         }
 
     }

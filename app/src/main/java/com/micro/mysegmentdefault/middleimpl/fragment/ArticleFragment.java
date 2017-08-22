@@ -36,13 +36,13 @@ import butterknife.OnClick;
 
 /**
  * author : micro_hx <p>
- * desc : 专栏fragment<p>
+ * desc : 专栏【文章】fragment<p>
  * email: javainstalling@163.com <p>
  * date : 2017/5/6 - 12:22 <p>
  * interface :
  */
 
-public class NewsFragment extends BaseFragment implements DialogInterface.OnClickListener {
+public class ArticleFragment extends BaseFragment implements DialogInterface.OnClickListener {
 
     @Bind(R.id.id_toolbar_layout)
     Toolbar mToolBar;

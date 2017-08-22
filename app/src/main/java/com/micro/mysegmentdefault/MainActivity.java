@@ -2,7 +2,6 @@ package com.micro.mysegmentdefault;
 
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -12,8 +11,6 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.micro.mysegmentdefault.base.module.BaseMainActivity;
 import com.micro.mysegmentdefault.entity.TabEntity;
 import com.micro.mysegmentdefault.middleimpl.fragment.FragmentUtils;
-import com.micro.mysegmentdefault.middleimpl.fragment.HomeFragment;
-import com.micro.mysegmentdefault.utils.LogUtils;
 
 import java.util.ArrayList;
 

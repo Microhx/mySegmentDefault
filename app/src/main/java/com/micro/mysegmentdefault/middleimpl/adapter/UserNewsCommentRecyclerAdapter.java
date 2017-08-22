@@ -1,8 +1,10 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,9 @@ import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.widget.ReplyItemLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -121,13 +126,8 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
         for (int i = 0 , len = mItems.size() ; i < len; i++) {
             NewsCommentDataEntity.CommentItem item = mItems.get(i);
 
-
-            LogUtils.d(id + "---------------xxxx--------------- " + item.id);
-
-
             if(id.equals(item.id)) {
                 position = i;
-
                 item.votes = number;
                 item.isLiked = !mItems.get(i).isLiked;
 
@@ -151,15 +151,41 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
 
         LogUtils.d("---------------the position is --------->>" + position);
 
-
         if(position >= 0) {
             //因为存在一个head 此时需要将改targetPosition+1
             notifyItemChanged(position+1);
         }
-
-
     }
 
+    public void updateUserComment(int position , int subPosition, Intent intent) {
+        if(position >= 0) {
+            NewsCommentDataEntity.RepliedItem item = new NewsCommentDataEntity.RepliedItem();
+            item.isLiked = false;
+            item.originalText = intent.getStringExtra("originalText");
+            item.createdDate = intent.getStringExtra("createdDate");
+            item.id = intent.getStringExtra("id");
+            item.votes = "0";
+
+            item.user = new NewsCommentDataEntity.ReplyUser();
+            item.user.name = intent.getStringExtra("replyName");
+            item.user.url = intent.getStringExtra("replyUrl");
+
+            List<NewsCommentDataEntity.RepliedItem> repliedComments = mItems.get(position).repliedComments;
+            if(CommonUtils.collectionIsNull(repliedComments)) {
+                repliedComments = new ArrayList<>();
+            }
+            repliedComments.add(item);
+
+            LogUtils.d("-----------update this--------------");
+
+            //add this head...
+            notifyItemChanged(position+1);
+        }else {
+
+            //TODO
+
+        }
+    }
 
 
     class NewsCommentViewHolder extends RecyclerView.ViewHolder {

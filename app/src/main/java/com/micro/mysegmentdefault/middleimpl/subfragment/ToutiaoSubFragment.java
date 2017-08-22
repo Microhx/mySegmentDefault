@@ -5,7 +5,7 @@ import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.middle.BaseRefreshFragment;
 import com.micro.mysegmentdefault.middleimpl.adapter.HomeRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.HomeModel;
-import com.micro.mysegmentdefault.middleimpl.mvp.presenter.HomePresenter;
+import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ToutiaoPresenter;
 import com.micro.mysegmentdefault.view.widget.EmptyLayout;
 
 /**
@@ -16,7 +16,7 @@ import com.micro.mysegmentdefault.view.widget.EmptyLayout;
  * interface :
  */
 
-public class HomeSubFragment extends BaseRefreshFragment<HomePresenter, HomeModel, HomeDataEntity.Item> {
+public class ToutiaoSubFragment extends BaseRefreshFragment<ToutiaoPresenter, HomeModel, HomeDataEntity.Item> {
 
     private String mChannel = "";
 

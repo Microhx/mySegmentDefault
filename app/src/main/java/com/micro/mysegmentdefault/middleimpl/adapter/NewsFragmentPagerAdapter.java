@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.micro.mysegmentdefault.base.adapter.BasePagerAdapter;
 import com.micro.mysegmentdefault.entity.TagDataEntity;
-import com.micro.mysegmentdefault.middleimpl.subfragment.NewsSubFragment;
+import com.micro.mysegmentdefault.middleimpl.subfragment.ArticleSubFragment;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class NewsFragmentPagerAdapter extends BasePagerAdapter<TagDataEntity.Ite
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new NewsSubFragment();
+        Fragment fragment = new ArticleSubFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("position", position);
         bundle.putString("channel", mTitleEntityList.get(position).id);

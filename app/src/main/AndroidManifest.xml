@@ -25,7 +25,7 @@
         <activity android:name=".ui.UserTagManageActivity"/>
         <activity android:name=".ui.UserSearchTagActivity"/>
         <activity android:name=".ui.UserTagDetailActivity"/>
-        <activity android:name=".ui.HomeDataDetailActivity"/>
+        <activity android:name=".ui.ToutiaoDataDetailActivity"/>
         <activity android:name=".ui.SchemeActivity"/>
         <activity android:name=".ui.ArticleDetailActivity"/>
         <activity android:name=".ui.QuestionDetailActivity"/>
@@ -33,8 +33,7 @@
         <activity android:name=".ui.NoteListActivity"/>
         <activity android:name=".ui.NoteDetailActivity"/>
         <activity android:name=".ui.ActionActivity"/>
-        <activity android:name=".ui.TopUserListActivity">
-        </activity>
+        <activity android:name=".ui.TopUserListActivity"/>
         <activity android:name=".ui.user.UserZoneActivity"/>
         <activity android:name=".ui.user.UserAddCollectionActivity"/>
         <activity
@@ -56,8 +55,8 @@
         <activity
             android:name=".ui.user.UserNewNoteActivity"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.user.UserEditInfoActivity">
-        </activity>
+
+        <activity android:name=".ui.user.UserEditInfoActivity"/>
         <activity android:name=".ui.user.UserBaseInfoEditActivity"/>
         <activity android:name=".ui.LocationChooseActivity"/>
         <activity android:name=".ui.user.UserChooseTagActivity"/>
@@ -74,28 +73,32 @@
         <activity android:name=".ui.setting.SettingActivity"/>
         <activity android:name=".ui.setting.MessagePushSettingActivity"/>
         <activity android:name=".ui.setting.AccountSettingActivity"/>
-        <activity android:name=".ui.setting.UpdatePasswordActivity">
-        </activity>
-        <activity android:name=".ui.setting.SocialAccountShowingActivity">
-        </activity>
+        <activity android:name=".ui.setting.UpdatePasswordActivity"/>
+
+        <activity android:name=".ui.setting.SocialAccountShowingActivity"/>
+
         <activity android:name=".ui.setting.FeedBackActivity"/>
         <activity android:name=".ui.UserPublishToutiaoActivity"/>
-        <activity android:name=".ui.ChannelChooseActivity">
-        </activity>
-        <activity android:name=".ui.MultipleSearchActivity">
-        </activity>
-        <activity android:name=".ui.write.AskQuestionActivity">
-        </activity>
-        <activity android:name=".ui.write.AskTitleActivity">
-        </activity>
-        <activity android:name=".ui.write.AskTagActivity">
-        </activity>
-        <activity android:name=".ui.write.AskContentActivity">
-        </activity>
-        <activity android:name=".ui.write.WriteArticleActivity">
-        </activity>
-        <activity android:name=".ui.write.CreateSpecialColumnActivity">
-        </activity>
+        <activity android:name=".ui.ChannelChooseActivity"/>
+
+        <activity android:name=".ui.MultipleSearchActivity"/>
+
+        <activity android:name=".ui.write.AskQuestionActivity"/>
+
+        <activity android:name=".ui.write.AskTitleActivity"/>
+
+        <activity android:name=".ui.write.AskTagActivity"/>
+
+        <activity android:name=".ui.write.AskContentActivity"/>
+
+        <activity android:name=".ui.write.WriteArticleActivity"/>
+
+        <activity android:name=".ui.write.CreateSpecialColumnActivity"/>
+
+        <activity android:name=".ui.user.UserNewsCommentReplyActivity" />
+
+
+
     </application>
 
 </manifest>

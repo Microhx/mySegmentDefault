@@ -15,13 +15,13 @@ import rx.functions.Action1;
 
 /**
  * author : micro_hx <p>
- * desc : <p>
+ * desc : 头条Presenter类<p>
  * email: javainstalling@163.com <p>
  * date : 2017/5/6 - 17:18 <p>
  * interface :
  */
 
-public class HomePresenter extends BaseRefreshPresenter<BaseRefreshView<HomeDataEntity.Item>,BaseRefreshModel<HomeDataEntity>>{
+public class ToutiaoPresenter extends BaseRefreshPresenter<BaseRefreshView<HomeDataEntity.Item>,BaseRefreshModel<HomeDataEntity>>{
 
     @Override
     public void getCommonListDatas(int type, String channel, final int startPages) {

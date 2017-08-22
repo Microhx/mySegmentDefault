@@ -16,11 +16,10 @@ import com.micro.mysegmentdefault.base.adapter.BasePagerAdapter;
 import com.micro.mysegmentdefault.base.module.BaseFragment;
 import com.micro.mysegmentdefault.entity.TitleEntity;
 import com.micro.mysegmentdefault.middleimpl.adapter.HomeFragmentPagerAdapter;
-import com.micro.mysegmentdefault.middleimpl.subfragment.HomeSubFragment;
+import com.micro.mysegmentdefault.middleimpl.subfragment.ToutiaoSubFragment;
 import com.micro.mysegmentdefault.ui.UserPublishToutiaoActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
-import com.micro.mysegmentdefault.utils.LogUtils;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ import butterknife.Bind;
  * interface :
  */
 
-public class HomeFragment extends BaseFragment implements SexChooseDialog.OnSexChooseInterface {
+public class ToutiaoFragment extends BaseFragment implements SexChooseDialog.OnSexChooseInterface {
 
     @Bind(R.id.id_tv_tab_layout)
     TabLayout mTableLayout;
@@ -113,7 +112,7 @@ public class HomeFragment extends BaseFragment implements SexChooseDialog.OnSexC
         if (position != mToutiaoSortIndex) {
             mToutiaoSortIndex = position;
             //设置静态变量
-            HomeSubFragment.MSORTVALUE = mToutiaoSortIndex;
+            ToutiaoSubFragment.MSORTVALUE = mToutiaoSortIndex;
 
             //获取当前页面
             int currentIndex = mViewPager.getCurrentItem();
@@ -125,8 +124,8 @@ public class HomeFragment extends BaseFragment implements SexChooseDialog.OnSexC
             if(CommonUtils.collectionCheckIndex(fragmentList,currentIndex)) {
                 Fragment targetFragment = fragmentList.get(currentIndex);
                 //LogUtils.d("--------targetFragment-------->>" + targetFragment);
-                if (targetFragment instanceof HomeSubFragment) {
-                    ((HomeSubFragment) targetFragment).reloadData();
+                if (targetFragment instanceof ToutiaoSubFragment) {
+                    ((ToutiaoSubFragment) targetFragment).reloadData();
                 }
             }
         }

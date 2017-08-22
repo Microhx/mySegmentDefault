@@ -209,9 +209,7 @@ public class UserChooseTagActivity extends BaseActivity implements AdapterView.O
     private class CustomTextWatcher implements TextWatcher {
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -240,9 +238,7 @@ public class UserChooseTagActivity extends BaseActivity implements AdapterView.O
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
-
-        }
+        public void afterTextChanged(Editable s) {}
     }
 
 }

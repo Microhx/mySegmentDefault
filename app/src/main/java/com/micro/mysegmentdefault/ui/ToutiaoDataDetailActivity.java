@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresenter, NewsDetailModel> implements NewsDetailContract.DetailView {
+public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPresenter, NewsDetailModel> implements NewsDetailContract.DetailView {
 
     private String mTitle ;
     private String mDesc ;
@@ -78,7 +78,8 @@ public class HomeDataDetailActivity extends CommonWebActivity<NewsDetailPresente
         mTvCollect.setSelected(mDataEntity.isIsBookmarked());
         mTvZan.setSelected(mDataEntity.isIsLiked());
 
-        if (!TextUtils.isEmpty(mDataEntity.getReadParsedText()) || checkHost(mDataEntity.getOriginPath())) {
+
+        if (!TextUtils.isEmpty(mDataEntity.getParsedText()) || checkHost(mDataEntity.getOriginPath())) {
             Map<String, Object> tempMap = new HashMap<>();
             tempMap.put("news", entity.getData());
 
