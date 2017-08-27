@@ -23,8 +23,13 @@ public class UserNewsCommentModel implements AbsNewsCommentModel<NewsCommentData
     public Observable<NewsCommentDataEntity> getCommentListDatas(int type, String channel, int startPages) {
         return Api.
                 getApiService(0).
-                getUserCommentDataEntity(channel,String.valueOf(startPages), UserLogic.getUserToken()).
+                getUserCommentDataEntity(getType(type),channel,String.valueOf(startPages), UserLogic.getUserToken()).
                 compose(RxSchedulers.<NewsCommentDataEntity>io_main());
+    }
+
+    private String getType(int type) {
+        if(type == 0) return "news";
+        return  "article";
     }
 
     @Override

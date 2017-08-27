@@ -213,8 +213,8 @@ public interface ApiService {
     Observable<NewCollectionDataEntity> addUserNewCollectionDataEntity(@Query("name") String name , @Query("description") String desc,
                                                                        @Query("isPrivate") String isPrivate, @Query("token") String token);
 
-    @GET("/news/{newsId}/comments")
-    Observable<NewsCommentDataEntity> getUserCommentDataEntity(@Path("newsId") String newsId , @Query("page") String page , @Query("token") String token);
+    @GET("/{type}/{newsId}/comments")
+    Observable<NewsCommentDataEntity> getUserCommentDataEntity(@Path("type") String type ,@Path("newsId") String newsId , @Query("page") String page , @Query("token") String token);
 
 
     //news/1210000009528444/like

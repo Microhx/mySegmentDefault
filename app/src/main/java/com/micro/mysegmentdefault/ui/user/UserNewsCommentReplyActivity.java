@@ -47,7 +47,6 @@ public class UserNewsCommentReplyActivity extends BaseActivity<UserCommentPresen
     //是否为回复问题
     private boolean mIsReply ;
 
-
     @Bind(R.id.id_et_content)
     EditText mEtContent;
 
@@ -65,7 +64,6 @@ public class UserNewsCommentReplyActivity extends BaseActivity<UserCommentPresen
             mNewsId = getIntent().getStringExtra("newsId");
             mIsReply = getIntent().getBooleanExtra("isReply",false);
         }
-
     }
 
     @Override

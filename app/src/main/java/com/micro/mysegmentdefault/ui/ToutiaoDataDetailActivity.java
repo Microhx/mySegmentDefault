@@ -15,7 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.fragment.BottomShareFragment;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.NewsDetailModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.NewsDetailPresenter;
 import com.micro.mysegmentdefault.ui.user.UserAddCollectionActivity;
-import com.micro.mysegmentdefault.ui.user.UserNewsCommentActivity;
+import com.micro.mysegmentdefault.ui.user.UserCommentListActivity;
 import com.micro.mysegmentdefault.utils.FileUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.viewparser.NewsDetailParser;
@@ -150,7 +150,7 @@ public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPrese
      */
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
-        UserNewsCommentActivity.start(this,mDataEntity.getId(),mDataEntity.getUser().getName(),mDataEntity.getNewsTypes().get(0).getName(),
+        UserCommentListActivity.start(this,mDataEntity.getId(),mDataEntity.getUser().getName(),mDataEntity.getNewsTypes().get(0).getName(),
                                     mDataEntity.getCreatedDate(),mDataEntity.getOriginal_text(),mDataEntity.getTitle(),
                                     mDataEntity.getReadFirstImg(),
 

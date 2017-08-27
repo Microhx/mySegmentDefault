@@ -15,6 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ArticleDetailPresente
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
 import com.micro.mysegmentdefault.ui.user.UserAddCollectionActivity;
+import com.micro.mysegmentdefault.ui.user.UserCommentListActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
@@ -175,7 +176,7 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
         if(null == mDataEntity) return;
-        showToast("进入评论区 开始进行评论");
+        UserCommentListActivity.start(this,mDataEntity.getId());
     }
 
 

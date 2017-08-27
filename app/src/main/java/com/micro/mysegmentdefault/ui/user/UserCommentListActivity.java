@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * author : micro_hx <p>
@@ -42,7 +44,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
-public class UserNewsCommentActivity
+public class UserCommentListActivity
         extends BaseRefreshActivity<UserNewsCommentPresenter,UserNewsCommentModel,NewsCommentDataEntity.CommentItem>
         implements BaseRecyclerAdapter.OnLoadingHeaderCallBack, AbsUserNewsCommentView<NewsCommentDataEntity.CommentItem>,UserNewsCommentRecyclerAdapter.onItemViewClickLister {
 
@@ -56,6 +58,10 @@ public class UserNewsCommentActivity
     private String mNewsLikeCount;
     private String mNewsCollectCount;
 
+    //是否为文章评论
+    //文章评论存在文章头
+    private boolean mIsNewsComment;
+
     private boolean mIsLike;
     private boolean mIsCollect;
 
@@ -64,7 +70,7 @@ public class UserNewsCommentActivity
 
     private UserNewsCommentRecyclerAdapter mUserNewsCommentAdapter;
 
-    private String mComemntId ;
+    private String mCommentId ;
 
     private int mCommentPosition ;
     private int mCommentSubPosition;
@@ -80,12 +86,13 @@ public class UserNewsCommentActivity
         mPresenter.setVM(this,mModel);
     }
 
+    //新闻评论 news
     public static void start(Context ctx ,String newsId, String author , String newsType , String publishTime ,
                              String newsDesc , String newsTitle , String newsImage ,
                              String likeCount , boolean isLike ,
                              String collectCount , boolean isCollect ) {
 
-        Intent intent = new Intent(ctx,UserNewsCommentActivity.class);
+        Intent intent = new Intent(ctx,UserCommentListActivity.class);
         intent.putExtra("m_newsId",newsId);
         intent.putExtra("m_author",author);
         intent.putExtra("m_newsType",newsType);
@@ -101,16 +108,27 @@ public class UserNewsCommentActivity
         ctx.startActivity(intent);
     }
 
+    //文章评论
+    public static void start(Context ctx,String newsId) {
+        Intent intent = new Intent(ctx,UserCommentListActivity.class).putExtra("hasHead",false).putExtra("m_newsId",newsId);
+        ctx.startActivity(intent);
+    }
+
+
     @Override
     protected String getDefaultChannel() {
         return mNewsId;
     }
 
+    @Override
+    protected int getCommonType() {
+        return mIsNewsComment ? super.getCommonType() : 1;
+    }
 
     //当数据为空，或者数据不存在时，是否显示empty页面
     @Override
     protected boolean showEmptyPageWhenDataIsNull() {
-        return false ;
+        return true ;
     }
 
 
@@ -118,6 +136,7 @@ public class UserNewsCommentActivity
     protected void initTitleSetting(FrameLayout mTitleContent) {
         mTvTitle.setText(R.string.str_comment);
     }
+
 
     @Override
     protected void initBeforeView(Bundle savedInstanceState) {
@@ -133,14 +152,17 @@ public class UserNewsCommentActivity
         mNewsCollectCount = _intent.getStringExtra("m_newsCollectCount");
         mIsLike = _intent.getBooleanExtra("m_isLike" , false);
         mIsCollect = _intent.getBooleanExtra("m_isCollect" , false);
+
+        mIsNewsComment = _intent.getBooleanExtra("hasHead",true);
     }
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        mUserNewsCommentAdapter = new UserNewsCommentRecyclerAdapter(this);
-        mUserNewsCommentAdapter.setOnLoadingHeaderCallBack(this);
+        mUserNewsCommentAdapter = new UserNewsCommentRecyclerAdapter(this, mIsNewsComment);
         mUserNewsCommentAdapter.setItemViewClickListener(this);
-
+        if(mIsNewsComment) {
+            mUserNewsCommentAdapter.setOnLoadingHeaderCallBack(this);
+        }
 
         return mUserNewsCommentAdapter;
     }
@@ -154,6 +176,12 @@ public class UserNewsCommentActivity
         }
     }
 
+    @OnClick({R.id.id_bottom_layout})
+    public void addSomeComment(View v) {
+        mCommentPosition = -1 ;
+        UserNewsCommentReplyActivity.start(this,mNewsId,false,null,COMMENT_REQUEST_CODE);
+    }
+
 
     /**
      * 请求完成之后，此时将不再请求数据 目前来看 分页数据后台返回的数据存在错误
@@ -164,7 +192,6 @@ public class UserNewsCommentActivity
         mBaseRecyclerAdapter.setState(BaseRecyclerAdapter.STATE_NO_MORE,true);
         mRefreshLayout.setCanLoadMore(false);
     }
-
 
     @Override
     public void zanOperationFinish(String type , String number) {
@@ -184,8 +211,7 @@ public class UserNewsCommentActivity
            // mCommentItem.votes = number ;
            // mCommentItem.isLiked = !mCommentItem.isLiked;
            // mUserNewsCommentAdapter.updateCommentItem(mCommentItem);
-
-            mUserNewsCommentAdapter.updateCommentItem2(number,mComemntId);
+            mUserNewsCommentAdapter.updateCommentItem2(number,mCommentId);
         }
     }
 
@@ -235,7 +261,7 @@ public class UserNewsCommentActivity
         newsHolder.mLayoutCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserAddCollectionActivity.start(UserNewsCommentActivity.this,0,mNewsId);
+                UserAddCollectionActivity.start(UserCommentListActivity.this,0,mNewsId);
             }
         });
 
@@ -258,6 +284,7 @@ public class UserNewsCommentActivity
                         NewsCommentDataEntity.CommentItem item) {
         mCommentPosition = position;
         mCommentSubPosition = subPosition;
+
         LogUtils.d("----------" + type + "---------->>" + position + "---->>>" + subPosition + "---->>" + item);
 
         if(type == CLICK_TYPE.USER_CENTER) {
@@ -266,28 +293,25 @@ public class UserNewsCommentActivity
         }else if(type == CLICK_TYPE.ZAN){
 
             if(subPosition < 0) {
-                mComemntId = item.id;
+                mCommentId = item.id;
                 mPresenter.zanOperation("comment",item.isLiked,item.id);
 
             }else {
                 if(!CommonUtils.collectionIsNull(item.repliedComments)) {
                     NewsCommentDataEntity.RepliedItem replyItem = item.repliedComments.get(subPosition);
-                    mComemntId = replyItem.id;
+                    mCommentId = replyItem.id;
                     mPresenter.zanOperation("comment",replyItem.isLiked,item.id);
                 }
             }
 
         }else if(type == CLICK_TYPE.REPLY) {  //不能回复嵌套的评论
             //TODO
-
-
             if(subPosition < 0) {
-                        UserNewsCommentReplyActivity.start(this,item.id,true,item.user.name,COMMENT_REQUEST_CODE);
+                UserNewsCommentReplyActivity.start(this,item.id,true,item.user.name,COMMENT_REQUEST_CODE);
             }else {
                 NewsCommentDataEntity.RepliedItem repliedItem = item.repliedComments.get(subPosition);
-                UserNewsCommentReplyActivity.start(this,repliedItem.id,true,repliedItem.user.name,COMMENT_REQUEST_CODE);
+                UserNewsCommentReplyActivity.start(this,item.id,true,repliedItem.user.name,COMMENT_REQUEST_CODE);
             }
-
         }
     }
 
@@ -295,6 +319,8 @@ public class UserNewsCommentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == COMMENT_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+            //reload the commentList
+            LogUtils.d("--------comment success-----------------");
             mUserNewsCommentAdapter.updateUserComment(mCommentPosition,mCommentSubPosition,data);
         }
     }

@@ -52,6 +52,7 @@ public class ReplyItemLayout extends LinearLayout {
             return;
         }
 
+        setVisibility(VISIBLE);
         int len = mItems.size();
         for (int i = 0; i < len; i++) {
             NewsCommentDataEntity.RepliedItem item = mItems.get(i);

@@ -39,7 +39,7 @@
         <activity
             android:name=".ui.user.UserNewCollectionTagActivity"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.user.UserNewsCommentActivity"/>
+        <activity android:name=".ui.user.UserCommentListActivity"/>
 
         <!-- 用户添加评论页面 -->
         <activity android:name=".ui.user.UserAddCommentActivity"/>

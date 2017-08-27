@@ -41,9 +41,12 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
 
     private onItemViewClickLister mItemViewClickListener;
 
+    //是否有头部
+    private boolean mHasHead ;
 
-    public UserNewsCommentRecyclerAdapter(Context context) {
-        super(context, ONLY_HEADER);
+    public UserNewsCommentRecyclerAdapter(Context context, boolean hasHead) {
+        super(context, hasHead ? ONLY_HEADER : NEITHER);
+        this.mHasHead = hasHead;
     }
 
     @Override
@@ -55,10 +58,10 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final NewsCommentDataEntity.CommentItem item, int position) {
         NewsCommentViewHolder commentHolder = (NewsCommentViewHolder) holder;
         //因为存在头部 所以需要减1
-        initDataSetting(item, commentHolder, position - 1);
+        initDataSetting(item, commentHolder, mHasHead ?  position - 1 : position);
 
         //因为存在头部 所以需要减1
-        initDataListener(item, commentHolder, position - 1);
+        initDataListener(item, commentHolder, mHasHead ?  position - 1 : position);
     }
 
     //初始化点击方法
@@ -158,6 +161,8 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
     }
 
     public void updateUserComment(int position , int subPosition, Intent intent) {
+        LogUtils.d("-----------update this------- position -------|||" + position);
+
         if(position >= 0) {
             NewsCommentDataEntity.RepliedItem item = new NewsCommentDataEntity.RepliedItem();
             item.isLiked = false;
@@ -167,8 +172,8 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
             item.votes = "0";
 
             item.user = new NewsCommentDataEntity.ReplyUser();
-            item.user.name = intent.getStringExtra("replyName");
-            item.user.url = intent.getStringExtra("replyUrl");
+            item.user.name = intent.getStringExtra("userName");
+            item.user.url = intent.getStringExtra("userUrl");
 
             List<NewsCommentDataEntity.RepliedItem> repliedComments = mItems.get(position).repliedComments;
             if(CommonUtils.collectionIsNull(repliedComments)) {
@@ -176,14 +181,23 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
             }
             repliedComments.add(item);
 
-            LogUtils.d("-----------update this--------------");
+            //update the current one
+            mItems.get(position).repliedComments = repliedComments;
 
             //add this head...
-            notifyItemChanged(position+1);
+            notifyItemChanged(position);
         }else {
 
-            //TODO
+            NewsCommentDataEntity.CommentItem item = new NewsCommentDataEntity.CommentItem();
+            item.user = new NewsCommentDataEntity.CommentUser();
+            item.user.name = intent.getStringExtra("userName");
+            item.user.avatarUrl = intent.getStringExtra("avatarUrl");
+            item.createdDate = intent.getStringExtra("createdDate");
+            item.originalText = intent.getStringExtra("originalText");
+            item.votes = "0";
+            item.isLiked = false;
 
+            addItem(0,item);
         }
     }
 

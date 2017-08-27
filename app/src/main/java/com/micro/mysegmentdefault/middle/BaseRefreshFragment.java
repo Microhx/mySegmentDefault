@@ -55,6 +55,9 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
     @Bind(R.id.id_empty_layout)
     protected EmptyLayout mEmptyLayout;
 
+    @Bind(R.id.id_bottom_layout)
+    protected LinearLayout mBottomLayout;
+
     private PageEntity mPageEntity;
 
     protected BaseRecyclerAdapter<D> mBaseRecyclerAdapter;
@@ -72,8 +75,9 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
 
     @Override
     protected void initViews() {
-        mBaseRecyclerAdapter = getRecyclerAdapter();
+        initBottomLayout();
 
+        mBaseRecyclerAdapter = getRecyclerAdapter();
         defaultSettingLayoutManager();
         defaultSettingLayoutDecoration();
         mRecyclerView.setAdapter(mBaseRecyclerAdapter);
@@ -83,6 +87,14 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         if (null != mPresenter && shouldStartRequest())
             mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), mStartPages);
     }
+
+    /**
+     * 顶部View#BottomLayout
+     */
+    protected void initBottomLayout() {
+        mBottomLayout.setVisibility(View.GONE);
+    }
+
 
     protected void defaultSettingLayoutDecoration() {
         mRecyclerView.addItemDecoration(new RecycleViewDivider2(getContext(), LinearLayout.VERTICAL));

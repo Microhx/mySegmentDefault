@@ -62,7 +62,6 @@ public class SchemeActivity extends AppCompatActivity {
 
             LogUtils.d("--------------tagName---------" + tagName + "----" + detailInfo);
 
-
             if(!TextUtils.isEmpty(tagName)){
                 switch (tagName) {
                     case "u" :

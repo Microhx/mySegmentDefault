@@ -83,7 +83,7 @@ public class RecycleViewDivider2 extends RecyclerView.ItemDecoration {
         final int left = parent.getPaddingLeft();
         final int right = parent.getMeasuredWidth() - parent.getPaddingRight();
         //对于添加头部的，最后一个child不需要添加divider
-        final int childSize = parent.getChildCount() - 1;
+        final int childSize = parent.getChildCount() ;
         for (int i = 0; i < childSize; i++) {
             final View child = parent.getChildAt(i);
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();

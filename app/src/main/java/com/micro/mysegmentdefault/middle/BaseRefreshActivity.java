@@ -79,6 +79,9 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
     @Bind(R.id.id_iv_right)
     public ImageButton mIvRightButton ;
 
+    @Bind(R.id.id_bottom_layout)
+    public LinearLayout mBottomLayout ;
+
     protected PageEntity mPageEntity;
 
     @Override
@@ -98,6 +101,8 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
         initTitleSetting(mTitleContent);
         initTopRecyclerLayout(mTopRecyclerLayout);
 
+        initBottomLayoutView();
+
         mBaseRecyclerAdapter = getRecyclerAdapter();
         defaultSettingLayoutManager();
         defaultSettingLayoutDecoration();
@@ -108,21 +113,21 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
         mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), getCurrentPage());
     }
 
+    //设置顶部View 说点生命
+    protected void initBottomLayoutView() {}
+
     /**
      * RecyclerView顶端Layout
      * @param layout
      */
-    protected void initTopRecyclerLayout(RelativeLayout layout) {
-
-    }
+    protected void initTopRecyclerLayout(RelativeLayout layout) {}
 
     /**
      * 设置头部
      *
      * @param mTitleContent
      */
-    protected void initTitleSetting(FrameLayout mTitleContent) {
-    }
+    protected void initTitleSetting(FrameLayout mTitleContent) {}
 
 
     /**
