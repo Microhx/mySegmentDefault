@@ -90,7 +90,6 @@ public abstract class CommonWebActivity<T extends BasePresenter, E extends BaseM
 
     @Override
     protected void initViews() {
-        LogUtils.d("------>>initViews---1--1----->>>" + mIvRightImage + "----" + mWebView);
 
         initHeadLayouts();
 

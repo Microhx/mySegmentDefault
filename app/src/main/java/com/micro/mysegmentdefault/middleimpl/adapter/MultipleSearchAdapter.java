@@ -1,13 +1,20 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewSupport;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewTypeAdapter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -57,7 +64,7 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, SearchDataEntity.SearchItem item, int position) {
+    protected void convertData(ViewHolderHelper holder, final SearchDataEntity.SearchItem item, int position) {
         switch (item.type) {
             default:
             case "tag":
@@ -86,6 +93,20 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
                 holder.setTextView(R.id.id_tv_rank,item.rank);
                 break;
         }
+
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+                    _intent.putExtra("tagId", item.id);
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+            }
+        }) ;
     }
 
     public void setKeyWords(String mKeyWords) {

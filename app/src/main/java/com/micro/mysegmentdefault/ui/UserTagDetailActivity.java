@@ -23,6 +23,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.TagDetailPresenter;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.ToastUtils;
+import com.micro.mysegmentdefault.view.widget.PublicHeadLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -40,6 +41,9 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
     public static final String TAG_NAME = "tag_name";
     public static final String TAG_ID = "tag_id";
 
+
+    @Bind(R.id.id_pub_title)
+    PublicHeadLayout mTitle ;
 
     @Bind(R.id.id_view_pager)
     ViewPager mViewPager ;
@@ -66,6 +70,9 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
 
     //是否关注
     private boolean mTagHasFollowed ;
+
+    //tag详细内容
+    private TagDetailDataEntity mTagDetailData ;
 
 
     public static void start(String tagName , String tagId) {
@@ -97,6 +104,8 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
 
     @Override
     protected void initViews() {
+        mTitle.setTitle(mTag);
+
         List<String> _titleList = Arrays.asList(getResources().getStringArray(R.array.tag_detail));
         mDetailPageAdapter = new TagDetailPageAdapter(_titleList,mTagId,getSupportFragmentManager());
 
@@ -113,11 +122,11 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
 
     @Override
     public void onDataSuccess(Object o) {
-        TagDetailDataEntity dataEntity = (TagDetailDataEntity) o;
-        if(null == dataEntity || dataEntity.status != 0) {
+        mTagDetailData = (TagDetailDataEntity) o;
+        if(null == mTagDetailData || mTagDetailData.status != 0) {
             onDataError();
         }else {
-            TagDetailDataEntity.Data data = dataEntity.data;
+            TagDetailDataEntity.Data data = mTagDetailData.data;
             if(TextUtils.isEmpty(data.thumbnailUrl)){
                 mIvTagImage.setVisibility(View.GONE);
             }else {
@@ -130,6 +139,25 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
                                                         getResources().getDrawable(R.drawable.tag_unattention_drawable));
             mTvIntroduce.setText(data.excerpt);
             mTagHasFollowed = data.isFollowed ;
+        }
+    }
+
+    @OnClick({R.id.id_iv_back,R.id.id_tv_introduce})
+    public void onCallEvent(View view) {
+        switch (view.getId()){
+            case R.id.id_iv_back :
+                finish();
+                break;
+
+            case R.id.id_tv_introduce :
+                if(mTagDetailData == null) {
+                    ToastUtils.showMessage(this,R.string.state_load_error);
+                    return;
+                }
+
+                TagInformationActivity.start(this,mTag,mTagDetailData.data.originalText);
+
+                break;
         }
     }
 

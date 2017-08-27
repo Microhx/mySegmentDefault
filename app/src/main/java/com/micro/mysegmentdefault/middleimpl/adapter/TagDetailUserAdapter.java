@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.TagDetailUserEntity;
+import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
+@Deprecated
 public class TagDetailUserAdapter extends BaseRecyclerAdapter<TagDetailUserEntity.Item> {
 
     public TagDetailUserAdapter(Context ctx) {
@@ -37,7 +39,7 @@ public class TagDetailUserAdapter extends BaseRecyclerAdapter<TagDetailUserEntit
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, TagDetailUserEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder,  final TagDetailUserEntity.Item item, int position) {
         UserViewHolder userHolder = (UserViewHolder) holder;
         userHolder.mTvTitle.setText(item.name);
 
@@ -53,6 +55,13 @@ public class TagDetailUserAdapter extends BaseRecyclerAdapter<TagDetailUserEntit
         }
 
         userHolder.mTvRank.setText("#" + (1+position));
+
+        userHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserZoneActivity.start(mContext,item.slug);
+            }
+        });
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {

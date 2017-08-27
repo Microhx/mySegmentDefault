@@ -198,4 +198,10 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
         LogUtils.d("get Article detail error ");
     }
 
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
 }

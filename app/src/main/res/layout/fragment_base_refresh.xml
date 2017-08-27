@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <com.micro.mysegmentdefault.view.recyclerview.RecyclerRefreshLayout
             android:id="@+id/id_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp">
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/id_recycler_view"
@@ -23,48 +23,49 @@
 
         </com.micro.mysegmentdefault.view.recyclerview.RecyclerRefreshLayout>
 
-        <LinearLayout
-            android:id="@+id/id_bottom_layout"
+        <com.micro.mysegmentdefault.view.widget.EmptyLayout
+            android:id="@+id/id_empty_layout"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
-            android:background="#FFF"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="@drawable/appbar_line_invert"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/id_float_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|right|bottom"
+            android:layout_marginBottom="24dp"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/fab_add"
+            android:visibility="gone"
+            app:backgroundTint="@color/app_theme_color"
+            app:rippleColor="@color/app_theme_color"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableRight="@drawable/ic_send"
-                android:gravity="center_vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:text="@string/str_say_something"/>
+    </FrameLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/id_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="#FFF"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/appbar_line_invert"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/ic_send"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/str_say_something"/>
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/id_float_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end|right|bottom"
-        android:layout_marginBottom="24dp"
-        android:layout_marginRight="24dp"
-        android:src="@drawable/fab_add"
-        android:visibility="gone"
-        app:backgroundTint="@color/app_theme_color"
-        app:rippleColor="@color/app_theme_color"/>
-
-    <com.micro.mysegmentdefault.view.widget.EmptyLayout
-        android:id="@+id/id_empty_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"/>
-
-</FrameLayout>
+</LinearLayout>

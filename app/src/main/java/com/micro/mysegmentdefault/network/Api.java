@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Api {
 
-    public static final String WEB_URL = "https://segmentfault.com/" ;
+    public static final String WEB_URL = "https://segmentfault.com" ;
 
     public static final String BASE_URL = "https://api.segmentfault.com/" ;
 

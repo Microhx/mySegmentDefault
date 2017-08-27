@@ -81,6 +81,12 @@ public class UserCommentListActivity
         EventBus.getDefault().register(this);
     }
 
+
+    @Override
+    protected void initBottomLayoutView() {
+        mBottomLayout.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this,mModel);
@@ -321,7 +327,9 @@ public class UserCommentListActivity
         if(requestCode == COMMENT_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
             //reload the commentList
             LogUtils.d("--------comment success-----------------");
+
             mUserNewsCommentAdapter.updateUserComment(mCommentPosition,mCommentSubPosition,data);
+            checkLayoutVisible();
         }
     }
 
@@ -354,12 +362,16 @@ public class UserCommentListActivity
         @Bind(R.id.id_layout_comment)
         LinearLayout mLayoutComment;
 
-
         public NewsHeaderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
 
+    }
 }

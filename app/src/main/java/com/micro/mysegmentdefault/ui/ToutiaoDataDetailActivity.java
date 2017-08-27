@@ -184,8 +184,8 @@ public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPrese
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     private void addUserFollow(String followerId , String otherInfo) {

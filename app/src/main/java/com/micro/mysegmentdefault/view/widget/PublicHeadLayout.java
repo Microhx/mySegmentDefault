@@ -65,6 +65,10 @@ public class PublicHeadLayout extends RelativeLayout {
         mTvTitle.setText(title);
     }
 
+    public void setTitle(String title) {
+        mTvTitle.setText(title);
+    }
+
 
     private void initViews() {
         View rootView = View.inflate(getContext(), R.layout.base_head_layout, this);

@@ -9,7 +9,10 @@
     android:orientation="vertical"
     tools:context="com.micro.mysegmentdefault.ui.UserTagDetailActivity">
 
-    <include layout="@layout/search_publish_head"/>
+    <com.micro.mysegmentdefault.view.widget.PublicHeadLayout
+        android:id="@+id/id_pub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -25,13 +28,13 @@
                 android:layout_height="match_parent"
                 android:background="@color/white_color"
                 android:orientation="horizontal"
-                android:padding="12dp"
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageView
                     android:id="@+id/id_iv_tag"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_margin="12dp"
                     android:padding="6dp"/>
 
                 <TextView
@@ -43,16 +46,19 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:paddingTop="4dp"
+                    android:layout_margin="12dp"
                     android:textColor="@color/white_color"
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/id_tv_tag_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_toLeftOf="@id/id_tag_status"
                     android:layout_toRightOf="@id/id_iv_tag"
                     android:lines="1"
+                    android:layout_margin="12dp"
+                    android:gravity="center_vertical"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textColor="@color/text_first_color"
@@ -62,9 +68,18 @@
                     android:id="@+id/id_tv_introduce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_below="@id/id_iv_tag"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
                     android:textColor="@color/text_second_color"
                     android:textSize="12sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:layout_below="@id/id_tv_introduce"
+                    android:background="@color/text_third_color"/>
 
             </RelativeLayout>
 

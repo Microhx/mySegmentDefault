@@ -76,10 +76,8 @@ public class SchemeActivity extends AppCompatActivity {
                         CommonWebActivity.start(detailInfo,QuestionDetailActivity.class);
                         break;
 
-
-                    case "t": //tagActivity  TODO 缺少tagId
-                        //UserTagDetailActivity.start(detailInfo,"1111");
-                        ToastUtils.showMessage(this,"TODO");
+                    case "t": //tagActivity
+                        UserTagDetailActivity.start(detailInfo,getIntent().getStringExtra("tagId"));
                         break;
 
                     case "p" :  //新闻详细内容
@@ -91,7 +89,6 @@ public class SchemeActivity extends AppCompatActivity {
                         ToastUtils.showMessage(this,"activity not found !!!");
                         break;
                 }
-
             }else {
                 LogUtils.d(" target url is unknown ");
             }

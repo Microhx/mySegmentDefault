@@ -78,6 +78,4 @@
 
     <include layout="@layout/fragment_base_refresh"/>
 
-
-
 </LinearLayout>

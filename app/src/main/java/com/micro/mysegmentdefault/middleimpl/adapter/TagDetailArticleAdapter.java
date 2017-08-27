@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.TagDetailArticleEntity;
+import com.micro.mysegmentdefault.ui.ArticleDetailActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,8 +21,10 @@ import butterknife.ButterKnife;
  * email: javainstalling@163.com <p>
  * date : 2017/5/9 - 17:49 <p>
  * interface :
+ *
  */
 
+@Deprecated
 public class TagDetailArticleAdapter extends BaseRecyclerAdapter<TagDetailArticleEntity.Item> {
 
     public TagDetailArticleAdapter(Context ctx) {
@@ -34,14 +37,20 @@ public class TagDetailArticleAdapter extends BaseRecyclerAdapter<TagDetailArticl
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, TagDetailArticleEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final TagDetailArticleEntity.Item item, int position) {
         ArticleViewHolder articleHolder = (ArticleViewHolder) holder;
         articleHolder.mTvTitle.setText(item.title);
         articleHolder.mTvContent.setText(item.excerpt);
         articleHolder.mVoteComment.setText(item.votes + "人点赞 " + item.comments + "人收藏");
         articleHolder.mAuthor.setText(item.user.name);
-    }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArticleDetailActivity.start(item.id,ArticleDetailActivity.class);
+            }
+        });
+    }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {
 

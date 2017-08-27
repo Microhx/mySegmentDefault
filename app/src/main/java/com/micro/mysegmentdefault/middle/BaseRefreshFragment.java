@@ -92,7 +92,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
      * 顶部View#BottomLayout
      */
     protected void initBottomLayout() {
-        mBottomLayout.setVisibility(View.GONE);
+
     }
 
 

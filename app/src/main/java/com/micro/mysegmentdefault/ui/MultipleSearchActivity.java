@@ -200,6 +200,8 @@ public class MultipleSearchActivity extends BaseActivity<MultipleSearchPresenter
         reLoadFragmentDatas(fragmentIndex, fragmentList);
     }
 
+
+    //这里解决index 左右数据
     private void reLoadFragmentDatas(int index, List<Fragment> fragmentList) {
         if (CommonUtils.collectionCheckIndex(fragmentList, index)) {
             if (index == 0) {

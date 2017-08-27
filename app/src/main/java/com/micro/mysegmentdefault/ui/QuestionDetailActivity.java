@@ -3,6 +3,7 @@ package com.micro.mysegmentdefault.ui;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.micro.mysegmentdefault.R;
@@ -153,17 +154,20 @@ public class QuestionDetailActivity extends CommonWebActivity<QuestionDetailPres
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onCollectionEvent(CollectionMessageEvent event) {
+
         if(null != event && event.type == 1) {
             mTvCollect.setText(event.number);
             mTvCollect.setSelected(event.isBookMarked);
             showToast(R.string.str_operation_success);
+
+            LogUtils.d("---------->>onCollectionEvent------------>>" );
         }
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-
         EventBus.getDefault().unregister(this);
+
+        super.onDestroy();
     }
 }
