@@ -10,6 +10,26 @@ package com.micro.mysegmentdefault.entity;
 
 public class ActivityDetailDataEntity {
 
+    public int status;
+    public String message;
+    public Data data;
+
+
+    public static class Data {
+
+        public String id;
+        public String url;
+        public String name;
+        public String slug;
+        public String cityName;
+        public String address;
+        public String startDate;
+        public String startWeek;
+        public String parsedText;
+        public String bigBannerUrl;
+        public String bannerUrl;
+
+    }
 
 
 }

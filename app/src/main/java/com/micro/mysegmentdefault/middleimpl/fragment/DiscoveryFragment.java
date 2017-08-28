@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.middleimpl.fragment;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.micro.mysegmentdefault.R;
@@ -10,8 +11,11 @@ import com.micro.mysegmentdefault.middleimpl.adapter.SlideViewPagerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.DiscoverModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.DiscoverPresenter;
 import com.micro.mysegmentdefault.ui.ActionActivity;
+import com.micro.mysegmentdefault.ui.ActivityDetailActivity;
 import com.micro.mysegmentdefault.ui.NoteListActivity;
 import com.micro.mysegmentdefault.ui.TopUserListActivity;
+import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.widget.CustomViewPager;
 import com.micro.mysegmentdefault.view.widget.ViewPagerIndicator;
 
@@ -26,7 +30,7 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView, CustomViewPager.onLeftOrRightListener {
+public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverModel> implements DiscoverContract.DiscoverView, CustomViewPager.onLeftOrRightListener, SlideViewPagerAdapter.onImageViewClickListener {
 
     @Bind(R.id.id_view_pager)
     CustomViewPager mCustomViewPager;
@@ -50,7 +54,7 @@ public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverMo
     @Override
     public void showDiscoverData(DiscoverDataEntity dataEntity) {
         if(null != dataEntity ){
-            mSlideViewPagerAdapter = new SlideViewPagerAdapter(getContext(),dataEntity.data.rows);
+            mSlideViewPagerAdapter = new SlideViewPagerAdapter(getContext(),dataEntity.data.rows,this);
             mViewPagerIndicator.setPagerAdapter(mSlideViewPagerAdapter);
 
             mCustomViewPager.setAdapter(mSlideViewPagerAdapter);
@@ -76,19 +80,23 @@ public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverMo
         goWithActivity(TopUserListActivity.class);
     }
 
-
     @Override
     public void onPageScrolled(int startPosition, int endPosition, float positionOffset, boolean isRight) {
             mViewPagerIndicator.onPageScrolled(startPosition,endPosition,positionOffset,isRight);
     }
 
     @Override
-    public void onPageSelected(int position) {
-
-    }
+    public void onPageSelected(int position) {}
 
     @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onPageScrollStateChanged(int state) {}
 
+    @Override
+    public void onClick(DiscoverDataEntity.DiscoverItem item) {
+        if(null != item && !TextUtils.isEmpty(item.id)) {
+            CommonWebActivity.start(item.id, ActivityDetailActivity.class);
+        }else {
+            ToastUtils.showMessage(getActivity(),"Id缺失");
+        }
     }
 }

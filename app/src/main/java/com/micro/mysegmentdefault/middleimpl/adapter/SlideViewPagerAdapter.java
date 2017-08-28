@@ -28,10 +28,12 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
     private List<DiscoverDataEntity.DiscoverItem> mListItems;
     private Context mContext;
+    private onImageViewClickListener mViewClickListener ;
 
-    public SlideViewPagerAdapter(Context mContext, List<DiscoverDataEntity.DiscoverItem> mListItems) {
+    public SlideViewPagerAdapter(Context mContext, List<DiscoverDataEntity.DiscoverItem> mListItems , onImageViewClickListener listener) {
         this.mContext = mContext;
         this.mListItems = mListItems;
+        this.mViewClickListener = listener;
     }
 
     @Override
@@ -53,11 +55,19 @@ public class SlideViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView iv = new ImageView(mContext);
 
-        DiscoverDataEntity.DiscoverItem item = mListItems.get(position % mListItems.size());
+        final DiscoverDataEntity.DiscoverItem item = mListItems.get(position % mListItems.size());
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
         ImageUtils.showUrlImageFixXY(item.bannerUrl, iv);
         LogUtils.d("bannerUrl:" + item.bannerUrl);
-
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != mViewClickListener) {
+                    mViewClickListener.onClick(item);
+                }
+            }
+        });
+        
         container.addView(iv,getDefaultLayoutParams());
 
         return iv;
@@ -77,4 +87,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         mListItems.addAll(listItems);
         notifyDataSetChanged();
     }
+
+
+    public interface onImageViewClickListener{
+        void onClick( DiscoverDataEntity.DiscoverItem item) ;
+    }
+
+
 }

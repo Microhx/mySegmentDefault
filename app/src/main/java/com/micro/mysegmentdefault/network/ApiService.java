@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.network;
 
 import com.micro.mysegmentdefault.entity.AccountDataEntity;
 import com.micro.mysegmentdefault.entity.ActionDataEntity;
+import com.micro.mysegmentdefault.entity.ActivityDetailDataEntity;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.CommonResult;
@@ -399,4 +400,8 @@ public interface ApiService {
                                                                     @Query("text") String text ,
                                                                     @Query("token") String token);
 
+
+    @GET("activity/{activityId}")
+    Observable<ActivityDetailDataEntity> getActivityDetailDataEntity(@Path("activityId") String activityId,
+                                                                     @Query("token") String token);
 }

@@ -65,11 +65,10 @@ public class SlideshowView extends RelativeLayout {
         return new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-
-    public void setDatas(List<DiscoverDataEntity.DiscoverItem> listItems) {
+    /*public void setDatas(List<DiscoverDataEntity.DiscoverItem> listItems) {
         mSlideViewPagerAdapter = new SlideViewPagerAdapter(getContext(), listItems);
         mViewPager.setAdapter(mSlideViewPagerAdapter);
-    }
+    }*/
 
 
 }
