@@ -36,7 +36,7 @@ public interface UserEditContract {
 
       void uploadUserTags(boolean result , List<BestTag> tagList);
 
-      void uploadUserOtherInfo(boolean result ,String tagType, List<TagUploadOtherDataEntity.Item> datas,boolean isUpdate, int sort);
+      void uploadUserOtherInfo(boolean result ,String tagType, TagUploadOtherDataEntity dataEntity,boolean isUpdate, int sort);
 
       void removeUserOtherInfo(boolean result , String tagType , int sort);
     }

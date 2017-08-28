@@ -41,7 +41,7 @@
                     android:layout_height="36dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_rank_1"/>
+                    android:src="@drawable/tab_mine_normal"/>
             </RelativeLayout>
 
             <View

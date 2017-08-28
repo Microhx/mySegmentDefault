@@ -21,6 +21,7 @@
     <color name="red">#F00</color>
     <color name="line_color">#E4E3E5</color>
 
+    <color name="float_transparent">#00000000</color>
 
 
 </resources>

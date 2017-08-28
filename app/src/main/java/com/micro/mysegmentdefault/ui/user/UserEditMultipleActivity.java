@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.widget.PublicHeadLayout;
 
 import butterknife.Bind;
@@ -81,6 +82,8 @@ public class UserEditMultipleActivity extends BaseActivity {
         mCurrentType = getIntent().getIntExtra("_type",TYPE_PROJECT);
         mSort = getIntent().getIntExtra("_sort",-1);
         mIsDelete = getIntent().getBooleanExtra("_isDelete",false);
+
+        LogUtils.d("--------------<<<|||||" + mSort + "<<<<<--------------");
     }
 
     @Override
@@ -148,11 +151,10 @@ public class UserEditMultipleActivity extends BaseActivity {
             return;
         }
 
-        setResult(RESULT_OK, new Intent().
-                             putExtra("_title",title).
-                             putExtra("_content",content).
-                             putExtra("_isUpdate" , mIsDelete).
-                             putExtra("_sort",mSort));
+        setResult(RESULT_OK, new Intent().putExtra("_title",title).
+                                          putExtra("_content",content).
+                                          putExtra("_isUpdate" , mIsDelete).
+                                          putExtra("_sort",mSort));
         finish();
     }
 
@@ -168,7 +170,7 @@ public class UserEditMultipleActivity extends BaseActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                setResult(RESULT_OK, new Intent().putExtra("_isDelete" , true));
+                setResult(RESULT_OK, new Intent().putExtra("_isDelete" , true).putExtra("_sort",mSort));
                 finish();
             }
         });

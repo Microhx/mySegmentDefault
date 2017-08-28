@@ -33,9 +33,6 @@ public class DialogUtils {
     }
 
 
-
-
-
     public static void showAlertItemDialog(Context ctx, String[] items , DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setItems(items,listener).show();

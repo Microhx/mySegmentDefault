@@ -66,6 +66,8 @@ public abstract class CommonWebActivity<T extends BasePresenter, E extends BaseM
     @Bind(R.id.id_layout_comment)
     protected LinearLayout mCommentLayout;
 
+    @Bind(R.id.id_layout_bottom)
+    protected LinearLayout mBottomLayout;
 
     public static final String CONTENT_ID = "content_id";
 

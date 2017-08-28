@@ -148,7 +148,7 @@ public class UserZoneActivity extends BaseActivity<UserZonePresenter,UserZoneMod
         return true;
     }
 
-    //TODO
+
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if(item.getItemId() == R.id.id_menu_edit) {

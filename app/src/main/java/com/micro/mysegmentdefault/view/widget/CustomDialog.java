@@ -17,8 +17,9 @@ import com.micro.mysegmentdefault.R;
 public class CustomDialog extends Dialog {
 
     public CustomDialog(Context context) {
-        super(context);
+        super(context,R.style.custom_dialog);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

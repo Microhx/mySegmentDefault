@@ -67,7 +67,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_gold_medal"
-                            android:padding="4dp"
+                            android:drawablePadding="4dp"
+                            android:padding="10dp"
                             android:textColor="@color/white_color"
                             android:textSize="12sp"/>
 
@@ -76,7 +77,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_silver_medal"
-                            android:padding="4dp"
+                            android:drawablePadding="4dp"
+                            android:padding="10dp"
                             android:textColor="@color/white_color"
                             android:textSize="12sp"/>
 
@@ -85,7 +87,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_copper_medal"
-                            android:padding="4dp"
+                            android:drawablePadding="4dp"
+                            android:padding="10dp"
                             android:textColor="@color/white_color"
                             android:textSize="12sp"/>
 
@@ -132,9 +135,9 @@
                                 android:textColor="@color/white_color"/>
 
                             <TextView
+                                android:id="@+id/id_tv_attention"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/id_tv_attention"
                                 android:textColor="@color/white_color"/>
 
                         </LinearLayout>
@@ -153,9 +156,9 @@
                                 android:textColor="@color/white_color"/>
 
                             <TextView
+                                android:id="@+id/id_tv_fans"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/id_tv_fans"
                                 android:textColor="@color/white_color"/>
 
                         </LinearLayout>
@@ -184,7 +187,6 @@
     <LinearLayout
         android:id="@+id/id_layout_content"
         android:layout_width="match_parent"
-        android:layout_marginBottom="52dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -213,9 +215,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="#787878"
-        app:layout_behavior="@string/bottom_sheet_behavior">
-
-    </LinearLayout>
+        android:visibility="gone"
+        app:layout_behavior="@string/bottom_sheet_behavior"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

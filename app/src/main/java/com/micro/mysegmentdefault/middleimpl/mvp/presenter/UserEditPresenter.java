@@ -119,9 +119,9 @@ public class UserEditPresenter extends UserEditContract.AbsUserEditPresenter {
             @Override
             public void _onNext(TagUploadOtherDataEntity entity) {
                 if(null != entity && entity.status == 0) {
-                    mView.uploadUserOtherInfo(true,tagType,entity.data,isUpdate,sort);
+                    mView.uploadUserOtherInfo(true,tagType,entity,isUpdate,sort);
                 }else {
-                    mView.uploadUserOtherInfo(false,tagType,null,isUpdate,sort);
+                    mView.uploadUserOtherInfo(false,tagType,entity,isUpdate,sort);
                 }
             }
 

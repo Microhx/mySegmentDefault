@@ -19,6 +19,7 @@ import com.micro.mysegmentdefault.base.module.BaseActivity;
 import com.micro.mysegmentdefault.entity.BestTag;
 import com.micro.mysegmentdefault.entity.TagUploadOtherDataEntity;
 import com.micro.mysegmentdefault.entity.UserDetailDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.UserEditContract;
 import com.micro.mysegmentdefault.middleimpl.fragment.PictureChooseDialog;
 import com.micro.mysegmentdefault.middleimpl.fragment.SexChooseDialog;
@@ -96,14 +97,12 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
     //选择的城市名称
     private String mCityName;
 
-
     private UserDetailDataEntity.Data mUserData;
-
 
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);
-        mPresenter.loadUserDetailInfo("misaka_orange");
+        mPresenter.loadUserDetailInfo(UserLogic.getUserName());
 
         mTagProjectLayout.setOnItemClickListener(this);
         mTagStudyLayout.setOnItemClickListener(this);
@@ -157,7 +156,7 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtils.d("requestCode--->>" + requestCode + "---resultCode---->>" + resultCode + "---" + data);
+        LogUtils.d("requestCode--->>" + requestCode + "---resultCode---->>" + resultCode + "---" );
 
         if (resultCode != RESULT_OK) return;
 
@@ -504,22 +503,29 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
 
 
     @Override
-    public void uploadUserOtherInfo(boolean result, String tagType, List<TagUploadOtherDataEntity.Item> datas, boolean isUpdate, int sort) {
+    public void uploadUserOtherInfo(boolean result, String tagType, TagUploadOtherDataEntity datas, boolean isUpdate, int sort) {
         if (result) {
-                switch (tagType) {
+            List<TagUploadOtherDataEntity.Item> tempData = datas.data;
+            switch (tagType) {
                     case "project":
-                        mTagProjectLayout.addDataList2(datas, 0);
+                        mTagProjectLayout.addDataList2(tempData, 0);
                         break;
 
                     case "school":
-                        mTagStudyLayout.addDataList2(datas, 1);
+                        mTagStudyLayout.addDataList2(tempData, 1);
                         break;
 
                     case "company":
-                        mTagWorkLayout.addDataList2(datas, 2);
+                        mTagWorkLayout.addDataList2(tempData, 2);
                         break;
                 }
         } else {
+
+            if(null != datas && !TextUtils.isEmpty(datas.message)){
+                showToast(datas.message);
+                return;
+            }
+
             showToast(R.string.str_operation_error);
         }
     }
@@ -553,7 +559,7 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
 
     @Override
     public void itemClick(int type, int sort, String title, String content) {
-        LogUtils.d(type + "----" + sort + "---" + title + "-----" + content);
+        LogUtils.d(type + "----" + sort + "---" + title + "-----" + content + "------>>>" + sort);
         int targetType = getTargetType(type);
         UserEditMultipleActivity.start(this, targetType, title, content, true, sort);
     }

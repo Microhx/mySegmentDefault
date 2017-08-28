@@ -38,7 +38,11 @@ public class ActivityModel implements ActivityDetailContract.ActivityModel {
         StringBuilder sb = new StringBuilder();
         ActivityDetailDataEntity.Data innerData = data.data;
 
-        sb.append("<img src='"+innerData.bannerUrl + "' width='10%'/>") ;
+
+        sb.append("<meta charset='utf-8'>");
+        sb.append("<meta name='viewport' content='width=device-width, initial-scale=1.0'/>");
+
+        sb.append("<img src='"+innerData.bannerUrl + "' width='100%'/>") ;
         sb.append("<div>"+innerData.name+"</div>");
         sb.append("<hr/>");
         sb.append("<div>"+innerData.startDate + "  " + innerData.startWeek+"</div>");

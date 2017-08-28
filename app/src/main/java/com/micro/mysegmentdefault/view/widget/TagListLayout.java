@@ -31,7 +31,6 @@ public class TagListLayout extends LinearLayout {
 
     private onItemClickListener mListener ;
 
-
     public TagListLayout(Context context) {
         this(context,null);
     }
@@ -94,6 +93,7 @@ public class TagListLayout extends LinearLayout {
         TextView tvContent = (TextView) rootView.findViewById(R.id.id_tv_content);
         tvTitle.setText(title);
         tvContent.setText(content);
+        addView(rootView,getDefaultParams());
 
         rootView.setOnClickListener(new OnClickListener() {
             @Override
@@ -106,7 +106,6 @@ public class TagListLayout extends LinearLayout {
             }
         });
 
-        addView(rootView,getDefaultParams());
     }
 
     private int getViewInPosition(View targetView) {

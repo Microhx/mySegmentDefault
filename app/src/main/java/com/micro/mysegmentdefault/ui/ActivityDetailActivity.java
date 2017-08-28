@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.ui;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.middle.ActivityDetailContract;
@@ -21,6 +22,8 @@ public class ActivityDetailActivity extends CommonWebActivity<ActivityPresenter,
     @Override
     protected void initViews() {
         super.initViews();
+
+        mBottomLayout.setVisibility(View.GONE);
         mTagTitle.setText(R.string.str_activity);
         mPresenter.getActivityInfo(mNewsId);
     }
