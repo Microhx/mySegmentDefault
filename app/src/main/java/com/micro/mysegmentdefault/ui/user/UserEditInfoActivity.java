@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
 import com.micro.mysegmentdefault.entity.BestTag;
+import com.micro.mysegmentdefault.entity.MessageEvent;
 import com.micro.mysegmentdefault.entity.TagUploadOtherDataEntity;
 import com.micro.mysegmentdefault.entity.UserDetailDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
@@ -34,6 +35,8 @@ import com.micro.mysegmentdefault.utils.PermissionUtils;
 import com.micro.mysegmentdefault.view.widget.CircleImageView;
 import com.micro.mysegmentdefault.view.widget.TagContainerLayout;
 import com.micro.mysegmentdefault.view.widget.TagListLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -102,7 +105,7 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);
-        mPresenter.loadUserDetailInfo(UserLogic.getUserName());
+        mPresenter.loadUserDetailInfo(UserLogic.getUserSlug());
 
         mTagProjectLayout.setOnItemClickListener(this);
         mTagStudyLayout.setOnItemClickListener(this);
@@ -451,9 +454,20 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
     public void uploadUserIconInfo(boolean result, String imagePath) {
         if (result) {
             ImageUtils.showUrlImage(imagePath, mUserIcon);
+            //save user temp photo path
+            UserLogic.saveUserPhoto(imagePath);
+            //notify the imageChange
+            notifyDataChanged();
+
         } else {
             showToast(R.string.str_operation_error);
         }
+    }
+
+    private void notifyDataChanged() {
+        MessageEvent event = new MessageEvent();
+        event.type = 4 ;
+        EventBus.getDefault().post(event);
     }
 
     @Override
@@ -462,6 +476,10 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
             switch (profileName) {
                 case "name":
                     mTvUserName.setText(profileContent);
+                    //save temp
+                    UserLogic.saveUserName(profileContent);
+                    //notify data has changed...
+                    notifyDataChanged();
                     break;
 
                 case "gender":

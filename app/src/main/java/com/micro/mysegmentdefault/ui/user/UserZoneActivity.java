@@ -17,13 +17,20 @@ import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
+import com.micro.mysegmentdefault.entity.MessageEvent;
 import com.micro.mysegmentdefault.entity.UserDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.UserZoneContract;
 import com.micro.mysegmentdefault.middleimpl.adapter.UserZonePagerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserZoneModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserZonePresenter;
 import com.micro.mysegmentdefault.utils.ImageUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,12 +121,19 @@ public class UserZoneActivity extends BaseActivity<UserZonePresenter,UserZoneMod
                 finish();
             }
         });
+        initEventBus();
 
         List<String> userList = Arrays.asList(getResources().getStringArray(R.array.user_zone_list));
         mZonePageAdapter = new UserZonePagerAdapter(mUserName,userList,getSupportFragmentManager());
 
         mViewPager.setAdapter(mZonePageAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    private void initEventBus() {
+        if(mUserName.equals(UserLogic.getUserSlug())) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -144,10 +158,11 @@ public class UserZoneActivity extends BaseActivity<UserZonePresenter,UserZoneMod
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.user_title_menu,menu);
-        return true;
+        if(mUserName.equals(UserLogic.getUserSlug())) {
+            getMenuInflater().inflate(R.menu.user_title_menu,menu);
+        }
+        return mUserName.equals(UserLogic.getUserSlug());
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
@@ -158,4 +173,22 @@ public class UserZoneActivity extends BaseActivity<UserZonePresenter,UserZoneMod
         return true;
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if(null != event && event.type == 4) {
+            ImageUtils.showUrlImageFixXY(UserLogic.getUserPhoto(),mImageViewBg);
+            ImageUtils.showUrlImage(UserLogic.getUserPhoto(),mImageUserIcon);
+            mToolBarLayout.setTitle(UserLogic.getUserName());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(mUserName.equals(UserLogic.getUserSlug())) {
+            EventBus.getDefault().unregister(this);
+        }
+
+        super.onDestroy();
+    }
 }

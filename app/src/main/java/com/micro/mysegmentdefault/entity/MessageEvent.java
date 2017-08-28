@@ -25,6 +25,8 @@ public class MessageEvent {
      * 其他用户区分
      * -1  选中标签后重新排列
      *
+     * 用户修改名字和头像      type为4
+     *
      *
      */
     public int type ;

@@ -71,8 +71,9 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         ButterKnife.unbind(this);
+
+        super.onDestroy();
     }
 
     protected void goWidthIntent(Intent intent) {

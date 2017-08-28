@@ -47,6 +47,23 @@ public class UserLogic {
         //LogUtils.d("----getAll----->>" + mSharePreferences.getAll());
     }
 
+
+    public static void saveUserName(String userName) {
+        initSp();
+        mSharePreferences.
+                edit().
+                putString("u_name",userName).
+                apply();
+    }
+
+    public static void saveUserPhoto(String photo) {
+        initSp();
+        mSharePreferences.
+                edit().
+                putString("u_photo",photo).
+                apply();
+    }
+
     /**
      * 获取用户token值
      * @return
