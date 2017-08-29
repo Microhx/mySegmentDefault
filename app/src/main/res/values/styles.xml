@@ -93,5 +93,12 @@
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
 
+    <style name="custom_line">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">1dp</item>
+            <item name="android:background">@color/text_third_color</item>
+    </style>
+
+
 
 </resources>

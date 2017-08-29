@@ -45,6 +45,7 @@ import com.micro.mysegmentdefault.entity.UserPageEntity;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDataEntity;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDetailDataEntity;
 import com.micro.mysegmentdefault.entity.UserRecordEntity;
+import com.micro.mysegmentdefault.entity.UserTimeLineDataEntity;
 
 import java.util.Map;
 
@@ -404,4 +405,9 @@ public interface ApiService {
     @GET("activity/{activityId}")
     Observable<ActivityDetailDataEntity> getActivityDetailDataEntity(@Path("activityId") String activityId,
                                                                      @Query("token") String token);
+
+    @GET("user/{uId}/timeline")
+    Observable<UserTimeLineDataEntity> getUserTimeLineDataEntity(@Path("uId") String uId ,
+                                                                 @Query("token")String token ,
+                                                                 @Query("page") int page);
 }

@@ -63,22 +63,36 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/id_card_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:text="@string/str_trend"
+                style="@style/user_page_fragment_list"
+                android:padding="12dp"/>
+
+        </android.support.v7.widget.CardView>
+
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="12dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -91,10 +105,13 @@
 
                 </RelativeLayout>
 
+                <View
+                    style="@style/custom_line"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -107,10 +124,13 @@
 
                 </RelativeLayout>
 
+                <View
+                    style="@style/custom_line"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -123,10 +143,13 @@
 
                 </RelativeLayout>
 
+                <View
+                    style="@style/custom_line"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -139,10 +162,13 @@
 
                 </RelativeLayout>
 
+                <View
+                    style="@style/custom_line"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
                     android:gravity="center_vertical">
 
                     <TextView

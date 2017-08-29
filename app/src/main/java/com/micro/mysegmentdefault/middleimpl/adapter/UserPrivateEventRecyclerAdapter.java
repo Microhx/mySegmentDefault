@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * date : 2017/6/12 - 18:18 <p>
  * interface :
  */
-
+@Deprecated
 public class UserPrivateEventRecyclerAdapter extends BaseRecyclerAdapter<UserPrivateEventDataEntity.DataItem> {
 
     public UserPrivateEventRecyclerAdapter(Context ctx) {

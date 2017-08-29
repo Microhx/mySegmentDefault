@@ -83,8 +83,9 @@
         <activity android:name=".ui.write.WriteArticleActivity"/>
         <activity android:name=".ui.write.CreateSpecialColumnActivity"/>
         <activity android:name=".ui.user.UserNewsCommentReplyActivity"/>
-        <activity android:name=".ui.TagInformationActivity">
-        </activity>
+        <activity android:name=".ui.TagInformationActivity"/>
+        <activity android:name=".ui.user.TimeLineActivity" />
+
     </application>
 
 </manifest>
