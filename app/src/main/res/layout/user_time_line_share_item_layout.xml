@@ -46,6 +46,8 @@
         android:layout_width="match_parent"
         android:id="@+id/id_tv_head"
         android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:textColor="@color/text_second_color"
@@ -76,7 +78,6 @@
                 android:lines="1"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="用JavaScript解释Java"
                 android:gravity="center_vertical"
                 android:textColor="@color/text_first_color"
                 android:textSize="14sp"/>

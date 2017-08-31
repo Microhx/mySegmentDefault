@@ -71,6 +71,7 @@
             app:cardElevation="2dp">
 
             <TextView
+                android:id="@+id/id_tv_trend"
                 android:text="@string/str_trend"
                 style="@style/user_page_fragment_list"
                 android:padding="12dp"/>
@@ -96,6 +97,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/id_tv_user_question"
                         style="@style/user_page_fragment_list"
                         android:text="@string/str_user_question"/>
 
@@ -115,6 +117,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/id_tv_user_answer"
                         style="@style/user_page_fragment_list"
                         android:text="@string/str_user_answer"/>
 
@@ -134,6 +137,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/id_tv_user_article"
                         style="@style/user_page_fragment_list"
                         android:text="@string/str_user_article"/>
 
@@ -153,6 +157,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/id_tv_user_share"
                         style="@style/user_page_fragment_list"
                         android:text="@string/str_user_share"/>
 
@@ -172,6 +177,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/id_tv_user_collection"
                         style="@style/user_page_fragment_list"
                         android:text="@string/str_user_collection"/>
 

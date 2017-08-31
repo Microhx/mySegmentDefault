@@ -49,7 +49,7 @@
         android:layout_below="@id/id_layout_head"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.micro.mysegmentdefault.view.widget.CircleImageView
             android:id="@+id/id_iv_image"
             android:layout_width="40dp"
             android:layout_height="40dp"/>

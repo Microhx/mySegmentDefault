@@ -1,11 +1,22 @@
 package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.view.View;
+import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.UserTimeLineDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewSupport;
 import com.micro.mysegmentdefault.middleimpl.adapter.multiple.MultiViewTypeAdapter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
+import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -43,7 +54,7 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
                     case "share" : //头条
                         return 2 ;
 
-                    default:
+                    default:  //用户&用户
                         return  0;
                 }
 
@@ -52,28 +63,52 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, UserTimeLineDataEntity.DataItem item, int position) {
+    protected void convertData(ViewHolderHelper holder, final UserTimeLineDataEntity.DataItem item, int position) {
+        //onclick the TextView to StyleClickSpan
+        ((TextView)holder.getView(R.id.id_tv_title)).setMovementMethod(LinkMovementMethod.getInstance());
+
         if(holder.getItemViewType() == 1) {  //文章 专栏 问题
             holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
-                    setTextView(R.id.id_tv_title,item.sentence).
+                    setTextView(R.id.id_tv_title, CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
-                    setImageView(R.id.id_iv_image,item.object.thumbnailUrl).
                     setTextView(R.id.id_tv_question_title,item.title).
                     setTextView(R.id.id_tv_question_content,item.excerpt);
 
+            if(item.object == null || TextUtils.isEmpty(item.object.thumbnailUrl)) {
+                holder.setViewGone(R.id.id_iv_image,true);
+
+            }else {
+                holder.setViewVisiable(R.id.id_iv_image,true);
+                holder.setImageView(R.id.id_iv_image, item.object.thumbnailUrl);
+            }
+
+            holder.setViewVisiable(R.id.id_tv_other,"article".equals(item.rootObjectType));
+
         } else if(holder.getItemViewType() == 2) { //头条
             holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
-                    setTextView(R.id.id_tv_title,item.sentence).
+                    setTextView(R.id.id_tv_title,CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
-                    setTextView(R.id.id_tv_head,item.object.description).
-                    setImageView(R.id.id_iv_image,item.object.readFirstImg);
-        }else {   //用户
+                    setTextView(R.id.id_tv_head,item.excerpt).
+                    setTextView(R.id.id_tv_question_title,item.title);
+
+            if(null == item.object ||TextUtils.isEmpty(item.object.readFirstImg)){
+                holder.setImageViewDefault(R.id.id_iv_image,R.drawable.a_link);
+            }else {
+                holder.setImageView(R.id.id_iv_image,item.object.readFirstImg);
+            }
+
+        }else {   //TODO 用户图像为圆形
             holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
-                    setTextView(R.id.id_tv_title,item.sentence).
+                    setTextView(R.id.id_tv_title,CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
-                    setImageView(R.id.id_iv_image,item.object.thumbnailUrl).
                     setTextView(R.id.id_tv_question_title,item.title).
                     setTextView(R.id.id_tv_question_content,item.excerpt);
+
+            if("user".equals(item.rootObjectType)) {
+                holder.setImageView(R.id.id_iv_image,item.object.avatarUrl);
+            }else{
+                holder.setImageView(R.id.id_iv_image,item.object.thumbnailUrl);
+            }
         }
 
         if("article".equals(item.rootObjectType) || "share".equals(item.rootObjectType)) {
@@ -85,6 +120,25 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
         }else if("tag".equals(item.rootObjectType) || "user".equals(item.rootObjectType) || "blog".equals(item.rootObjectType)) {
             holder.setTextView(R.id.id_tv_msg, item.meta.followers + " 关注 " );
         }
+
+
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+                    _intent.putExtra("tagId", item.object.id);
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+            }
+        });
+
+
+
+
 
     }
 

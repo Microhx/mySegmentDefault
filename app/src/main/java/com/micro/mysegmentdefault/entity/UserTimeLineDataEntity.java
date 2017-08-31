@@ -75,6 +75,8 @@ public class UserTimeLineDataEntity {
         public String readFirstImg;
         public String thumbnailUrl;
         public String description;
+
+        public String avatarUrl;
     }
 
 

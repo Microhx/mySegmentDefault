@@ -44,11 +44,11 @@
     <string name="str_user_no_website">暂无个人主页</string>
     <string name="str_user_personal_introduce">简介</string>
     <string name="str_user_no_introduce">暂无个人简介</string>
-    <string name="str_user_question">他的问题</string>
-    <string name="str_user_answer">他的回答</string>
-    <string name="str_user_article">他的文章</string>
-    <string name="str_user_share">他的分享</string>
-    <string name="str_user_collection">他的收藏</string>
+    <string name="str_user_question">TA的问题</string>
+    <string name="str_user_answer">TA的回答</string>
+    <string name="str_user_article">TA的文章</string>
+    <string name="str_user_share">TA的分享</string>
+    <string name="str_user_collection">TA的收藏</string>
     <string name="str_active_tags">活跃标签</string>
     <string name="str_user_location">所在城市</string>
     <string name="str_user_no_msg_record">无</string>
@@ -267,5 +267,12 @@
     <string name="str_say_something">说点什么吧....</string>
     <string name="str_trend">他的动态</string>
     <string name="str_simple_trend">动态</string>
+    <string name="str_go_category">去往专栏</string>
+    <string name="str_my_trend">我的动态</string>
+    <string name="str_my_question">我的问题</string>
+    <string name="str_my_answer">我的回答</string>
+    <string name="str_my_article">我的文章</string>
+    <string name="str_my_share">我的分享</string>
+    <string name="str_my_collection">我的收藏</string>
 
 </resources>

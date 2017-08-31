@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
+import com.micro.mysegmentdefault.network.Api;
 
 import java.util.Collection;
 import java.util.List;
@@ -204,6 +205,29 @@ public class CommonUtils {
         //not toString/ but this builder
         return mSpannedBuilder;
     }
+
+
+    public static CharSequence replaceTargetWordWithAppThemeColor(String target,String keyWords,String url) {
+        mSpannedBuilder.clear();
+        mSpannedBuilder.append(target);
+        String ss = target.toLowerCase();
+        //int color = Color.parseColor("#039A63");
+
+        int index = 0;
+        int length = target.length();
+
+        while (index < length && !TextUtils.isEmpty(keyWords)) {
+            int temp = ss.indexOf(keyWords.toLowerCase(), index);
+            if (temp == -1) break;
+
+            mSpannedBuilder.setSpan(new StyleClickSpan(Api.WEB_URL + url), temp, temp + keyWords.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            index = temp + keyWords.length();
+        }
+
+        return mSpannedBuilder;
+    }
+
+
 
 
 }

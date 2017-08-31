@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseFragment;
 import com.micro.mysegmentdefault.entity.UserPageEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.UserPagerContract;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserPageModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserPagePresenter;
@@ -53,8 +54,25 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
     @Bind(R.id.id_layout_tags)
     TagContainerLayout mTagLayout;
 
-    private String mUserId ;
+    @Bind(R.id.id_tv_trend)
+    TextView mTvTrend;
 
+    @Bind(R.id.id_tv_user_question)
+    TextView mTvQuestion;
+
+    @Bind(R.id.id_tv_user_answer)
+    TextView mTvAnswer;
+
+    @Bind(R.id.id_tv_user_article)
+    TextView mTvArticle;
+
+    @Bind(R.id.id_tv_user_share)
+    TextView mTvShare;
+
+    @Bind(R.id.id_tv_user_collection)
+    TextView mTvCollection;
+
+    private String mUserId ;
 
     @Override
     protected void initOnCreateMethod() {
@@ -90,6 +108,19 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
         mSharing.setText(item.notes);
         mCollection.setText(item.bookmarkCount);
         mTagLayout.setUserPagerData(item.activeTags);
+
+        checkUserBelong();
+    }
+
+    private void checkUserBelong() {
+        if(!TextUtils.isEmpty(mUserId) && mUserId.equals(UserLogic.getUserId())) {
+            mTvTrend.setText(R.string.str_my_trend);
+            mTvQuestion.setText(R.string.str_my_question);
+            mTvAnswer.setText(R.string.str_my_answer);
+            mTvArticle.setText(R.string.str_my_article);
+            mTvShare.setText(R.string.str_my_share);
+            mTvCollection.setText(R.string.str_my_collection);
+        }
     }
 
 
@@ -103,19 +134,8 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
                 }
 
                 TimeLineActivity.start(getActivity(),mUserId);
-
                 break;
-
-
-
-
         }
-
-
-
-
-
-
     }
 
 
