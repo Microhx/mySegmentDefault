@@ -111,7 +111,7 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
         mQuestion.setText(item.questions);
         mAnswer.setText(item.answers);
         mArticle.setText(item.articles);
-        mSharing.setText(item.notes);
+        mSharing.setText(item.newsCount);
         mCollection.setText(item.bookmarkCount);
         mTagLayout.setUserPagerData(item.activeTags);
 

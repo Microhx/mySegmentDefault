@@ -2,14 +2,20 @@ package com.micro.mysegmentdefault.ui.userzone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserZoneAnswerModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserAttentionQuestionPresenter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -49,7 +55,7 @@ public class UserZoneAnswerActivity extends AbBaseAttentionActivity<UserAttentio
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, TagDetailQuestionEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final TagDetailQuestionEntity.Item item, int position) {
         if(null == item ||null == item.question) return;
 
         holder.setTextView(R.id.id_tv_title,item.title);
@@ -65,5 +71,19 @@ public class UserZoneAnswerActivity extends AbBaseAttentionActivity<UserAttentio
             holder.setTextViewColor(R.id.id_tv_answer,GREEN_TEXT_COLOR);
             holder.setTextView(R.id.id_tv_answer,item.question.answers+"\n回答");
         }
+
+
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+            }
+        }) ;
     }
 }

@@ -2,16 +2,21 @@ package com.micro.mysegmentdefault.ui.userzone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.HomeModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ToutiaoPresenter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -56,19 +61,8 @@ public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresen
     }
 
 
-    /**
-     homeHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
-    public void onClick(View v) {
-    Intent _intent = new Intent(mContext,SchemeActivity.class);
-    _intent.setData(Uri.parse(item.originPath));
-    _intent.putExtra("inner",true);
-    mContext.startActivity(_intent);
-    }
-    });**/
-
-    @Override
-    protected void convertData(ViewHolderHelper holder, HomeDataEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final HomeDataEntity.Item item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title).
                 setTextView(R.id.id_tv_time,item.user.name + " " + item.createdDate).
                 setTextView(R.id.id_tv_vote,item.votesWord).
@@ -81,5 +75,19 @@ public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresen
             holder.setViewGone(R.id.id_iv_icon,false);
             holder.setImageView(R.id.id_iv_icon,item.readFirstImg);
         }
+
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+
+            }
+        }) ;
     }
 }

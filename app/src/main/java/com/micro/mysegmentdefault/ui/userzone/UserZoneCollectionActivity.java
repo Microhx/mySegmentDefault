@@ -3,6 +3,7 @@ package com.micro.mysegmentdefault.ui.userzone;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
@@ -11,6 +12,7 @@ import com.micro.mysegmentdefault.middle.view.AbsUserAddCollectView;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserCollectModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserAddCollectPresenter;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
+import com.micro.mysegmentdefault.ui.user.collection.UserCollectionDetailActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
@@ -57,23 +59,20 @@ public class UserZoneCollectionActivity extends
         return R.layout.user_add_collection_item;
     }
 
-    /*
-    * holder.setTextView(R.id.id_tv_title, item.title);
-        holder.setTextView(R.id.id_tv_content, "共" + item.num + "个条目");
-        holder.setViewGone(R.id.id_iv_lock, CommonUtils.safeParseInt(item.isPrivate) == 0);
+
+    @Override
+    protected void convertData(ViewHolderHelper holder, final UserCollectEntity.CollectItem item, int position) {
+        holder.setTextView(R.id.id_tv_title, item.title).
+                setTextView(R.id.id_tv_content, "共" + item.num + "个条目");
+        holder.setViewVisiable(R.id.id_iv_lock, CommonUtils.safeParseInt(item.isPrivate) > 0);
+
         holder.setItemViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserCollectionDetailActivity.start(item.id,item.num,item.isPrivate);
             }
         }) ;
-    * */
 
-    @Override
-    protected void convertData(ViewHolderHelper holder, UserCollectEntity.CollectItem item, int position) {
-        holder.setTextView(R.id.id_tv_title, item.title).
-                setTextView(R.id.id_tv_content, "共" + item.num + "个条目");
-        holder.setViewVisiable(R.id.id_iv_lock, CommonUtils.safeParseInt(item.isPrivate) > 0);
     }
 
 

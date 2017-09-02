@@ -3,14 +3,20 @@ package com.micro.mysegmentdefault.ui.userzone;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserZoneQuestionModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserAttentionQuestionPresenter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -52,7 +58,7 @@ public class UserZoneQuestionActivity extends
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, TagDetailQuestionEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder,final TagDetailQuestionEntity.Item item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title);
         holder.setTextView(R.id.id_tv_comment_count,item.followers + "人关注  " + item.bookmarks + "人收藏");
 
@@ -65,6 +71,19 @@ public class UserZoneQuestionActivity extends
             holder.setTextViewColor(R.id.id_tv_answer,GREEN_TEXT_COLOR);
             holder.setTextView(R.id.id_tv_answer,item.answers+"\n回答");
         }
+
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+            }
+        }) ;
 
     }
 }

@@ -2,14 +2,20 @@ package com.micro.mysegmentdefault.ui.userzone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.ArticleDataEntity;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.ArticleModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ArticlePresenter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -53,12 +59,24 @@ public class UserZoneArticleActivity extends AbBaseAttentionActivity<ArticlePres
         return uid;
     }
 
-
     @Override
-    protected void convertData(ViewHolderHelper holder, ArticleDataEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final ArticleDataEntity.Item item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title).
                 setTextView(R.id.id_tv_content,item.excerpt).
                 setTextView(R.id.id_tv_vote_comment,item.votes + "人点赞  " + item.bookmarks + "人收藏").
-                setTextView(R.id.id_tv_author,item.user.name);
+                setTextView(R.id.id_tv_author,item.user.name).
+                setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(item.url)) {
+                    Intent _intent = new Intent(mContext, SchemeActivity.class);
+                    _intent.setData(Uri.parse(Api.WEB_URL + item.url));
+
+                    mContext.startActivity(_intent);
+                }else{
+                    ToastUtils.showMessage(mContext,"url无效");
+                }
+            }
+        });
     }
 }
