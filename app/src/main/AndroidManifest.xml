@@ -84,7 +84,18 @@
         <activity android:name=".ui.write.CreateSpecialColumnActivity"/>
         <activity android:name=".ui.user.UserNewsCommentReplyActivity"/>
         <activity android:name=".ui.TagInformationActivity"/>
-        <activity android:name=".ui.user.TimeLineActivity" />
+        <activity android:name=".ui.userzone.UserTimeLineActivity" />
+
+        <activity android:name=".ui.userzone.UserZoneQuestionActivity" />
+
+        <activity android:name=".ui.userzone.UserZoneAnswerActivity" />
+
+        <activity android:name=".ui.userzone.UserZoneArticleActivity" />
+
+        <activity android:name=".ui.userzone.UserZoneShareActivity" />
+
+        <activity android:name=".ui.userzone.UserZoneCollectionActivity"/>
+
 
     </application>
 

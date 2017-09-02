@@ -35,8 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:maxLines="3"
                     android:hint="@string/str_user_no_website"
+                    android:maxLines="3"
                     android:textColor="@color/text_second_color"
                     android:textSize="10sp"/>
 
@@ -53,9 +53,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:maxLines="3"
-                    android:hint="@string/str_user_no_introduce"
                     android:ellipsize="end"
+                    android:hint="@string/str_user_no_introduce"
+                    android:maxLines="3"
                     android:textColor="@color/text_second_color"
                     android:textSize="10sp"/>
 
@@ -72,9 +72,9 @@
 
             <TextView
                 android:id="@+id/id_tv_trend"
-                android:text="@string/str_trend"
                 style="@style/user_page_fragment_list"
-                android:padding="12dp"/>
+                android:padding="12dp"
+                android:text="@string/str_trend"/>
 
         </android.support.v7.widget.CardView>
 
@@ -91,10 +91,11 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/id_layout_question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/id_tv_user_question"
@@ -111,10 +112,11 @@
                     style="@style/custom_line"/>
 
                 <RelativeLayout
+                    android:id="@+id/id_layout_answer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/id_tv_user_answer"
@@ -131,10 +133,11 @@
                     style="@style/custom_line"/>
 
                 <RelativeLayout
+                    android:id="@+id/id_layout_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/id_tv_user_article"
@@ -151,10 +154,11 @@
                     style="@style/custom_line"/>
 
                 <RelativeLayout
+                    android:id="@+id/id_layout_share"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/id_tv_user_share"
@@ -171,10 +175,11 @@
                     style="@style/custom_line"/>
 
                 <RelativeLayout
+                    android:id="@+id/id_layout_collect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/id_tv_user_collection"
@@ -202,9 +207,9 @@
         <com.micro.mysegmentdefault.view.widget.TagContainerLayout
             android:id="@+id/id_layout_tags"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white_color"
-            android:padding="12dp"
-            android:layout_height="wrap_content"/>
+            android:padding="12dp"/>
 
     </LinearLayout>
 

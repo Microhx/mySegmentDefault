@@ -39,8 +39,11 @@ public class TagDetailQuestionEntity {
         public boolean isClosed;
         public String views;
         public String followers;
+        public String bookmarks;
 
         public List<Tag> tags;
+
+        public Question question;
     }
 
     public static class Tag {
@@ -48,6 +51,17 @@ public class TagDetailQuestionEntity {
         public String url;
         public String id;
     }
+
+    public static class Question {
+        public String id;
+        public boolean isAccepted;
+        public String answers;
+        public String followers;
+        public String bookmarks;
+    }
+
+
+
 
 
 

@@ -23,9 +23,15 @@ public class UserCollectModel implements AbsUserCollectModel<UserCollectEntity> 
 
     @Override
     public Observable<UserCollectEntity> getCommentListDatas(int type, String channel, int startPages) {
-        return Api.
-                getApiService(0).
-                getUserCollectDataEntity(channel,String.valueOf(startPages), UserLogic.getUserToken()).
+        if(type >= 0) {
+            return Api.
+                    getApiService(0).
+                    getUserCollectDataEntity(channel,String.valueOf(startPages), UserLogic.getUserToken()).
+                    compose(RxSchedulers.<UserCollectEntity>io_main());
+        }
+
+        return Api.getApiService(0).
+                getUserZoneCollectionDataEntity(channel,UserLogic.getUserToken(),startPages).
                 compose(RxSchedulers.<UserCollectEntity>io_main());
     }
 

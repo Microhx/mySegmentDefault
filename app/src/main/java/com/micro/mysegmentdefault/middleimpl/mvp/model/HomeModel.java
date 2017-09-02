@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
+import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.CommonContract;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.network.RxSchedulers;
@@ -25,18 +26,25 @@ public class HomeModel implements BaseRefreshModel<HomeDataEntity> {
     public Observable<HomeDataEntity> getCommentListDatas(int type, String channel, int startPages) {
         LogUtils.d("--------channel------------->>" + channel);
 
-        String[] info = channel.split("___");
-        String path = CommonUtils.safeParseInt(info[0]) == 0 ? "rank" : "newest";
+        if(type >= 0) {
+            String[] info = channel.split("___");
+            String path = CommonUtils.safeParseInt(info[0]) == 0 ? "rank" : "newest";
 
-        if(info.length <= 1) {
-            channel = "";
-        }else{
-            channel = info[1];
+            if(info.length <= 1) {
+                channel = "";
+            }else{
+                channel = info[1];
+            }
+
+            return Api.
+                    getApiService(0).
+                    getHomeDataEntityList(path, UserLogic.getUserToken(),channel,startPages).
+                    compose(RxSchedulers.<HomeDataEntity>io_main());
         }
 
         return Api.
                 getApiService(0).
-                getHomeDataEntityList(path,Constant.TOKEN,channel,startPages).
+                getUserZoneShareDataEntity(channel,UserLogic.getUserToken(),startPages).
                 compose(RxSchedulers.<HomeDataEntity>io_main());
     }
 }

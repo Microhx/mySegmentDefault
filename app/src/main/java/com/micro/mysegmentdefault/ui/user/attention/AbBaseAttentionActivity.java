@@ -1,5 +1,7 @@
 package com.micro.mysegmentdefault.ui.user.attention;
 
+import android.graphics.Color;
+
 import com.micro.mysegmentdefault.base.adapter.BaseListRecyclerAdapter;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.base.data.BaseDataInterface;
@@ -62,6 +64,13 @@ public abstract class AbBaseAttentionActivity<T extends BaseRefreshPresenter,
     protected  BaseRecyclerAdapter.OnLoadingHeaderCallBack getOnLoadingHeader() {
         return null ;
     }
+
+
+    protected static final int GREEN_BACKGROUND_COLOR = Color.parseColor("#EFF9F6");
+    protected static final int GRAY_BACKGROUND_COLOR = Color.parseColor("#EFEEF0");
+
+    protected static final int GREEN_TEXT_COLOR = Color.parseColor("#0C9F69");
+    protected static final int GRAY_TEXT_COLOR = Color.parseColor("#9D9C9D");
 
 
 }

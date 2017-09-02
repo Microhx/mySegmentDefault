@@ -1,9 +1,8 @@
-package com.micro.mysegmentdefault.ui.user;
+package com.micro.mysegmentdefault.ui.userzone;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
@@ -22,12 +21,12 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserTimeLinePresenter
  * interface :
  */
 
-public class TimeLineActivity extends BaseRefreshActivity<UserTimeLinePresenter,UserTimeLineModel,UserTimeLineDataEntity.DataItem>{
+public class UserTimeLineActivity extends BaseRefreshActivity<UserTimeLinePresenter,UserTimeLineModel,UserTimeLineDataEntity.DataItem>{
 
     private String mUserId ;
 
     public static void start(Context context,String userId) {
-        context.startActivity(new Intent(context,TimeLineActivity.class).putExtra("userId",userId));
+        context.startActivity(new Intent(context,UserTimeLineActivity.class).putExtra("userId",userId));
     }
 
     @Override

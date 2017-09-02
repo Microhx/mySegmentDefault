@@ -2,7 +2,6 @@ package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,8 @@ import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.NewsDataEntity;
+import com.micro.mysegmentdefault.entity.ArticleDataEntity;
 import com.micro.mysegmentdefault.ui.ArticleDetailActivity;
-import com.micro.mysegmentdefault.utils.LogUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +23,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
-public class NewsRecyclerAdapter extends BaseRecyclerAdapter<NewsDataEntity.Item> {
+public class NewsRecyclerAdapter extends BaseRecyclerAdapter<ArticleDataEntity.Item> {
 
     public NewsRecyclerAdapter(Context ctx) {
         super(ctx);
@@ -37,12 +35,12 @@ public class NewsRecyclerAdapter extends BaseRecyclerAdapter<NewsDataEntity.Item
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder,final NewsDataEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final ArticleDataEntity.Item item, int position) {
         NewsViewHolder newsHolder = (NewsViewHolder) holder;
 
         newsHolder.id_tv_title.setText(item.title);
         newsHolder.id_tv_content.setText(item.excerpt);
-        newsHolder.id_tv_vote_comment.setText(item.votes + "人点赞" + item.bookmarks + "人收藏");
+        newsHolder.id_tv_vote_comment.setText(item.votes + "人点赞  " + item.bookmarks + "人收藏");
         newsHolder.id_tv_author.setText(item.user.name);
 
         newsHolder.itemView.setOnClickListener(new View.OnClickListener() {

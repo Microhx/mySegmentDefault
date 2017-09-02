@@ -13,7 +13,7 @@ import com.micro.mysegmentdefault.entity.LocationDataEntity;
 import com.micro.mysegmentdefault.entity.MessageDataEntity;
 import com.micro.mysegmentdefault.entity.NewCollectionDataEntity;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
-import com.micro.mysegmentdefault.entity.NewsDataEntity;
+import com.micro.mysegmentdefault.entity.ArticleDataEntity;
 import com.micro.mysegmentdefault.entity.NewsDetailDataEntity;
 import com.micro.mysegmentdefault.entity.NoteDataEntity;
 import com.micro.mysegmentdefault.entity.NoteDetailDataEntity;
@@ -87,11 +87,11 @@ public interface ApiService {
 
     //https://api.segmentfault.com/article/newest?page=1
     @GET("article/{path}")
-    Observable<NewsDataEntity> getNewsBaseDataEntityList(@Path("path") String path, @Query("page") String page);
+    Observable<ArticleDataEntity> getNewsBaseDataEntityList(@Path("path") String path, @Query("page") String page);
 
     //https://api.segmentfault.com/article/tagged/1040000000089449?page=1
     @GET("article/tagged/{path}")
-    Observable<NewsDataEntity> getNewsExtendsDataEntityList(@Path("path") String path, @Query("page") String page);
+    Observable<ArticleDataEntity> getNewsExtendsDataEntityList(@Path("path") String path, @Query("page") String page);
 
     //获取热门tag标签路径
     @GET("tag/hottest")
@@ -410,4 +410,31 @@ public interface ApiService {
     Observable<UserTimeLineDataEntity> getUserTimeLineDataEntity(@Path("uId") String uId ,
                                                                  @Query("token")String token ,
                                                                  @Query("page") int page);
+
+
+
+    @GET("user/{uid}/questions")
+    Observable<TagDetailQuestionEntity> getUserZoneQuestionDataEntity(@Path("uid") String uid,
+                                                                      @Query("token") String token,
+                                                                      @Query("page") int page);
+
+    @GET("user/{uid}/answers")
+    Observable<TagDetailQuestionEntity> getUserZoneAnswerDataEntity(@Path("uid") String uid,
+                                                                      @Query("token") String token,
+                                                                      @Query("page") int page);
+
+    @GET("user/{uid}/articles")
+    Observable<ArticleDataEntity> getUserZoneArticleDataEntity(@Path("uid") String uid,
+                                                               @Query("token") String token,
+                                                               @Query("page") int page);
+
+    @GET("user/{uid}/news")
+    Observable<HomeDataEntity> getUserZoneShareDataEntity(@Path("uid") String uid,
+                                                          @Query("token") String token,
+                                                          @Query("page") int page);
+
+    @GET("user/{uid}/bookmarkArchives")
+    Observable<UserCollectEntity> getUserZoneCollectionDataEntity(@Path("uid") String uid,
+                                                                  @Query("token") String token,
+                                                                  @Query("page") int page);
 }

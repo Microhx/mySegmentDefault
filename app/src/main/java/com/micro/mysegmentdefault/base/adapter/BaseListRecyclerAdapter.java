@@ -38,8 +38,6 @@ public abstract class BaseListRecyclerAdapter<T> extends BaseRecyclerAdapter<T> 
     }
 
     protected ViewHolderHelper onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        LogUtils.d("-------mContext------->>" + mContext + "---------->" + mItemLayoutId + "-----------" + type);
-
         ViewHolderHelper helper = ViewHolderHelper.get(mContext, null, parent, mItemLayoutId, -1);
         return helper;
     }

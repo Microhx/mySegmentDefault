@@ -3,10 +3,8 @@ package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
-import com.micro.mysegmentdefault.entity.HomeDataEntity;
-import com.micro.mysegmentdefault.entity.NewsDataEntity;
+import com.micro.mysegmentdefault.entity.ArticleDataEntity;
 import com.micro.mysegmentdefault.entity.PageEntity;
-import com.micro.mysegmentdefault.middle.CommonContract;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
 import java.util.List;
@@ -21,17 +19,17 @@ import rx.functions.Action1;
  * interface :
  */
 
-public class NewsPresenter extends BaseRefreshPresenter<BaseRefreshView<NewsDataEntity.Item>,BaseRefreshModel<NewsDataEntity>> {
+public class ArticlePresenter extends BaseRefreshPresenter<BaseRefreshView<ArticleDataEntity.Item>,BaseRefreshModel<ArticleDataEntity>> {
 
     @Override
     public void getCommonListDatas(int type, String channel,final int startPages) {
 
         mModel.getCommentListDatas(type,channel,startPages).
-                subscribe(new Action1<NewsDataEntity>() {
+                subscribe(new Action1<ArticleDataEntity>() {
                     @Override
-                    public void call(NewsDataEntity newsDataEntity) {
+                    public void call(ArticleDataEntity newsDataEntity) {
                         if(null != newsDataEntity && null!=newsDataEntity.data) {
-                            List<NewsDataEntity.Item> itemList = newsDataEntity.data.rows;
+                            List<ArticleDataEntity.Item> itemList = newsDataEntity.data.rows;
                             PageEntity pageEntity = newsDataEntity.data.page;
                             mView.getCommonListDatas(startPages,itemList,pageEntity);
                         }

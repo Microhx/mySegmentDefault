@@ -11,7 +11,13 @@ import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.UserPagerContract;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserPageModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserPagePresenter;
-import com.micro.mysegmentdefault.ui.user.TimeLineActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserTimeLineActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserZoneAnswerActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserZoneArticleActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserZoneCollectionActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserZoneQuestionActivity;
+import com.micro.mysegmentdefault.ui.userzone.UserZoneShareActivity;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.widget.TagContainerLayout;
 
@@ -124,7 +130,12 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
     }
 
 
-    @OnClick({R.id.id_card_dynamic})
+    @OnClick({R.id.id_card_dynamic,
+            R.id.id_layout_question,
+            R.id.id_layout_answer,
+            R.id.id_layout_article,
+            R.id.id_layout_share,
+            R.id.id_layout_collect})
     public void onCall(View v) {
         switch (v.getId()) {
             case R.id.id_card_dynamic:
@@ -133,7 +144,36 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter,UserPageMod
                     return;
                 }
 
-                TimeLineActivity.start(getActivity(),mUserId);
+                UserTimeLineActivity.start(getActivity(),mUserId);
+                break;
+
+
+            case R.id.id_layout_question:
+                if(TextUtils.isEmpty(mUserId)) {
+                    ToastUtils.showMessage(getContext(),R.string.data_request_error);
+                    LogUtils.d("uid is null");
+                    return;
+                }
+
+                UserZoneQuestionActivity.start(getActivity(),mUserId);
+                break;
+
+
+            case R.id.id_layout_answer:
+                UserZoneAnswerActivity.start(getActivity(),mUserId);
+                break;
+
+
+            case R.id.id_layout_article:
+                UserZoneArticleActivity.start(getActivity(),mUserId);
+                break;
+
+            case R.id.id_layout_share:
+                UserZoneShareActivity.start(getActivity(),mUserId);
+                break;
+
+            case R.id.id_layout_collect:
+                UserZoneCollectionActivity.start(getActivity(),mUserId);
                 break;
         }
     }

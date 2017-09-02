@@ -143,6 +143,13 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
     }
 
 
+    public ViewHolderHelper setViewBackgroundColor(int id, int color) {
+        View view = getView(id);
+        view.setBackgroundColor(color);
+        return this;
+    }
+
+
     public ViewHolderHelper setImageBitmap(int id, Bitmap bitmap) {
         ImageView iv = getView(id);
         iv.setImageBitmap(bitmap);

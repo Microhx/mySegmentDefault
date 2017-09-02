@@ -12,8 +12,8 @@ import java.util.List;
  * interface :
  */
 
-public class NewsDataEntity {
-    public int status ;
+public class ArticleDataEntity {
+    public int status ; //article
     public Data data ;
     public String message ;
 
