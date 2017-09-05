@@ -98,6 +98,7 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
 
     @Override
     protected void initViews() {
+
         initTitleSetting(mTitleContent);
         initTopRecyclerLayout(mTopRecyclerLayout);
 

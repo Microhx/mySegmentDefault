@@ -24,8 +24,9 @@ public class UserLogic {
      * @return
      */
     public static boolean checkUserLogin() {
-        return !TextUtils.isEmpty(getUserToken());
+        return !TextUtils.isEmpty(getUserToken()) && !TextUtils.isEmpty(getUserId());
     }
+
 
     public static void saveUserLoginInfo(UserLoginDataEntity.DataItem dataItem) {
         if(null == dataItem) return;

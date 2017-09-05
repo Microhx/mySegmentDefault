@@ -1,9 +1,13 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
+import android.text.TextUtils;
+
 import com.micro.mysegmentdefault.entity.ActivityDetailDataEntity;
 import com.micro.mysegmentdefault.middle.ActivityDetailContract;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.network.RxSchedulers;
+import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -55,7 +59,11 @@ public class ActivityModel implements ActivityDetailContract.ActivityModel {
         Elements elements = document.getElementsByTag("img");
         if(null != elements && !elements.isEmpty()) {
             for(Element e : elements) {
-                e.attr("src" , Api.WEB_URL + e.attr("src"));
+                String src = e.attr("src");
+                if(!TextUtils.isEmpty(src) && !src.startsWith("http")){
+                    e.attr("src" , Api.WEB_URL + e.attr("src"));
+                }
+
                 e.attr("width","100%");
             }
         }

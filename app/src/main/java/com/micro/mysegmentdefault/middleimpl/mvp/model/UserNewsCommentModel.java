@@ -28,6 +28,7 @@ public class UserNewsCommentModel implements AbsNewsCommentModel<NewsCommentData
     }
 
     private String getType(int type) {
+        if(type == 1) return "note";
         if(type == 0) return "news";
         return  "article";
     }

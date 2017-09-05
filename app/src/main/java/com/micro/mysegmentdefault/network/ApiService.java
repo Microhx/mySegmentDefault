@@ -391,8 +391,9 @@ public interface ApiService {
                                                       @Query("code") String code,
                                                       @Query("password") String password);
 
-    @POST("news/{newsId}/comments/add")
-    Observable<UserCommentResultDataEntity> addUserNewsComment(@Path("newsId") String newsId ,
+    @POST("{enterType}/{newsId}/comments/add")
+    Observable<UserCommentResultDataEntity> addUserNewsComment(@Path("enterType") String enterType,
+                                                               @Path("newsId") String newsId ,
                                                                @Query("text") String text ,
                                                                @Query("token") String token);
 

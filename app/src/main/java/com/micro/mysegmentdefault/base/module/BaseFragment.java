@@ -96,7 +96,6 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
             return false;
         }
         return true;
-
     }
 
 

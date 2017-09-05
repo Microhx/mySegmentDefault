@@ -138,7 +138,9 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     public void addZan(View v) {
         if(null == mDataEntity) return;
 
-         mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
+        if(checkUserLogin()){
+            mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
+        }
     }
 
     @Override
@@ -164,7 +166,10 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     @OnClick(R.id.id_layout_collect)
     public void addCollection(View v) {
         if(null == mDataEntity) return;
-        UserAddCollectionActivity.start(this, 1,mNewsId);
+
+        if(checkUserLogin()){
+            UserAddCollectionActivity.start(this, 1,mNewsId);
+        }
     }
 
 
@@ -176,7 +181,8 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
         if(null == mDataEntity) return;
-        UserCommentListActivity.start(this,mDataEntity.getId());
+
+        UserCommentListActivity.start(this,mDataEntity.getId(),1);
     }
 
 

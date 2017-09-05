@@ -29,8 +29,11 @@ import butterknife.ButterKnife;
 
 public class NoteListRecyclerAdapter extends BaseRecyclerAdapter<NoteDataEntity.Item> {
 
-    public NoteListRecyclerAdapter(Context ctx) {
+    private onNoteListClickListener onNoteLIstenerListener ;
+
+    public NoteListRecyclerAdapter(Context ctx,onNoteListClickListener listener) {
         super(ctx);
+        this.onNoteLIstenerListener = listener;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class NoteListRecyclerAdapter extends BaseRecyclerAdapter<NoteDataEntity.
         noteHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonWebActivity.start(item.id, NoteDetailActivity.class);
+                if(null != onNoteLIstenerListener) onNoteLIstenerListener.onItemClick(item);
             }
         });
 
@@ -92,4 +95,9 @@ public class NoteListRecyclerAdapter extends BaseRecyclerAdapter<NoteDataEntity.
             ButterKnife.bind(this, itemView);
         }
     }
+
+    public interface onNoteListClickListener {
+        void onItemClick(NoteDataEntity.Item item);
+    }
+
 }

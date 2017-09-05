@@ -16,7 +16,7 @@
         android:id="@+id/id_et_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:padding="6dp"
         android:textSize="18sp"
         android:textColor="@color/text_first_color"
         android:background="@null"

@@ -133,14 +133,20 @@ public class QuestionDetailActivity extends CommonWebActivity<QuestionDetailPres
      */
     @OnClick(R.id.id_layout_collect)
     public void addCollection(View v) {
-        UserAddCollectionActivity.start(this,2,mNewsId);
+
+        if(checkUserLogin()) {
+            UserAddCollectionActivity.start(this, 2, mNewsId);
+        }
     }
 
 
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
         if(null == mDataEntity) return;
-        mPresenter.loadQuestionFollow(mDataEntity.isIsFollowed(),mDataEntity.getId());
+
+        if(checkUserLogin()){
+            mPresenter.loadQuestionFollow(mDataEntity.isIsFollowed(),mDataEntity.getId());
+        }
     }
 
     @Override
@@ -159,8 +165,6 @@ public class QuestionDetailActivity extends CommonWebActivity<QuestionDetailPres
             mTvCollect.setText(event.number);
             mTvCollect.setSelected(event.isBookMarked);
             showToast(R.string.str_operation_success);
-
-            LogUtils.d("---------->>onCollectionEvent------------>>" );
         }
     }
 

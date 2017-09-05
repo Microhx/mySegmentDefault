@@ -132,7 +132,9 @@ public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPrese
      */
     @OnClick(R.id.id_layout_zan)
     public void addZan(View v) {
-        mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
+        if(checkUserLogin()){
+            mPresenter.zanOperation(mTvZan.isSelected(),mNewsId);
+        }
     }
 
     /**
@@ -141,7 +143,9 @@ public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPrese
      */
     @OnClick(R.id.id_layout_collect)
     public void addCollection(View v) {
-        UserAddCollectionActivity.start(this,0,mNewsId);
+        if(checkUserLogin()) {
+            UserAddCollectionActivity.start(this,0,mNewsId);
+        }
     }
 
     /**
@@ -190,7 +194,9 @@ public class ToutiaoDataDetailActivity extends CommonWebActivity<NewsDetailPrese
 
     private void addUserFollow(String followerId , String otherInfo) {
         if(mDataEntity == null) return;
-        mPresenter.followOrCancelUser(mDataEntity.getUser().isIsFollowed() , followerId);
+        if(checkUserLogin()) {
+            mPresenter.followOrCancelUser(mDataEntity.getUser().isIsFollowed() , followerId);
+        }
     }
 
     @Override

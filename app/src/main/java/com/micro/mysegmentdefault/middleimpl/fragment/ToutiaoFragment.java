@@ -88,7 +88,9 @@ public class ToutiaoFragment extends BaseFragment implements SexChooseDialog.OnS
                 break;
 
             case R.id.id_menu_add: //添加新的头条
-                goWithActivity(UserPublishToutiaoActivity.class);
+                if(checkUserLogin()) {
+                    goWithActivity(UserPublishToutiaoActivity.class);
+                }
                 break;
         }
 

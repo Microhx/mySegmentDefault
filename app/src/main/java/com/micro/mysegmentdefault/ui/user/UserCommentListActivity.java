@@ -65,6 +65,13 @@ public class UserCommentListActivity
     private boolean mIsLike;
     private boolean mIsCollect;
 
+    /**
+     * 1 ---> news
+     * 2 ---> article
+     * 3 ---> note
+     */
+    private int mEnterType;
+
     @Deprecated
     private NewsCommentDataEntity.CommentItem mCommentItem;
 
@@ -115,10 +122,26 @@ public class UserCommentListActivity
     }
 
     //文章评论
+    @Deprecated
     public static void start(Context ctx,String newsId) {
         Intent intent = new Intent(ctx,UserCommentListActivity.class).putExtra("hasHead",false).putExtra("m_newsId",newsId);
         ctx.startActivity(intent);
     }
+
+    /**
+     *
+     * @param ctx
+     * @param newsId
+     * @param type 1为news 2为article 3为note
+     */
+    public static void start(Context ctx,String newsId,int type) {
+        Intent intent = new Intent(ctx,UserCommentListActivity.class).
+                            putExtra("hasHead",false).
+                            putExtra("m_newsId",newsId).
+                            putExtra("m_type",type);
+        ctx.startActivity(intent);
+    }
+
 
 
     @Override
@@ -128,6 +151,7 @@ public class UserCommentListActivity
 
     @Override
     protected int getCommonType() {
+        if(mEnterType > 0) return mEnterType;
         return mIsNewsComment ? super.getCommonType() : 1;
     }
 
@@ -159,6 +183,7 @@ public class UserCommentListActivity
         mIsLike = _intent.getBooleanExtra("m_isLike" , false);
         mIsCollect = _intent.getBooleanExtra("m_isCollect" , false);
 
+        mEnterType = _intent.getIntExtra("m_type",-1);
         mIsNewsComment = _intent.getBooleanExtra("hasHead",true);
     }
 
@@ -291,12 +316,14 @@ public class UserCommentListActivity
         mCommentPosition = position;
         mCommentSubPosition = subPosition;
 
-        LogUtils.d("----------" + type + "---------->>" + position + "---->>>" + subPosition + "---->>" + item);
 
         if(type == CLICK_TYPE.USER_CENTER) {
             UserZoneActivity.start(this, item.user.slug);
 
         }else if(type == CLICK_TYPE.ZAN){
+            if(!checkUserLogin()) {
+                return;
+            }
 
             if(subPosition < 0) {
                 mCommentId = item.id;
@@ -311,7 +338,6 @@ public class UserCommentListActivity
             }
 
         }else if(type == CLICK_TYPE.REPLY) {  //不能回复嵌套的评论
-            //TODO
             if(subPosition < 0) {
                 UserNewsCommentReplyActivity.start(this,item.id,true,item.user.name,COMMENT_REQUEST_CODE);
             }else {
@@ -326,8 +352,6 @@ public class UserCommentListActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == COMMENT_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
             //reload the commentList
-            LogUtils.d("--------comment success-----------------");
-
             mUserNewsCommentAdapter.updateUserComment(mCommentPosition,mCommentSubPosition,data);
             checkLayoutVisible();
         }

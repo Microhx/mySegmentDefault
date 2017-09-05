@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
+import com.micro.mysegmentdefault.logic.UserLogic;
+import com.micro.mysegmentdefault.middleimpl.fragment.UserLoginFragment;
 import com.micro.mysegmentdefault.utils.ClassUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.ToastUtils;
@@ -62,7 +64,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
 
             Field field1 =  ButterKnife.class.getDeclaredField("BINDERS");
             field1.setAccessible(true);
-            field1.set(ButterKnife.class,new LinkedHashMap<Class<?>, ButterKnife.ViewBinder<Object>>());
+            field1.set(ButterKnife.class, new LinkedHashMap<Class<?>, ButterKnife.ViewBinder<Object>>());
 
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
@@ -85,17 +87,14 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (null != mPresenter) {
             mPresenter.mContext = this;
         }
+
+        LogUtils.d("------presenter------->>" + mPresenter + "-------------->>" + mModel);
     }
 
-    protected void initPresenter() {
-
-    }
+    protected void initPresenter() {}
 
 
-    protected void initViews() {
-
-    }
-
+    protected void initViews() {}
 
     //基础方法：
     protected void go(Class<? extends Activity> activity) {
@@ -119,10 +118,20 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         ToastUtils.showMessage(this,msg);
     }
 
-    /*@Override
+   /* @Override
     protected void onDestroy() {
-        super.onDestroy();
-
         ButterKnife.unbind(this);
+        super.onDestroy();
     }*/
+
+
+    protected boolean checkUserLogin(){
+        if(!UserLogic.checkUserLogin()) {
+            UserLoginFragment loginFragment = new UserLoginFragment();
+            loginFragment.show(getSupportFragmentManager(),"login");
+            return false;
+        }
+        return true;
+    }
+
 }

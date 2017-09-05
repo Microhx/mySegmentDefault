@@ -50,8 +50,6 @@ public class MineFragment extends BaseFragment {
         EventBus.getDefault().register(this);
     }
 
-
-
     @OnClick(R.id.id_layout_userinfo)
     public void enterUserZone(View v) {
         if (checkUserLogin()) {

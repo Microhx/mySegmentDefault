@@ -1,6 +1,5 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
-import com.micro.mysegmentdefault.entity.NoteDataEntity;
 import com.micro.mysegmentdefault.entity.NoteDetailDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.NoteDetailContract;

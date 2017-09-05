@@ -20,6 +20,7 @@ import com.micro.mysegmentdefault.middle.BaseRefreshActivity;
 import com.micro.mysegmentdefault.middleimpl.adapter.NoteListRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.NoteListModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.NoteListPresenter;
+import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
 import com.micro.mysegmentdefault.ui.user.UserNewNoteActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
@@ -36,13 +37,16 @@ import butterknife.OnClick;
  * interface :
  */
 
-public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,NoteListModel,NoteDataEntity.Item> implements AdapterView.OnItemSelectedListener {
+public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,NoteListModel,NoteDataEntity.Item>
+                              implements AdapterView.OnItemSelectedListener,
+                                         NoteListRecyclerAdapter.onNoteListClickListener {
 
     //当前获取为推荐笔记/个人笔记
     private int mCurrentPosition = 0;
 
     @Override
     protected void initTitleSetting(FrameLayout mTitleContent) {
+
         mTitleLayout.removeAllViews();
         mActionButton.setVisibility(View.VISIBLE);
 
@@ -60,7 +64,7 @@ public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,Note
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        return new NoteListRecyclerAdapter(this);
+        return new NoteListRecyclerAdapter(this,this);
     }
 
 
@@ -72,8 +76,6 @@ public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,Note
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        LogUtils.d("----result position--->>" + position + "-----currentPosition---->>" + mCurrentPosition);
-
         if(mCurrentPosition != position){
             mCurrentPosition = position;
 
@@ -91,4 +93,10 @@ public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,Note
         go(UserNewNoteActivity.class);
     }
 
+    @Override
+    public void onItemClick(NoteDataEntity.Item item) {
+        if(checkUserLogin()) {
+            CommonWebActivity.start(item.id, NoteDetailActivity.class);
+        }
+    }
 }

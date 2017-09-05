@@ -17,8 +17,8 @@ import com.micro.mysegmentdefault.utils.LogUtils;
 public class UserCommentPresenterImpl extends UserCommentContract.UserCommentPresenter {
 
     @Override
-    public void addUserComment(String newsId, boolean isReply, String text) {
-        mModel.addUserComment(newsId,isReply,text, UserLogic.getUserToken()).
+    public void addUserComment(int enterType,String newsId, boolean isReply, String text) {
+        mModel.addUserComment(enterType,newsId,isReply,text, UserLogic.getUserToken()).
                subscribe(new RxSubscriber<UserCommentResultDataEntity>(mContext,"") {
             @Override
             public void _onNext(UserCommentResultDataEntity userCommentResultDataEntity) {

@@ -47,15 +47,24 @@ public class UserNewsCommentReplyActivity extends BaseActivity<UserCommentPresen
     //是否为回复问题
     private boolean mIsReply ;
 
+    //来源 0为文章评论 1为笔记评论
+    private int mEnterType;
+
     @Bind(R.id.id_et_content)
     EditText mEtContent;
 
     public static void start(Activity ctx , String newsId , boolean isReply , String replyName,int requestCode) {
+        start(ctx,newsId,isReply,replyName,0,requestCode);
+    }
+
+    public static void start(Activity ctx , String newsId , boolean isReply , String replyName, int enterType, int requestCode) {
         ctx.startActivityForResult(new Intent(ctx,UserNewsCommentReplyActivity.class).
                 putExtra("newsId",newsId).
                 putExtra("isReply",isReply).
+                putExtra("enterType",enterType).
                 putExtra("replyName",replyName),requestCode);
     }
+
 
     @Override
     protected void initBeforeView(Bundle savedInstanceState) {
@@ -63,6 +72,7 @@ public class UserNewsCommentReplyActivity extends BaseActivity<UserCommentPresen
             mReplyName = getIntent().getStringExtra("replyName");
             mNewsId = getIntent().getStringExtra("newsId");
             mIsReply = getIntent().getBooleanExtra("isReply",false);
+            mEnterType = getIntent().getIntExtra("enterType",0);
         }
     }
 
@@ -104,19 +114,22 @@ public class UserNewsCommentReplyActivity extends BaseActivity<UserCommentPresen
 
             case R.id.id_iv_right:
                 commitComment();
-
                 break;
         }
     }
 
     private void commitComment() {
+        if(!checkUserLogin()) {
+            return;
+        }
+
         String content = mEtContent.getText().toString().trim();
         if(TextUtils.isEmpty(content)) {
             showToast(R.string.str_error_input_content);
             return;
         }
 
-        mPresenter.addUserComment(mNewsId,mIsReply,content);
+        mPresenter.addUserComment(mEnterType,mNewsId,mIsReply,content);
     }
 
     @Override

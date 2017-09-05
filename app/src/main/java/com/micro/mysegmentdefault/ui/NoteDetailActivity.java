@@ -13,6 +13,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.model.NoteDetailModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.NoteDetailPresenter;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.ui.user.UserAddCollectionActivity;
+import com.micro.mysegmentdefault.ui.user.UserCommentListActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.FileUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
@@ -111,7 +112,9 @@ public class NoteDetailActivity extends CommonWebActivity<NoteDetailPresenter,No
     @OnClick(R.id.id_layout_zan)
     public void addZan(View v) {
         if(mDataEntity.isIsForked()) return;
-        mPresenter.createOrCancelBranch(mDataEntity.getId());
+        if(checkUserLogin()) {
+            mPresenter.createOrCancelBranch(mDataEntity.getId());
+        }
     }
 
     @Override
@@ -132,7 +135,9 @@ public class NoteDetailActivity extends CommonWebActivity<NoteDetailPresenter,No
      */
     @OnClick(R.id.id_layout_collect)
     public void addCollection(View v) {
-        UserAddCollectionActivity.start(this,3,mNewsId);
+        if(checkUserLogin()){
+            UserAddCollectionActivity.start(this,3,mNewsId);
+        }
     }
 
 
@@ -142,7 +147,7 @@ public class NoteDetailActivity extends CommonWebActivity<NoteDetailPresenter,No
      */
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
-        showToast("添加评论啊");
+        UserCommentListActivity.start(this,mNewsId);
     }
 
 

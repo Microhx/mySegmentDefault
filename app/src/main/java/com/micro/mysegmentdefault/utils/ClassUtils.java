@@ -18,11 +18,11 @@ public class ClassUtils {
             return ((Class<T>) ((ParameterizedType)
                     (o.getClass().getGenericSuperclass())).getActualTypeArguments()[i]).newInstance();
         } catch (InstantiationException e) {
-           // e.printStackTrace();
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-           // e.printStackTrace();
+            e.printStackTrace();
         } catch (ClassCastException e) {
-           //  e.printStackTrace();
+             e.printStackTrace();
         }
         return null;
     }

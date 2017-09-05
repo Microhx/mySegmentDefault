@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +33,7 @@ import com.micro.mysegmentdefault.middleimpl.fragment.BottomReportFragment;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserCollectionDetailModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserCollectionDetailPresenter;
 import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.SchemeActivity;
 import com.micro.mysegmentdefault.ui.user.UserNewCollectionTagActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
@@ -286,10 +288,17 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, UserCollectionDetailDataEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final UserCollectionDetailDataEntity.Item item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title);
         holder.setTextView(R.id.id_tv_time, item.createdDate);
         holder.setTextView(R.id.id_tv_info , item.user.name + " " + item.viewsWord+"人收藏") ;
+        holder.setItemViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserCollectionDetailActivity.this, SchemeActivity.class).
+                        setData(Uri.parse(Api.WEB_URL+item.url)));
+            }
+        }) ;
     }
 
     @Override

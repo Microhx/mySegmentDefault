@@ -19,7 +19,7 @@ import rx.Observable;
 
 public interface UserCommentContract {
     interface UserCommentModel extends BaseModel {
-        Observable<UserCommentResultDataEntity> addUserComment(String newsId , boolean isReply , String text , String token);
+        Observable<UserCommentResultDataEntity> addUserComment(int enterType,String newsId , boolean isReply , String text , String token);
 
     }
 
@@ -29,7 +29,7 @@ public interface UserCommentContract {
     }
 
     abstract class UserCommentPresenter extends BasePresenter<UserCommentView,UserCommentModel> {
-        public abstract void addUserComment(String newsId , boolean isReply , String text) ;
+        public abstract void addUserComment(int enterType,String newsId , boolean isReply , String text) ;
     }
 
 }

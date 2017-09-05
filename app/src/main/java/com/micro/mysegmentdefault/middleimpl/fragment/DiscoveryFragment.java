@@ -67,7 +67,9 @@ public class DiscoveryFragment extends BaseFragment<DiscoverPresenter,DiscoverMo
 
     @OnClick(R.id.id_card_note)
     public void goToNoteListActivity(View v) {
-        goWithActivity(NoteListActivity.class);
+        if(checkUserLogin()) {
+            goWithActivity(NoteListActivity.class);
+        }
     }
 
     @OnClick(R.id.id_card_lasted)

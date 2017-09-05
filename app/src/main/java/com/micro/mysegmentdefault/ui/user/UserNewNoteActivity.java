@@ -85,8 +85,22 @@ public class UserNewNoteActivity extends BaseActivity<UserNewNotePresenter,UserN
         mAlertDialog.show();
     }
 
-    @OnClick(R.id.id_tv_right)
+    @OnClick({R.id.id_tv_right,R.id.id_iv_back})
     public void onCommit(View v){
+        switch (v.getId()) {
+
+            case R.id.id_iv_back:
+                finish();
+                break;
+            case R.id.id_tv_right:
+                addNewNote();
+                break;
+        }
+    }
+
+    private void addNewNote() {
+        if(!checkUserLogin()) return;
+
         String _title = mEtTitle.getText().toString().trim();
         String _content = mEtDesc.getText().toString().trim();
 
