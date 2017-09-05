@@ -15,6 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserAddCollectPresent
 import com.micro.mysegmentdefault.ui.user.UserNewCollectionTagActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 
 /**
@@ -28,6 +29,7 @@ import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
 public class UserCollectionActivity extends AbBaseAttentionActivity<UserAddCollectPresenter, UserCollectModel, UserCollectEntity.CollectItem> implements AbsUserAddCollectView<UserCollectEntity.CollectItem> {
 
     private static final int CODE_FOR_ADD_COLLECTION = 0x01 ;
+    private static final int CODE_FOR_DELETE_COLLECTION = 0x02;
 
     @Override
     protected void initPresenter() {
@@ -70,7 +72,7 @@ public class UserCollectionActivity extends AbBaseAttentionActivity<UserAddColle
         holder.setItemViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserCollectionDetailActivity.start(item.id,item.num,item.isPrivate);
+                UserCollectionDetailActivity.start(UserCollectionActivity.this,item.id,"true",item.num,item.isPrivate,CODE_FOR_DELETE_COLLECTION);
             }
         }) ;
 
@@ -93,7 +95,23 @@ public class UserCollectionActivity extends AbBaseAttentionActivity<UserAddColle
             mBaseRecyclerAdapter.addItem(0,item);
             //滑动到第一行
             mRecyclerView.smoothScrollToPosition(0);
+        }else if(requestCode == CODE_FOR_DELETE_COLLECTION && resultCode == RESULT_OK) {
+
+            mBaseRecyclerAdapter.removeItem(getCurrentIndex(data.getStringExtra("collectId")));
         }
+    }
+
+    private int getCurrentIndex(String collectId) {
+        int index = -1 ;
+        for(int i = 0 , len = mBaseRecyclerAdapter.getItems().size(); i < len ; ++i){
+            UserCollectEntity.CollectItem item = mBaseRecyclerAdapter.getItem(i);
+            if(null != item && collectId.equals(item.id)){
+                index = i ;
+                break;
+            }
+        }
+
+        return index;
     }
 
 

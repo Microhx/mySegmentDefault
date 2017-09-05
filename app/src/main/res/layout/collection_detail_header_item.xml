@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="12dp"
         android:layout_below="@id/id_layout_content"
-        android:background="@color/text_third_color"/>
+        android:background="@color/activity_bg_color"/>
 
 
 </RelativeLayout>

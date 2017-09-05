@@ -356,7 +356,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         onLoadingHeaderCallBack = listener;
     }
 
-
     /**
      * 可以共用同一个listener，相对高效
      */

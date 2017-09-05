@@ -69,7 +69,7 @@ public class UserZoneCollectionActivity extends
         holder.setItemViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserCollectionDetailActivity.start(item.id,item.num,item.isPrivate);
+                UserCollectionDetailActivity.start(UserZoneCollectionActivity.this,item.id,item.isAuthor,item.num,item.isPrivate,0);
             }
         }) ;
 

@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.ui.user.collection;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -75,6 +76,9 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
     private String mCollectDesc ;
     //条目Id
     private String mCollectId ;
+    //是否为作者
+    private boolean isAuthor ;
+
 
     private TextView mHeaderTitle ;
     private TextView mHeaderUserName ;
@@ -83,13 +87,13 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
 
     private Toolbar mToolbar ;
 
-    public static void  start(String id,String countNumber,String isPrivate) {
-        Intent _intent = new Intent(SegmentApplication.getApplication(),UserCollectionDetailActivity.class);
+    public static void  start(Activity act , String id, String isAuthor, String countNumber, String isPrivate, int requestCode) {
+        Intent _intent = new Intent(act,UserCollectionDetailActivity.class);
         _intent.putExtra("id", id).
                 putExtra("countNumber",countNumber).
-                putExtra("isPrivate",isPrivate).
-                setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        SegmentApplication.getApplication().startActivity(_intent);
+                putExtra("isAuthor",isAuthor).
+                putExtra("isPrivate",isPrivate);
+        act.startActivityForResult(_intent,requestCode);
     }
 
     @Override
@@ -98,6 +102,9 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
         mId = getIntent().getStringExtra("id");
         mCountNumber= getIntent().getStringExtra("countNumber");
         mIsPrivate = getIntent().getStringExtra("isPrivate");
+
+        //True true
+        isAuthor = "true".equalsIgnoreCase(getIntent().getStringExtra("isAuthor"));
     }
 
     @Override
@@ -105,6 +112,12 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
         if(null != menu) menu.clear();
          getMenuInflater().inflate(R.menu.menu_collection_operation,menu);
          addMoreMenu(menu);
+
+         if(!isAuthor) {
+             //非作者时 移除删除和编辑
+             menu.removeItem(R.id.delete);
+             menu.removeItem(R.id.edit);
+         }
 
         return true;
     }
@@ -145,6 +158,7 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.delete:
                 goToDelete();
@@ -152,11 +166,14 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
 
             case R.id.edit:
                 updateBookMark();
-
                 break;
 
             case R.id.report:
                 reportSomeThing();
+                break;
+
+            case android.R.id.home:
+                finish();
                 break;
         }
         return true;
@@ -166,7 +183,6 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
         BottomReportFragment reportFragment = new BottomReportFragment();
         reportFragment.show(getSupportFragmentManager(),"report");
     }
-
 
 
     /**
@@ -199,8 +215,6 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
             //刷新
             onRefreshing();
         }
-
-
     }
 
     @Override
@@ -299,8 +313,9 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
         if(null != entity) {
             if(entity.status == 0) {
                 showToast(R.string.str_operation_success);
+                setResult(RESULT_OK,new Intent().putExtra("collectId",mCollectId));
+                finish();
 
-                //TODO 删除成功
 
             }else{
                 showToast(entity.message);

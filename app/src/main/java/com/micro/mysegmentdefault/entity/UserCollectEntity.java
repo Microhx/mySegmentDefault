@@ -29,11 +29,15 @@ public class UserCollectEntity {
         public String num;
         public String title ;
         public User user ;
+        //是否为作者
+        public String isAuthor;
+
     }
 
     public static class User {
         public String avatarUrl;
         public String name ;
+
     }
 
 }

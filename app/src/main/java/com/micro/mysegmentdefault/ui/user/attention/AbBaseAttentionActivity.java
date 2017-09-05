@@ -42,6 +42,7 @@ public abstract class AbBaseAttentionActivity<T extends BaseRefreshPresenter,
             protected void convertData(ViewHolderHelper holder, D item, int position) {
                 AbBaseAttentionActivity.this.convertData(holder,item,position);
             }
+
         };
     }
 
