@@ -1,10 +1,14 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
+import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
 import com.micro.mysegmentdefault.middle.view.AbsUserCollectView;
+import com.micro.mysegmentdefault.middleimpl.mvp.model.UserCollectionDetailModel;
+import com.micro.mysegmentdefault.network.RxSubscriber;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
 import rx.functions.Action1;
@@ -17,7 +21,7 @@ import rx.functions.Action1;
  * interface :
  */
 
-public class UserCollectionDetailPresenter extends BaseRefreshPresenter<AbsUserCollectView, BaseRefreshModel> {
+public class UserCollectionDetailPresenter extends BaseRefreshPresenter<AbsUserCollectView, UserCollectionDetailModel> {
 
     @Override
     public void getCommonListDatas(int type, String channel, final int startPages) {
@@ -26,11 +30,7 @@ public class UserCollectionDetailPresenter extends BaseRefreshPresenter<AbsUserC
             @Override
             public void call(UserCollectionDetailDataEntity entity) {
                 if (null != entity && entity.status == 0) {
-                    String title = entity.data.parent.title;
-                    String count = entity.data.parent.num;
-                    String userName = entity.data.parent.user.name;
-                    String userPhoto = entity.data.parent.user.avatarUrl;
-                    mView.updateUserOtherCollectInfo(userName, userPhoto, title, count);
+                    mView.updateUserCollectionInfo(entity.data.parent);
 
                     mView.getCommonListDatas(startPages, entity.data.rows, entity.data.page);
                 } else {
@@ -45,7 +45,21 @@ public class UserCollectionDetailPresenter extends BaseRefreshPresenter<AbsUserC
                 mView.getRequestError(startPages);
             }
         });
+    }
 
+    public void deleteBookmark(String mId) {
+        mModel.deleteUserBookMark(mId).
+               subscribe(new RxSubscriber<BaseDataEntity>(mView.getContext(),"") {
+            @Override
+            public void _onNext(BaseDataEntity dataEntity) {
+                mView.deleteUserBookmark(dataEntity);
+            }
 
+            @Override
+            public void _onError(Throwable t) {
+                LogUtils.d("delete book mark error : " + t);
+                mView.deleteUserBookmark(null);
+            }
+        }) ;
     }
 }

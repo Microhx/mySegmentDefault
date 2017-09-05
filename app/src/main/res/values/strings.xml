@@ -274,5 +274,15 @@
     <string name="str_my_article">我的文章</string>
     <string name="str_my_share">我的分享</string>
     <string name="str_my_collection">我的收藏</string>
+    <string name="str_ask_to_delete">确定要删除吗？</string>
+    <string name="str_update_collection_favorite">更新收藏夹</string>
+    <string name="str_report_reason">举报理由</string>
+    <string name="str_report_one">辣鸡信息、广告、招聘、推广等</string>
+    <string name="str_report_two">违规法律规定、涉及敏感内容</string>
+    <string name="str_report_three">不友善内容</string>
+    <string name="str_report_four">内容质量过低</string>
+    <string name="str_report_five">版权问题</string>
+    <string name="str_report_other">其它，需要文字进行说明</string>
+    <string name="str_unsupport_operation">暂不支持的操作，我也没有权限哦</string>
 
 </resources>

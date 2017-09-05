@@ -1,12 +1,20 @@
 package com.micro.mysegmentdefault.ui.user.collection;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,14 +24,21 @@ import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.SegmentApplication;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
 import com.micro.mysegmentdefault.middle.view.AbsUserCollectView;
+import com.micro.mysegmentdefault.middleimpl.fragment.BottomReportFragment;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserCollectionDetailModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserCollectionDetailPresenter;
+import com.micro.mysegmentdefault.network.Api;
+import com.micro.mysegmentdefault.ui.user.UserNewCollectionTagActivity;
 import com.micro.mysegmentdefault.ui.user.attention.AbBaseAttentionActivity;
-import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * author : micro_hx <p>
@@ -43,6 +58,8 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
     private String mCountNumber ;
 
     //是否为私密 私密则不能分享
+    // private  1
+    // public   0
     private String mIsPrivate ;
 
     //条目名称
@@ -53,6 +70,11 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
     private String mCollectUserName ;
     //发布人图像
     private String mCollectUserIcon ;
+
+    //条目简介
+    private String mCollectDesc ;
+    //条目Id
+    private String mCollectId ;
 
     private TextView mHeaderTitle ;
     private TextView mHeaderUserName ;
@@ -80,8 +102,105 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_collection_operation,menu);
+        if(null != menu) menu.clear();
+         getMenuInflater().inflate(R.menu.menu_collection_operation,menu);
+         addMoreMenu(menu);
+
         return true;
+    }
+
+    private void addMoreMenu(Menu menu) {
+        Intent localIntent = new Intent();
+        localIntent.setAction(Intent.ACTION_SEND);
+        localIntent.setType("text/plain");
+        List localList = getPackageManager().queryIntentActivities(localIntent,0);
+        PackageManager localPackageManager = getPackageManager();
+
+        SubMenu localSubMenu = menu.findItem(R.id.menu_share).getSubMenu();
+        SubMenu secondSubMenu = localSubMenu.addSubMenu("查看更多");
+
+        Iterator iterator = localList.iterator();
+        while (iterator.hasNext()) {
+            ResolveInfo resolveInfo = (ResolveInfo) iterator.next();
+            CharSequence charsequence = resolveInfo.loadLabel(localPackageManager);
+            Drawable localDrawable = resolveInfo.loadIcon(localPackageManager);
+
+            String localPackageName = resolveInfo.activityInfo.packageName;
+            String localName = resolveInfo.activityInfo.name;
+
+            String msg = "【"+mCollectionTitle+"】" + "分享来自@mySegmentFault,传送门:" + Api.WEB_URL + "/bookmark/" + mId;
+
+            if(!"com.sina.weibo".equals(localPackageName) && !"com.tencent.mm".equals(localPackageName)) {
+                MenuItem menuItem = secondSubMenu.add(charsequence);
+                menuItem.setIcon(localDrawable);
+                menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                Intent _intent = new Intent().setAction(Intent.ACTION_SEND);
+                _intent.setType("text/plain");
+                _intent.putExtra("android.intent.extra.TEXT",msg);
+                _intent.setClassName(localPackageName,localName);
+                menuItem.setIntent(_intent);
+            }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete:
+                goToDelete();
+                break;
+
+            case R.id.edit:
+                updateBookMark();
+
+                break;
+
+            case R.id.report:
+                reportSomeThing();
+                break;
+        }
+        return true;
+    }
+
+    private void reportSomeThing() {
+        BottomReportFragment reportFragment = new BottomReportFragment();
+        reportFragment.show(getSupportFragmentManager(),"report");
+    }
+
+
+
+    /**
+     * 更新bookmark
+     */
+    private void updateBookMark() {
+        UserNewCollectionTagActivity.
+                start(this,mCollectionTitle,mCollectDesc,mCollectId,"1".equals(mIsPrivate),CODE_UPDATE_BOOK_MARK);
+    }
+
+    private void goToDelete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this) ;
+        builder.setTitle(R.string.str_confirm_to_delete).
+                setMessage(R.string.str_ask_to_delete).
+                setPositiveButton(R.string.str_sure, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                mPresenter.deleteBookmark(mId);
+            }
+        }) .setNegativeButton(R.string.str_cancel,null).show();
+    }
+
+    public static final int CODE_UPDATE_BOOK_MARK = 100;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == CODE_UPDATE_BOOK_MARK && resultCode == RESULT_OK){
+            //刷新
+            onRefreshing();
+        }
+
+
     }
 
     @Override
@@ -96,24 +215,26 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
 
     @Override
     protected void initTitleSetting(FrameLayout mTitleContent) {
-        /*mTvTitle.setText("共" +mCountNumber + "个条目");
-        mIvRightButton.setVisibility(View.VISIBLE);
-        mIvRightButton.setImageResource(R.drawable.ic_more);*/
         mTitleContent.removeAllViews();
 
-        mToolbar = new Toolbar(getApplicationContext());
+        mToolbar = new Toolbar(this);
         mToolbar.setTitle(String.format("共%s个条目",mCountNumber));
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
+        mToolbar.setTitleTextAppearance(getApplicationContext(),R.style.CoordinatorLayoutAppearance);
+        mToolbar.setOverflowIcon(getResources().getDrawable(R.drawable.ic_white_more));
+
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserCollectionDetailActivity.this.finish();
             }
         });
-        //设置我们需要的Toolbar
-        //setSupportActionBar(mToolbar);
 
-        mTitleContent.addView(mToolbar,getDefaultLayoutParams(true));
+        mTitleContent.addView(mToolbar,getDefaultFrameLayoutParams());
+
+        //设置我们需要的Toolbar
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -158,16 +279,46 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
     }
 
     @Override
-    public void updateUserOtherCollectInfo(String userName, String userPhoto, String collectTitle, String collectCount) {
-        mCollectionTitle = collectTitle;
-        mCollectionNumber = collectCount;
-        mCollectUserName = userName;
-        mCollectUserIcon = userPhoto;
+    public void updateUserCollectionInfo(UserCollectionDetailDataEntity.Parent parent) {
+        if(null != parent){
+            mCollectionTitle = parent.title;
+            mCollectionNumber = parent.num;
+            mCollectUserName = parent.user.name;
+            mCollectUserIcon = parent.user.avatarUrl;
 
-        setHeaderData();
+            mCollectDesc = parent.description;
+            mCollectId = parent.id;
+            mIsPrivate = parent.isPrivate;
+
+            setHeaderData();
+        }
     }
 
+    @Override
+    public void deleteUserBookmark(BaseDataEntity entity) {
+        if(null != entity) {
+            if(entity.status == 0) {
+                showToast(R.string.str_operation_success);
 
+                //TODO 删除成功
+
+            }else{
+                showToast(entity.message);
+            }
+        }else{
+            showToast(R.string.str_operation_error);
+        }
+
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    private FrameLayout.LayoutParams getDefaultFrameLayoutParams() {
+        return new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    }
 
     private RelativeLayout.LayoutParams getDefaultLayoutParams(boolean heightIsMatchParent) {
         return new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightIsMatchParent?RelativeLayout.LayoutParams.MATCH_PARENT: RelativeLayout.LayoutParams.WRAP_CONTENT);

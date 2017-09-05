@@ -27,6 +27,9 @@ public class UserCollectionDetailDataEntity {
     public static class Parent {
         public String id ;
         public String title ;
+        public String description;
+        public String isPrivate;
+
         public String num ;
         public String url;
         private boolean isAuthor;

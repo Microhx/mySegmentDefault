@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.UserCollectionDetailDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.network.Api;
@@ -24,5 +25,9 @@ public class UserCollectionDetailModel implements BaseRefreshModel<UserCollectio
                 getApiService(0).
                 userCollectionDetailDataEntity(channel, UserLogic.getUserToken(),startPages).
                 compose(RxSchedulers.<UserCollectionDetailDataEntity>io_main());
+    }
+
+    public Observable<BaseDataEntity> deleteUserBookMark(String bookId) {
+        return Api.getApiService(0).deleteUserBookMark(bookId,UserLogic.getUserToken()).compose(RxSchedulers.<BaseDataEntity>io_main());
     }
 }

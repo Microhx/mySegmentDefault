@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.ui.user;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.widget.Switch;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.middle.UserAddNewCollectContract;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.UserAddNewCollectModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserAddNewCollectPresenter;
@@ -28,7 +30,9 @@ import butterknife.OnTextChanged;
  * interface :
  */
 
-public class UserNewCollectionTagActivity extends BaseActivity<UserAddNewCollectPresenter, UserAddNewCollectModel> implements UserAddNewCollectContract.AbsNewCollectView {
+public class UserNewCollectionTagActivity
+                extends BaseActivity<UserAddNewCollectPresenter, UserAddNewCollectModel>
+                        implements UserAddNewCollectContract.AbsNewCollectView {
 
     //收藏夹title最大长度
     public static final int MAX_COLLECT_LENGTH = 10;
@@ -47,6 +51,44 @@ public class UserNewCollectionTagActivity extends BaseActivity<UserAddNewCollect
 
     //是否设为私密
     private boolean mIsPrivate = false;
+
+    //收藏夹的Id
+    private String mCollectionId ;
+
+    private boolean isCollectionUpdate = false;
+
+    /**
+     * 更新Tag
+     * @param title
+     * @param description
+     * @param id
+     * @param isPrivate
+     */
+    public static void start(Activity act ,String title , String description , String id , boolean isPrivate , int requestCode) {
+        Intent _intent = new Intent(act,UserNewCollectionTagActivity.class).
+                putExtra("title",title).
+                putExtra("description",description).
+                putExtra("id",id).
+                putExtra("isPrivate",isPrivate).
+                putExtra("isUpdate",true);
+        act.startActivityForResult(_intent,requestCode);
+    }
+
+
+    @Override
+    protected void initViews() {
+        if(getIntent().getBooleanExtra("isUpdate",false)) {
+            mPublicLayout.setTitle(R.string.str_update_collection_favorite);
+
+            mEtTitle.setText(getIntent().getStringExtra("title"));
+            mEtDesc.setText(getIntent().getStringExtra("description"));
+            mSwitch.setChecked(getIntent().getBooleanExtra("isPrivate",false));
+            mCollectionId = getIntent().getStringExtra("id");
+            isCollectionUpdate = true ;
+
+            mEtTitle.setSelection(mEtTitle.length());
+        }
+    }
 
     @Override
     protected void initPresenter() {
@@ -82,7 +124,12 @@ public class UserNewCollectionTagActivity extends BaseActivity<UserAddNewCollect
             return;
         }
 
-        mPresenter.addNewCollect(title, desc, mIsPrivate);
+        if(isCollectionUpdate) {
+            mPresenter.updateCollect(mCollectionId,title,desc,mIsPrivate);
+        }else{
+            mPresenter.addNewCollect(title, desc, mIsPrivate);
+        }
+
     }
 
 
@@ -110,5 +157,21 @@ public class UserNewCollectionTagActivity extends BaseActivity<UserAddNewCollect
     @Override
     public void addNewCollectError() {
         showToast("新建文件失败，请稍后重试！");
+    }
+
+    @Override
+    public void updateCollectResult(BaseDataEntity entity) {
+        if(null != entity) {
+            if(entity.status == 0) {
+                showToast(R.string.str_operation_success);
+
+                setResult(RESULT_OK);
+                finish();
+            }else {
+                showToast(entity.message);
+            }
+        }else {
+            showToast(R.string.str_operation_error);
+        }
     }
 }

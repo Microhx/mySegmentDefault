@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:text="@string/str_report_reason"
+        android:textColor="@color/text_second_color"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/id_tv_one"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_four_color"
+        android:text="@string/str_report_one"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/id_tv_two"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_four_color"
+        android:text="@string/str_report_two"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/id_tv_three"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textColor="@color/text_four_color"
+        android:text="@string/str_report_three"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/id_tv_four"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textColor="@color/text_four_color"
+        android:textSize="16sp"
+        android:text="@string/str_report_four"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/id_tv_five"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_four_color"
+        android:text="@string/str_report_five"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/activity_bg_color"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/id_tv_six"
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_four_color"
+        android:text="@string/str_report_other"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

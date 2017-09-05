@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
+import com.micro.mysegmentdefault.entity.BaseDataEntity;
 import com.micro.mysegmentdefault.entity.NewCollectionDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.UserAddNewCollectContract;
@@ -34,6 +35,23 @@ public class UserAddNewCollectPresenter extends UserAddNewCollectContract.AbsNew
             public void _onError(Throwable t) {
                 LogUtils.d("addNewCollect error:" + t);
                     mView.addNewCollectError();
+            }
+        }) ;
+    }
+
+    @Override
+    public void updateCollect(String collectId, String collectTitle, String collectDesc, boolean isPrivate) {
+        mModel.updateNewCollect(collectId,collectTitle,collectDesc,isPrivate,UserLogic.getUserToken()).
+                subscribe(new RxSubscriber<BaseDataEntity>(mView.getContext(),"") {
+            @Override
+            public void _onNext(BaseDataEntity dataEntity) {
+                mView.updateCollectResult(dataEntity);
+            }
+
+            @Override
+            public void _onError(Throwable t) {
+                LogUtils.d("---onError----" + t);
+                mView.updateCollectResult(null);
             }
         }) ;
     }

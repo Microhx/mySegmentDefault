@@ -5,10 +5,10 @@
     <item
         android:id="@id/menu_share"
         android:icon="@drawable/ic_share_mtrl_alpha"
-        android:orderInCategory="10"
         android:title="@string/str_share"
         android:visible="true"
         app:showAsAction="always">
+
         <menu>
             <item
                 android:id="@id/menu_share_weibo"
@@ -31,17 +31,22 @@
                 android:title="@string/share_qq"/>
 
         </menu>
+
     </item>
+
     <item
         android:id="@id/delete"
         android:title="@string/delete"
         app:showAsAction="never"/>
+
     <item
         android:id="@id/edit"
         android:title="@string/edit"
         app:showAsAction="never"/>
+
     <item
         android:id="@id/report"
         android:title="@string/report"
         app:showAsAction="never"/>
+
 </menu>

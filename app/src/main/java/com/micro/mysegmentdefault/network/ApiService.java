@@ -50,6 +50,7 @@ import com.micro.mysegmentdefault.entity.UserTimeLineDataEntity;
 import java.util.Map;
 
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -437,4 +438,18 @@ public interface ApiService {
     Observable<UserCollectEntity> getUserZoneCollectionDataEntity(@Path("uid") String uid,
                                                                   @Query("token") String token,
                                                                   @Query("page") int page);
+
+    @POST("bookmarkArchive/{bookId}/delete")
+    Observable<BaseDataEntity> deleteUserBookMark(@Path("bookId") String bookId,
+                                                  @Query("token") String token);
+
+    @POST("bookmarkArchive/{collectId}/edit")
+    Observable<ResponseBody> updateUserCollect(@Path("collectId") String collectId ,
+                                               @Query("name") String title,
+                                               @Query("description") String description,
+                                               @Query("isPrivate") String isPrivate,
+                                               @Query("token") String token) ;
+
+
 }
+
