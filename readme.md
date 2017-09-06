@@ -3,4 +3,4 @@
 
 
 ### 截图
-<img style="width:100px;height:150px;" src="./screen_capture/main_toutiao.png" alt=""/>
+<img width="100" height="150" src="./screen_capture/main_toutiao.png" alt=""/>
