@@ -14,26 +14,25 @@
 <a href="./screen_capture/comment_list.png"><img src="screen_capture/comment_list.png" width="33%"/></a>
 
 ### 开源框架
-  <a href='https://github.com/square/okhttp'>OkHttp3</a>
-  <a href='https://github.com/square/retrofit'>Retrofit</a>
-  <a href='https://github.com/ReactiveX/RxJava'>RxJava</a>
-  <a href='https://github.com/ReactiveX/RxAndroid'>RxAndroid</a>
-  <a href='https://github.com/bumptech/glide'>Glide</a>
-  <a href='https://github.com/greenrobot/EventBus'>EventBus</a>
-  <a href='https://github.com/JakeWharton/butterknife'>butterknife</a>
+  <a href='https://github.com/square/okhttp'>OkHttp3</a><br/>
+  <a href='https://github.com/square/retrofit'>Retrofit</a><br/>
+  <a href='https://github.com/ReactiveX/RxJava'>RxJava</a><br/>
+  <a href='https://github.com/ReactiveX/RxAndroid'>RxAndroid</a><br/>
+  <a href='https://github.com/bumptech/glide'>Glide</a><br/>
+  <a href='https://github.com/greenrobot/EventBus'>EventBus</a><br/>
+  <a href='https://github.com/JakeWharton/butterknife'>butterknife</a><br/>
 
   使用MVP架构
 
-
-###issue
+### issue
    QQ:294097370
    email:<a href="mailto:javainstalling@163.com">javainstalling@163.com</a>
 
-###version
+### version
    1.0
      完成了页面逻辑，用户登录，用户信息修改，评价，收藏等基本常用功能.
 
-###TODO
+### TODO
     1.富文本编辑
     2.第三方登录【这个不想做】
     3.使用React Native重构活动页面
