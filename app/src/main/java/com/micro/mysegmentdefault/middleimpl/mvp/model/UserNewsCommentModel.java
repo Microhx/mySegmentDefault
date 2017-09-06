@@ -27,10 +27,16 @@ public class UserNewsCommentModel implements AbsNewsCommentModel<NewsCommentData
                 compose(RxSchedulers.<NewsCommentDataEntity>io_main());
     }
 
+    /**
+     * 1 ---> news
+     * 2 ---> article
+     * 3 ---> note
+     */
+
     private String getType(int type) {
-        if(type == 1) return "note";
-        if(type == 0) return "news";
-        return  "article";
+        if(type == 1) return "news";
+        if(type == 2) return "article";
+        return  "note";
     }
 
     @Override

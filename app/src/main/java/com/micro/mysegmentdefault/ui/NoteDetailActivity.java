@@ -147,7 +147,7 @@ public class NoteDetailActivity extends CommonWebActivity<NoteDetailPresenter,No
      */
     @OnClick(R.id.id_layout_comment)
     public void addComment(View v) {
-        UserCommentListActivity.start(this,mNewsId);
+        UserCommentListActivity.start(this,mNewsId,3);
     }
 
 

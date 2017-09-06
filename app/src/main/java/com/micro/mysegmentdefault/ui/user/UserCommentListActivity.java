@@ -151,8 +151,7 @@ public class UserCommentListActivity
 
     @Override
     protected int getCommonType() {
-        if(mEnterType > 0) return mEnterType;
-        return mIsNewsComment ? super.getCommonType() : 1;
+        return mEnterType;
     }
 
     //当数据为空，或者数据不存在时，是否显示empty页面
@@ -183,7 +182,7 @@ public class UserCommentListActivity
         mIsLike = _intent.getBooleanExtra("m_isLike" , false);
         mIsCollect = _intent.getBooleanExtra("m_isCollect" , false);
 
-        mEnterType = _intent.getIntExtra("m_type",-1);
+        mEnterType = _intent.getIntExtra("m_type",1);
         mIsNewsComment = _intent.getBooleanExtra("hasHead",true);
     }
 

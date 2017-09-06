@@ -182,7 +182,7 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     public void addComment(View v) {
         if(null == mDataEntity) return;
 
-        UserCommentListActivity.start(this,mDataEntity.getId(),1);
+        UserCommentListActivity.start(this,mDataEntity.getId(),2);
     }
 
 
