@@ -12,3 +12,48 @@
 <a href="./screen_capture/user_top_list.png"><img src="screen_capture/user_top_list.png" width="33%"/></a>
 
 <a href="./screen_capture/comment_list.png"><img src="screen_capture/comment_list.png" width="33%"/></a>
+
+### 开源框架
+  <a href='https://github.com/square/okhttp'>OkHttp3</a>
+  <a href='https://github.com/square/retrofit'>Retrofit</a>
+  <a href='https://github.com/ReactiveX/RxJava'>RxJava</a>
+  <a href='https://github.com/ReactiveX/RxAndroid'>RxAndroid</a>
+  <a href='https://github.com/bumptech/glide'>Glide</a>
+  <a href='https://github.com/greenrobot/EventBus'>EventBus</a>
+  <a href='https://github.com/JakeWharton/butterknife'>butterknife</a>
+
+  使用MVP架构
+
+
+###issue
+   QQ:294097370
+   email:<a href="mailto:javainstalling@163.com">javainstalling@163.com</a>
+
+###version
+   1.0
+     完成了页面逻辑，用户登录，用户信息修改，评价，收藏等基本常用功能.
+
+###TODO
+    1.富文本编辑
+    2.第三方登录【这个不想做】
+    3.使用React Native重构活动页面
+    4.缓存设置
+    5.用户socket聊天机制
+    6.代码重构
+    ...
+
+###License
+
+      Copyright 2017 microhx
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
