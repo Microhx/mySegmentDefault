@@ -111,7 +111,7 @@ public class MineFragment extends BaseFragment {
             ImageUtils.showUrlImage(UserLogic.getUserPhoto(), mUserIcon);
             mTvUserName.setText(UserLogic.getUserName());
         } else {
-            mUserIcon.setImageResource(R.drawable.ic_tab_mine);
+            mUserIcon.setImageResource(R.drawable.ic_avatar);
             mTvUserName.setText(R.string.str_login_register);
         }
     }

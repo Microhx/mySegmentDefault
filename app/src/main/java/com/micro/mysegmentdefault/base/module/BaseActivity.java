@@ -87,8 +87,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (null != mPresenter) {
             mPresenter.mContext = this;
         }
-
-        LogUtils.d("------presenter------->>" + mPresenter + "-------------->>" + mModel);
     }
 
     protected void initPresenter() {}

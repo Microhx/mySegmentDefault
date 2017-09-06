@@ -31,6 +31,7 @@ import butterknife.OnClick;
 
 import static com.micro.mysegmentdefault.view.widget.EmptyLayout.NETWORK_ERROR;
 import static com.micro.mysegmentdefault.view.widget.EmptyLayout.NODATA;
+import static com.micro.mysegmentdefault.view.widget.EmptyLayout.NOTHING;
 
 /**
  * author : micro_hx <p>
@@ -47,7 +48,7 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
         implements RecyclerRefreshLayout.SuperRefreshLayoutListener, BaseRefreshView<D> {
 
     //默认page值
-    private static final int PAGE_STEP = 1;
+    public static final int PAGE_STEP = 1;
 
     @Bind(R.id.id_title_content)
     public FrameLayout mTitleContent;
@@ -107,12 +108,22 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
         mBaseRecyclerAdapter = getRecyclerAdapter();
         defaultSettingLayoutManager();
         defaultSettingLayoutDecoration();
+        defaultSettingRecyclerViewListener();
+
         mRecyclerView.setAdapter(mBaseRecyclerAdapter);
         mRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.app_theme_color));
         mRefreshLayout.setSuperRefreshLayoutListener(this);
 
-        mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), getCurrentPage());
+        if(requestDataWhenInitData()){
+            mPresenter.getCommonListDatas(getCommonType(), getDefaultChannel(), getCurrentPage());
+        }else {
+            mEmptyLayout.setErrorType(NOTHING);
+        }
     }
+
+    //设置RecyclerView监听事件
+    protected void defaultSettingRecyclerViewListener() {}
+
 
     //设置顶部View 说点生命
     protected void initBottomLayoutView() {}
@@ -235,6 +246,14 @@ public abstract class BaseRefreshActivity<T extends BaseRefreshPresenter,
 
     protected int getCommonType() {
         return 0;
+    }
+
+    /**
+     * 是否开始画面就进行请求数据
+     * @return
+     */
+    protected boolean requestDataWhenInitData(){
+        return true;
     }
 
     protected void checkLayoutVisible() {

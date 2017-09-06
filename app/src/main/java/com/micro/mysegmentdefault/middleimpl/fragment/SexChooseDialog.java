@@ -12,7 +12,7 @@ import com.micro.mysegmentdefault.R;
 
 /**
  * author : micro_hx <p>
- * desc : <p>
+ * desc : 性别选择对话框 <p>
  * email: javainstalling@163.com <p>
  * date : 2017/6/2 - 16:51 <p>
  * interface :

@@ -180,7 +180,7 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
             mTvTagStatus.setText(R.string.has_followed);
             mTvTagStatus.setBackground(getResources().getDrawable(R.drawable.tag_attention_drawable));
 
-            sendFollowTagEventByType(2);
+            sendFollowTagEventByType(6);
         }else {
             ToastUtils.showMessage(this,R.string.tag_follow_error);
         }
@@ -193,7 +193,7 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
             mTvTagStatus.setText(R.string.has_not_followed);
             mTvTagStatus.setBackground(getResources().getDrawable(R.drawable.tag_unattention_drawable));
 
-            sendFollowTagEventByType(3);
+            sendFollowTagEventByType(7);
         }else {
             ToastUtils.showMessage(this,R.string.tag_not_follow_error);
         }

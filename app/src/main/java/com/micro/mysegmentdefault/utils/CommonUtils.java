@@ -9,6 +9,8 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
@@ -109,6 +111,13 @@ public class CommonUtils {
         }
     }
 
+
+    public static void hideKeyboard(Context context, View parentView) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) { //只判断是否打开
+            imm.hideSoftInputFromWindow(parentView.getWindowToken(), 0); //强制隐藏键盘
+        }
+    }
 
     public static boolean safeParseBoolean(String boo) {
         return !TextUtils.isEmpty(boo) && ("False".equals(boo) || "false".equals(boo));

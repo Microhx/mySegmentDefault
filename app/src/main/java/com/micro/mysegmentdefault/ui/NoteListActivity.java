@@ -59,7 +59,6 @@ public class NoteListActivity extends BaseRefreshActivity<NoteListPresenter,Note
         spinner.setOnItemSelectedListener(this);
 
         mTitleLayout.addView(spinner);
-
     }
 
     @Override

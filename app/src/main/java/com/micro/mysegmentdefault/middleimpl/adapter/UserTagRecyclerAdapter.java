@@ -29,9 +29,12 @@ public class UserTagRecyclerAdapter extends BaseRecyclerAdapter<TagDataEntity.It
 
     private OnTagSelectListener mSelectListener;
 
-    public UserTagRecyclerAdapter(Context context, OnTagSelectListener mSelectListener) {
-        super(context);
+    private int mPosition;
+
+    public UserTagRecyclerAdapter(Context context, OnTagSelectListener mSelectListener,int position) {
+        super(context,NEITHER);
         this.mSelectListener = mSelectListener;
+        this.mPosition = position;
     }
 
     @Override
@@ -48,76 +51,49 @@ public class UserTagRecyclerAdapter extends BaseRecyclerAdapter<TagDataEntity.It
         tagHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (null != mSelectListener) {
-                    if (item.isFollowed) {
-                        mSelectListener.onUnSelect(item);
-                    } else {
-                        mSelectListener.onSelect(item);
+                    if(mPosition == 0) {
+                        mSelectListener.onUnSelect(item,false);
+                    }else {
+                        if (item.isFollowed) {
+                            mSelectListener.onUnSelect(item,true);
+                        } else {
+                            mSelectListener.onSelect(item);
+                        }
                     }
                 }
             }
         });
-
-       /* tagHolder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (null != mSelectListener) {
-                    LogUtils.d("---------the position is " + position + "---isChecked----" + isChecked);
-
-                    try {
-                        if (isChecked) {
-                            mSelectListener.onSelect(item.name);
-                        } else {
-                            mSelectListener.onUnSelect(item.name);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        });*/
     }
 
     public void removeTagName(TagDataEntity.Item item) {
-        int position = 0;
+        int position = -1;
         for (int i = 0; i < getCount(); i++) {
-            if (item == mItems.get(i)) {
+            if (item.id.equals(mItems.get(i).id)) {
                 position = i;
                 mItems.remove(position);
                 break;
             }
         }
 
-        notifyItemRemoved(position);
+        if(position >= 0) {
+            notifyItemRemoved(position);
+        }
     }
 
     public void followTagName(TagDataEntity.Item item, boolean isCheck) {
-        int position = 0;
+        int position = -1;
         for (int i = 0; i < getCount(); i++) {
-            if (item == mItems.get(i)) {
+            if (item.id.equals(mItems.get(i).id)) {
                 position = i;
                 mItems.get(position).isFollowed = isCheck;
                 break;
             }
         }
 
-        notifyItemChanged(position);
-    }
-
-
-    public void followByTagName(TagDataEntity.Item item, boolean isCheck) {
-        int position = 0;
-        for (int i = 0; i < getCount(); i++) {
-            if (item.name.equals(mItems.get(i).name)) {
-                position = i;
-                mItems.get(position).isFollowed = isCheck;
-                break;
-            }
+        if(position >= 0) {
+            notifyItemChanged(position);
         }
-
-        notifyItemChanged(position);
     }
 
 
@@ -150,8 +126,9 @@ public class UserTagRecyclerAdapter extends BaseRecyclerAdapter<TagDataEntity.It
          * 未选中的标签
          *
          * @param item
+         * @param fromSource  是否来自热门标签 需要区分到底是哪个发出的确定
          */
-        void onUnSelect(TagDataEntity.Item item);
+        void onUnSelect(TagDataEntity.Item item, boolean fromSource);
 
 
     }

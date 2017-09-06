@@ -284,5 +284,6 @@
     <string name="str_report_five">版权问题</string>
     <string name="str_report_other">其它，需要文字进行说明</string>
     <string name="str_unsupport_operation">暂不支持的操作，我也没有权限哦</string>
+    <string name="str_finish_login">登录成功</string>
 
 </resources>

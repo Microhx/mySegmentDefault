@@ -8,6 +8,7 @@ import com.micro.mysegmentdefault.entity.TagDataEntity;
 import com.micro.mysegmentdefault.middle.CommonContract;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.functions.Action1;
@@ -23,7 +24,7 @@ import rx.functions.Action1;
 public class UserTagPresenter extends BaseRefreshPresenter<BaseRefreshView<TagDataEntity.Item>,BaseRefreshModel<TagDataEntity>> {
 
     @Override
-    public void getCommonListDatas(int type, String channel, final int startPages) {
+    public void getCommonListDatas(final int type, String channel, final int startPages) {
         mModel.getCommentListDatas(type, channel, startPages).subscribe(new Action1<TagDataEntity>() {
 
             @Override
@@ -33,7 +34,13 @@ public class UserTagPresenter extends BaseRefreshPresenter<BaseRefreshView<TagDa
                     PageEntity pageEntity = tagDataEntity.data.page;
                     mView.getCommonListDatas(startPages, itemList, pageEntity);
                 } else {
-                    mView.getRequestError(startPages);
+                    if(type == 0) {
+                        //本地不存在时 直接返回空白页面
+                        mView.getCommonListDatas(startPages, new ArrayList<TagDataEntity.Item>(), null);
+
+                    }else {
+                        mView.getRequestError(startPages);
+                    }
                 }
 
             }

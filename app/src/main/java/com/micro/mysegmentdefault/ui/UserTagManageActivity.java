@@ -1,5 +1,7 @@
 package com.micro.mysegmentdefault.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -49,6 +51,7 @@ public class UserTagManageActivity extends BaseActivity {
     protected int getContentViewId() {
         return R.layout.activity_user_tag_manage;
     }
+
 
     @Override
     protected void initViews() {

@@ -72,7 +72,7 @@ public class ArticleFragment extends BaseFragment implements DialogInterface.OnC
         setHasOptionsMenu(true);
 
         mRightImage.setVisibility(View.VISIBLE);
-        mTitleEntityList = FileUtils.getNewsTitleEntityList(0);
+        mTitleEntityList = FileUtils.getArticlesTitleEntityList(0);
 
         mBasePageAdapter = new NewsFragmentPagerAdapter(mTitleEntityList, getChildFragmentManager());
         mViewPager.setAdapter(mBasePageAdapter);
@@ -82,7 +82,9 @@ public class ArticleFragment extends BaseFragment implements DialogInterface.OnC
 
     @OnClick(R.id.id_iv_right)
     public void onCall(View e) {
-        goWithActivity(UserTagManageActivity.class);
+        if(checkUserLogin()) {
+            goWithActivity(UserTagManageActivity.class);
+        }
     }
 
     @Override
@@ -125,7 +127,7 @@ public class ArticleFragment extends BaseFragment implements DialogInterface.OnC
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (null != event && event.type == -1) {
-            mTitleEntityList = FileUtils.getNewsTitleEntityList(0);
+            mTitleEntityList = FileUtils.getArticlesTitleEntityList(0);
             mBasePageAdapter.updateDataList(mTitleEntityList);
             mViewPager.setCurrentItem(mTitleEntityList.size() - 1);
         }

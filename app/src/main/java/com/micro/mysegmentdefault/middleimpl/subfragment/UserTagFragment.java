@@ -23,7 +23,8 @@ import java.util.List;
  * interface :
  */
 
-public class UserTagFragment extends BaseRefreshFragment<UserTagPresenter, UserTagModel, TagDataEntity.Item> implements UserTagRecyclerAdapter.OnTagSelectListener {
+public class  UserTagFragment extends BaseRefreshFragment<UserTagPresenter, UserTagModel, TagDataEntity.Item>
+                             implements UserTagRecyclerAdapter.OnTagSelectListener {
 
     private int mPosition;
 
@@ -55,7 +56,7 @@ public class UserTagFragment extends BaseRefreshFragment<UserTagPresenter, UserT
 
     @Override
     protected BaseRecyclerAdapter getRecyclerAdapter() {
-        mTagRecyclerAdapter = new UserTagRecyclerAdapter(getContext(), this);
+        mTagRecyclerAdapter = new UserTagRecyclerAdapter(getContext(), this, mPosition);
         return mTagRecyclerAdapter;
     }
 
@@ -73,13 +74,17 @@ public class UserTagFragment extends BaseRefreshFragment<UserTagPresenter, UserT
     }
 
     @Override
-    public void onUnSelect(TagDataEntity.Item item) {
+    public void onUnSelect(TagDataEntity.Item item,boolean fromSource) {
         if (mPosition == 0) {
             mTagRecyclerAdapter.removeTagName(item);
-            EventBus.getDefault().post(getDefaultMessageEvent(item, 1));
+            if(!fromSource) {
+                EventBus.getDefault().post(getDefaultMessageEvent(item, 1));
+            }
         } else {
             mTagRecyclerAdapter.followTagName(item, false);
-            EventBus.getDefault().post(getDefaultMessageEvent(item, 3));
+            if(fromSource) {
+                EventBus.getDefault().post(getDefaultMessageEvent(item, 3));
+            }
         }
     }
 
@@ -93,17 +98,19 @@ public class UserTagFragment extends BaseRefreshFragment<UserTagPresenter, UserT
     public void onMessageEvent(MessageEvent event) {
         //LogUtils.d(mPosition + "----" + "---event----" + event.type);
         if (mPosition == 0) {   //已关注页面
-            if (event.type == 2) {
+            if (event.type == 2 || event.type == 6) {
                 event.item.isFollowed = true;
                 mTagRecyclerAdapter.addItem(event.item);
                 checkLayoutVisible();
-            } else if (event.type == 3) {
+            } else if (event.type == 3 || event.type == 7) {
                 mTagRecyclerAdapter.removeTagName(event.item);
             }
 
-        } else {   //热门标签页面
-            if (event.type == 1) {
-                mTagRecyclerAdapter.followByTagName(event.item, false);
+        } else {                //热门标签页面
+            if (event.type == 1 || event.type == 7) {
+                mTagRecyclerAdapter.followTagName(event.item, false);
+            }else if(event.type == 6) {
+                mTagRecyclerAdapter.followTagName(event.item, true);
             }
         }
     }

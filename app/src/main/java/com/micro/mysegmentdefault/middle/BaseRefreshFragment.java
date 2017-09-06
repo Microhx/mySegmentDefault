@@ -139,8 +139,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         if (startPages == PAGE_STEP) {
             if (CommonUtils.collectionIsNull(mDataList)) {
                 LogUtils.d("startPages:" + startPages + ",mDataList is null");
-                mEmptyLayout.setVisibility(View.VISIBLE);
-                mEmptyLayout.setErrorType(NODATA);
+                defaultSetEmptyPage();
                 return;
             }
 
@@ -205,5 +204,12 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         }
     }
 
+    /**
+     * 默认显示空页面
+     */
+    private void defaultSetEmptyPage() {
+        mEmptyLayout.setVisibility(View.VISIBLE);
+        mEmptyLayout.setErrorType(NODATA);
+    }
 
 }

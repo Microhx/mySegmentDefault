@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.ui;
 
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -62,6 +63,16 @@ public class UserSearchTagActivity extends
 
     private void toSearchTarget(String s) {
         if (TextUtils.isEmpty(s)) return;
+        mPresenter.getCommonListDatas(getCommonType(), s, PAGE_STEP);
+    }
+
+    /**
+     * 初次进入不请求数据
+     * @return
+     */
+    @Override
+    protected boolean requestDataWhenInitData() {
+        return false;
     }
 
     @Override
@@ -77,5 +88,10 @@ public class UserSearchTagActivity extends
     @Override
     protected String getDefaultChannel() {
         return "java";
+    }
+
+    @Override
+    protected void afterRequestFinish() {
+        CommonUtils.hideKeyboard(this,mEdSearch);
     }
 }

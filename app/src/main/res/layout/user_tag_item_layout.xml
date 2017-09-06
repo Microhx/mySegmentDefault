@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
+              android:background="?selectableItemBackground"
               android:padding="12dp">
 
     <CheckBox
@@ -15,8 +16,9 @@
         android:id="@+id/id_tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="php"
+        android:text="android"
+        android:layout_marginLeft="4dp"
         android:textColor="@color/text_first_color"
-        android:textSize="14sp"/>
+        android:textSize="16sp"/>
 
 </LinearLayout>

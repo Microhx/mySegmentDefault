@@ -125,7 +125,6 @@ public class ToutiaoFragment extends BaseFragment implements SexChooseDialog.OnS
             //判断是否为null
             if(CommonUtils.collectionCheckIndex(fragmentList,currentIndex)) {
                 Fragment targetFragment = fragmentList.get(currentIndex);
-                //LogUtils.d("--------targetFragment-------->>" + targetFragment);
                 if (targetFragment instanceof ToutiaoSubFragment) {
                     ((ToutiaoSubFragment) targetFragment).reloadData();
                 }

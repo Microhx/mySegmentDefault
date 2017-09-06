@@ -24,6 +24,10 @@ public class EmptyLayout extends LinearLayout implements
     public static final int NODATA_ENABLE_CLICK = 5;
     public static final int NO_LOGIN = 6;
 
+    //nothing to show
+    public static final int NOTHING = 7 ;
+
+
     private ProgressBar mLoading;
     private boolean clickEnable = true;
     private final Context context;
@@ -182,6 +186,17 @@ public class EmptyLayout extends LinearLayout implements
                 setTvNoDataContent();
                 clickEnable = true;
                 break;
+
+            case NOTHING:
+                img.setVisibility(View.GONE);
+                mLoading.setVisibility(View.GONE);
+                setTvNoDataContent("");
+
+                clickEnable = false;
+
+                break;
+
+
             default:
                 break;
         }
@@ -193,6 +208,10 @@ public class EmptyLayout extends LinearLayout implements
 
     public void setOnLayoutClickListener(OnClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setTvNoDataContent(String msg) {
+        tv.setText(msg);
     }
 
     public void setTvNoDataContent() {

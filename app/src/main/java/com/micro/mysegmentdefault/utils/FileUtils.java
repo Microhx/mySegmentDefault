@@ -37,6 +37,8 @@ import java.util.Locale;
 
 public class FileUtils {
 
+    public static final String FILE_SUFFIX = "micro_";
+
     /**
      * 获取头条中中顶部数据，从assert文件夹中获取
      *
@@ -79,7 +81,7 @@ public class FileUtils {
     }
 
 
-    public static List<TagDataEntity.Item> getNewsTitleEntityList(int index) {
+    public static List<TagDataEntity.Item> getArticlesTitleEntityList(int index) {
         List<TagDataEntity.Item> mItemList = new ArrayList<>();
 
         TagDataEntity.Item item1 = new TagDataEntity.Item();
@@ -99,11 +101,11 @@ public class FileUtils {
         mItemList.add(item3);
 
         //get the chased tags ;
-        if (!TextUtils.isEmpty(UserLogic.getUserToken())) {
+        if (UserLogic.checkUserLogin()) {
             File saveFilePath = new File(SegmentApplication.getApplication().
-                    getExternalCacheDir().getAbsoluteFile() + "/" + UserLogic.getUserToken());
+                    getExternalCacheDir().getAbsoluteFile() ,FILE_SUFFIX +  UserLogic.getUserId());
 
-            if (null != saveFilePath && saveFilePath.exists()) {
+            if (saveFilePath.exists()) {
                 String content = IOUtils.getStringFromFile(saveFilePath);
                 addData(content, mItemList);
             }
@@ -114,12 +116,12 @@ public class FileUtils {
 
 
     public static TagDataEntity getUserTagDataEntity() {
-        if (TextUtils.isEmpty(UserLogic.getUserToken())) return null;
+        if (!UserLogic.checkUserLogin()) return null;
 
         File saveFilePath = new File(SegmentApplication.getApplication().
-                getExternalCacheDir().getAbsoluteFile() + "/" + UserLogic.getUserToken());
+                getExternalCacheDir().getAbsoluteFile() ,FILE_SUFFIX + UserLogic.getUserId());
 
-        if (null == saveFilePath || !saveFilePath.exists()) return null;
+        if (!saveFilePath.exists()) return null;
 
         String content = IOUtils.getStringFromFile(saveFilePath);
         TagDataEntity dataEntity = new TagDataEntity();
@@ -157,7 +159,7 @@ public class FileUtils {
      * @param tagItems
      */
     public static void saveTagDataEntity(Context ctx, List<TagDataEntity.Item> tagItems) {
-        if (TextUtils.isEmpty(UserLogic.getUserToken())) return;
+        if (!UserLogic.checkUserLogin()) return;
 
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject;
@@ -174,9 +176,10 @@ public class FileUtils {
             e.printStackTrace();
         }
 
-        IOUtils.saveString2File(jsonArray.toString(), ctx.getExternalCacheDir().getAbsolutePath() + "/" + UserLogic.getUserToken());
+        IOUtils.saveString2File(jsonArray.toString(),
+                                ctx.getExternalCacheDir().getAbsolutePath() +
+                                File.separator + FILE_SUFFIX + UserLogic.getUserId());
     }
-
 
     /**
      * 获取目标targetFile

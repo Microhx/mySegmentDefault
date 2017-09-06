@@ -181,6 +181,9 @@ public class UserLoginFragment extends AppCompatDialogFragment implements UserLo
                 //save user info
                 UserLogic.saveUserLoginInfo(entity.data);
                 dismiss();
+
+                //notify success
+                ToastUtils.showMessage(getActivity(),R.string.str_finish_login);
             }
         }else{
             ToastUtils.showMessage(getContext(),R.string.str_operation_error);

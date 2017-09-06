@@ -71,7 +71,7 @@ public class QuestionsFragment extends BaseFragment implements DialogInterface.O
         setHasOptionsMenu(true);
 
         mRightImage.setVisibility(View.VISIBLE);
-        mTitleEntityList = FileUtils.getNewsTitleEntityList(1);
+        mTitleEntityList = FileUtils.getArticlesTitleEntityList(1);
 
         mBasePageAdapter = new QuestionFragmentPagerAdapter(mTitleEntityList, getChildFragmentManager());
         mViewPager.setAdapter(mBasePageAdapter);
@@ -126,7 +126,7 @@ public class QuestionsFragment extends BaseFragment implements DialogInterface.O
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (null != event && event.type == -1) {
-            mTitleEntityList = FileUtils.getNewsTitleEntityList(1);
+            mTitleEntityList = FileUtils.getArticlesTitleEntityList(1);
             mBasePageAdapter.updateDataList(mTitleEntityList);
             mViewPager.setCurrentItem(mTitleEntityList.size() - 1);
         }
