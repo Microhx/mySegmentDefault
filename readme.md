@@ -1,6 +1,7 @@
 ### 项目介绍
-  高仿项目来源于<a href='https://segmentfault.com/'>segmentfault app</a>
-
+  高仿项目来源于<a href='https://segmentfault.com/'>segmentfault app</a><br/>
+  使用接口获取数据，使用<a href='http://www.cnblogs.com/lonelywolfmoutain/p/4233438.html'>jangod-template</a>注入到webview页面中,
+  然后展示相应的数据。
 
 ### 项目截图
 <a href="./screen_capture/main_toutiao.png"><img src="screen_capture/main_toutiao.png" width="33%"/></a>
@@ -25,7 +26,7 @@
   使用MVP架构
 
 ### issue
-   QQ:294097370
+   QQ:294097370<br/>
    email:<a href="mailto:javainstalling@163.com">javainstalling@163.com</a>
 
 ### version
@@ -33,8 +34,8 @@
      完成了页面逻辑，用户登录，用户信息修改，评价，收藏等基本常用功能.
 
 ### TODO
-    1.富文本编辑
-    2.第三方登录【这个不想做】
+    1.富文本编辑提交答案，写文章<br/>
+    2.文章内js逻辑
     3.使用React Native重构活动页面
     4.缓存设置
     5.用户socket聊天机制
