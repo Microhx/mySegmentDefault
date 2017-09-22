@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class UserTopRecyclerAdapter extends BaseRecyclerAdapter<TopUserEntity.UserItem> {
 
     public UserTopRecyclerAdapter(Context ctx) {
-        super(ctx);
+        super(ctx,NEITHER);
     }
 
     @Override

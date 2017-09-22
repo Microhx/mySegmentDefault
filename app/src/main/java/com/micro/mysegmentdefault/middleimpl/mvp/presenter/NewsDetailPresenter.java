@@ -71,7 +71,6 @@ public class NewsDetailPresenter extends NewsDetailContract.DetailPresenter {
                     mView.followUserResult(false,null);
                 }
 
-
             }
         }, new Action1<Throwable>() {
             @Override
@@ -81,7 +80,6 @@ public class NewsDetailPresenter extends NewsDetailContract.DetailPresenter {
                 mView.followUserResult(false,null);
             }
         });
-
 
     }
 }

@@ -46,6 +46,7 @@
                 android:id="@+id/id_tv_user_name"
                 style="@style/mine_fragment_tv_style"
                 android:layout_marginLeft="12dp"
+                android:textSize="18sp"
                 android:text="@string/str_login_register"
                 />
 

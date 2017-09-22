@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
+import com.micro.mysegmentdefault.entity.MessageEvent;
 import com.micro.mysegmentdefault.entity.OnlyData;
 import com.micro.mysegmentdefault.entity.UserLoginDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
@@ -25,6 +26,8 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.UserLoginPresenter;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.widget.MatchParentDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -180,10 +183,13 @@ public class UserLoginFragment extends AppCompatDialogFragment implements UserLo
             }else {
                 //save user info
                 UserLogic.saveUserLoginInfo(entity.data);
+
                 dismiss();
 
                 //notify success
                 ToastUtils.showMessage(getActivity(),R.string.str_finish_login);
+
+                notifyToChangeMineFragment();
             }
         }else{
             ToastUtils.showMessage(getContext(),R.string.str_operation_error);
@@ -204,10 +210,20 @@ public class UserLoginFragment extends AppCompatDialogFragment implements UserLo
                 this.dismiss();
                 //告知发布
                 ToastUtils.showMessage(getActivity(),R.string.str_finish_register);
+
+                //notify
+                notifyToChangeMineFragment();
             }
         }else {
             ToastUtils.showMessage(getActivity(),R.string.str_operation_error);
         }
+    }
+
+    //notify the user info changed
+    private void notifyToChangeMineFragment() {
+        MessageEvent event = new MessageEvent();
+        event.type = 4 ;
+        EventBus.getDefault().post(event);
     }
 
     @Override

@@ -3,11 +3,9 @@ package com.micro.mysegmentdefault.middleimpl.mvp.model;
 import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
-import com.micro.mysegmentdefault.middle.CommonContract;
 import com.micro.mysegmentdefault.network.Api;
 import com.micro.mysegmentdefault.network.RxSchedulers;
 import com.micro.mysegmentdefault.utils.CommonUtils;
-import com.micro.mysegmentdefault.utils.Constant;
 import com.micro.mysegmentdefault.utils.LogUtils;
 
 import rx.Observable;
@@ -24,7 +22,7 @@ public class HomeModel implements BaseRefreshModel<HomeDataEntity> {
 
     @Override
     public Observable<HomeDataEntity> getCommentListDatas(int type, String channel, int startPages) {
-        LogUtils.d("--------channel------------->>" + channel);
+        LogUtils.d("--------channel------------->>" + type + "----" + channel +"----" + startPages);
 
         if(type >= 0) {
             String[] info = channel.split("___");

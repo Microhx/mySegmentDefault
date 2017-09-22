@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.utils;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -20,6 +21,16 @@ import com.micro.mysegmentdefault.network.Api;
  */
 
 public class ImageUtils {
+
+    static int errorImage ;
+
+    static {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            errorImage = R.drawable.image_not_exist_24dp;
+        }else{
+            errorImage = R.drawable.error_404;
+        }
+    }
 
 
     public static void showLocalUserImage(String url , ImageView iv) {
@@ -45,13 +56,15 @@ public class ImageUtils {
             url = Api.BASE_URL + url;
         }
 
+        // for android api lower than 21 , the vector drawable will throw Exception
+
         Glide.with(SegmentApplication.getApplication())
                 .load(url)
                 .centerCrop()//裁剪
                 .crossFade(0)
                 .priority(Priority.LOW)
                 .placeholder(new ColorDrawable(Color.parseColor("#e6e6e6")))
-                .error(R.drawable.image_not_exist_24dp)
+                .error(errorImage)
                 .dontAnimate()
                 .into(iv);
     }

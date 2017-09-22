@@ -5,6 +5,7 @@ import com.micro.mysegmentdefault.base.mvp.presenter.BasePresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseView;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.entity.FollowDataEntity;
 import com.micro.mysegmentdefault.entity.NewsDetailDataEntity;
 import com.micro.mysegmentdefault.entity.OnlyData;
 
@@ -28,6 +29,8 @@ public interface ArticleDetailContract {
         void loadDataError();
 
         void zanOperation(BaseDataEntity entity) ;
+
+        void followUserResult(boolean result , String userId);
     }
 
 
@@ -35,6 +38,8 @@ public interface ArticleDetailContract {
         Observable<ArticleDetailEntity> getArticleDetailDataEntity(String newsId) ;
 
         Observable<BaseDataEntity> zanOperation(boolean isCancel,String newsId,String token);
+
+        Observable<FollowDataEntity> followOrCancelUser(boolean isCancel , String userId);
     }
 
     abstract class DetailPresenter extends BasePresenter<ArticleDetailView,ArticleDetailModel> {

@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.middleimpl.mvp.model;
 
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.entity.FollowDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.ArticleDetailContract;
 import com.micro.mysegmentdefault.network.Api;
@@ -34,6 +35,16 @@ public class ArticleDetailModel implements ArticleDetailContract.ArticleDetailMo
             return Api.getApiService(0).userDisLikeNewsDataEntity("article",newsId,token).compose(RxSchedulers.<BaseDataEntity>io_main());
         }else {
             return Api.getApiService(0).userLikeNewsDataEntity("article",newsId,token).compose(RxSchedulers.<BaseDataEntity>io_main());
+        }
+    }
+
+
+    @Override
+    public Observable<FollowDataEntity> followOrCancelUser(boolean isCancel, String userId) {
+        if(isCancel){
+            return Api.getApiService(0).userCancelFollowDataEntity(userId,UserLogic.getUserToken()).compose(RxSchedulers.<FollowDataEntity>io_main());
+        }else {
+            return Api.getApiService(0).userFollowDataEntity(userId,UserLogic.getUserToken()).compose(RxSchedulers.<FollowDataEntity>io_main());
         }
     }
 }

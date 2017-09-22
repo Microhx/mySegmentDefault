@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.entity.FollowDataEntity;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.middle.ArticleDetailContract;
 import com.micro.mysegmentdefault.utils.LogUtils;
@@ -52,6 +53,28 @@ public class ArticleDetailPresenter extends ArticleDetailContract.DetailPresente
             public void call(Throwable throwable) {
                 LogUtils.d("article zan error : " + throwable);
                 mView.zanOperation(null);
+            }
+        });
+    }
+
+
+    public void followOrCancelUser(boolean isCancel, String userId) {
+        mModel.followOrCancelUser(isCancel,userId).subscribe(new Action1<FollowDataEntity>() {
+            @Override
+            public void call(FollowDataEntity entity) {
+                if(entity != null && entity.data != null ) {
+                    mView.followUserResult(entity.status == 0 , entity.data.id);
+                }else{
+                    mView.followUserResult(false,null);
+                }
+
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                LogUtils.d("---followOrCancelUser error : " + throwable);
+
+                mView.followUserResult(false,null);
             }
         });
 

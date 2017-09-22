@@ -3,6 +3,8 @@ package com.micro.mysegmentdefault.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.micro.mysegmentdefault.cache.CacheDBImpl;
+
 /**
  * author : micro_hx <p>
  * desc : <p>
@@ -21,6 +23,9 @@ public class SegmentApplication extends Application {
     public void onCreate() {
         super.onCreate();
         this.mCtx = this ;
+
+        //init DB
+        CacheDBImpl.getInstance() ;
     }
 
     public static Context getApplication() {

@@ -3,6 +3,7 @@ package com.micro.mysegmentdefault.ui;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
@@ -97,6 +98,9 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
             //替换图片文件
             content = FileUtils.replaceAllImagePath(content);
 
+            //加载本地javaBean对象
+            mWebView.addJavascriptInterface(new Sf(),"sf");
+
             //加载本地数据
             mWebView.loadDataWithBaseURL("file:///android_asset/", content, "text/html", "utf-8", null);
             return;
@@ -158,6 +162,7 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
     }
 
 
+
     /**
      * 添加到自己的markbook
      *
@@ -169,6 +174,13 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
 
         if(checkUserLogin()){
             UserAddCollectionActivity.start(this, 1,mNewsId);
+        }
+    }
+
+    private void addUserFollow(String followerId , String otherInfo) {
+        if(mDataEntity == null) return;
+        if(checkUserLogin()) {
+            mPresenter.followOrCancelUser(mDataEntity.getUser().isIsFollowed() , followerId);
         }
     }
 
@@ -204,10 +216,41 @@ public class ArticleDetailActivity extends CommonWebActivity<ArticleDetailPresen
         LogUtils.d("get Article detail error ");
     }
 
-
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
+    }
+
+
+    @Override
+    public void followUserResult(boolean result, String userId) {
+        if(result) {
+            LogUtils.d("----result------>>" + result + "----------userId---------->>" + userId);
+            mDataEntity.getUser().setIsFollowed(!mDataEntity.getUser().isIsFollowed());
+
+        }
+    }
+
+
+    class Sf {
+        @JavascriptInterface
+        public void followAuthor(final String followerId , final String info){
+            LogUtils.d("---------followerId----------->>" + followerId + "---->>info---->>"+info);
+            if(!TextUtils.isEmpty(followerId) && followerId.startsWith("x")){
+                final String newfollowerId = followerId.substring(1);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        addUserFollow(newfollowerId,info);
+                    }
+                });
+            }else {
+                showToast(R.string.str_get_data_error);
+            }
+
+
+        }
     }
 }
