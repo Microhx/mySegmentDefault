@@ -51,7 +51,8 @@ public class HomeModel extends BaseListCacheModel<BaseRequestData<NewToutiaoList
 
             return Api.
                    getApiService(0).
-                   getHomeDataEntityList(path, UserLogic.getUserToken(),realChannel,startPages);
+                   getHomeDataEntityList(path, UserLogic.getUserToken(),realChannel,startPages).
+                   compose(RxSchedulers.<BaseRequestData<NewToutiaoListData>>io_main());
         }
 
         return Api.

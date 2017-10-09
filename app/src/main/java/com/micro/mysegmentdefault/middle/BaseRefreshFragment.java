@@ -43,7 +43,7 @@ public abstract class BaseRefreshFragment<
                       D extends BaseDataInterface>
 
         extends BaseFragment<T, E>
-        implements RecyclerRefreshLayout.SuperRefreshLayoutListener, BaseRefreshView<D> {
+        implements RecyclerRefreshLayout.SuperRefreshLayoutListener, BaseRefreshView<D>,BaseRecyclerAdapter.OnFooterClickListener {
 
     //默认page值
     protected static final int PAGE_STEP = Constant.PAGE_STEP;
@@ -83,8 +83,11 @@ public abstract class BaseRefreshFragment<
         initBottomLayout();
 
         mBaseRecyclerAdapter = getRecyclerAdapter();
+        mBaseRecyclerAdapter.setOnFooterClickListener(this);
+
         defaultSettingLayoutManager();
         defaultSettingLayoutDecoration();
+
         mRecyclerView.setAdapter(mBaseRecyclerAdapter);
         mRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.app_theme_color));
         mRefreshLayout.setSuperRefreshLayoutListener(this);
@@ -226,4 +229,11 @@ public abstract class BaseRefreshFragment<
         mEmptyLayout.setErrorType(NODATA);
     }
 
+    @Override
+    public void onFooterClick(int state) {
+        if(state == BaseRecyclerAdapter.STATE_LOAD_ERROR || state == BaseRecyclerAdapter.STATE_INVALID_NETWORK) {
+            mBaseRecyclerAdapter.setState(BaseRecyclerAdapter.STATE_LOADING, true);
+            onLoadMore();
+        }
+    }
 }

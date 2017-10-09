@@ -11,10 +11,10 @@
 
 
     <!--footer loading status-->
-    <string name="state_network_error">网络错误</string>
+    <string name="state_network_error">网络错误,点击重新加载</string>
     <string name="state_loading">正在加载…</string>
     <string name="state_not_more">没有更多数据</string>
-    <string name="state_load_error">加载失败</string>
+    <string name="state_load_error">加载失败,点击重新加载</string>
     <string name="state_refreshing">正在刷新</string>
     <string name="state_loading_error">数据加载中&#8230;</string>
 

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
+import com.micro.mysegmentdefault.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +50,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
 
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
+    private OnFooterClickListener onFooterClickListener ;
 
     private OnClickListener onClickListener;
     private OnLongClickListener onLongClickListener;
-
 
     protected View mHeaderView;
 
@@ -111,7 +112,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
                     throw new IllegalArgumentException("you have to impl the interface when using this viewType");
 
             case VIEW_TYPE_FOOTER:
-                return new FooterViewHolder(mInflater.inflate(R.layout.recycler_footer_view, parent, false));
+                    return new FooterViewHolder(mInflater.inflate(R.layout.recycler_footer_view, parent, false));
 
             default:
                 final RecyclerView.ViewHolder holder = onCreateDefaultViewHolder(parent, viewType);
@@ -131,9 +132,20 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
                 if (onLoadingHeaderCallBack != null)
                     onLoadingHeaderCallBack.onBindHeaderHolder(holder, position);
                 break;
+
             case VIEW_TYPE_FOOTER:
                 FooterViewHolder fvh = (FooterViewHolder) holder;
                 fvh.itemView.setVisibility(View.VISIBLE);
+
+                if(null != onFooterClickListener){
+                    fvh.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onFooterClickListener.onFooterClick(mState);
+                        }
+                    });
+                }
+
                 switch (mState) {
                     case STATE_INVALID_NETWORK:
                         fvh.tv_footer.setText(mContext.getResources().getString(R.string.state_network_error));
@@ -352,9 +364,20 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         this.onItemLongClickListener = onItemLongClickListener;
     }
 
+
+    /**
+     * 设置footerClickListener
+     * @param onFooterClickListener
+     */
+    public void setOnFooterClickListener(OnFooterClickListener onFooterClickListener) {
+        this.onFooterClickListener = onFooterClickListener;
+    }
+
+
     public final void setOnLoadingHeaderCallBack(OnLoadingHeaderCallBack listener) {
         onLoadingHeaderCallBack = listener;
     }
+
 
     /**
      * 可以共用同一个listener，相对高效
@@ -395,6 +418,17 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
     public interface OnItemLongClickListener {
         void onLongClick(int position, long itemId);
     }
+
+
+    /**
+     * footer点击动作
+     */
+    public interface OnFooterClickListener {
+        void onFooterClick(int state);
+
+    }
+
+
 
     /**
      * for load header view
