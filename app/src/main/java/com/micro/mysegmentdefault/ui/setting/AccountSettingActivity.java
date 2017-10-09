@@ -1,6 +1,5 @@
 package com.micro.mysegmentdefault.ui.setting;
 
-import android.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;

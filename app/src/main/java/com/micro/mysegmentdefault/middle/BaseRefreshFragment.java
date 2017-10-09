@@ -14,7 +14,9 @@ import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
 import com.micro.mysegmentdefault.entity.PageEntity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
+import com.micro.mysegmentdefault.utils.Constant;
 import com.micro.mysegmentdefault.utils.LogUtils;
+import com.micro.mysegmentdefault.utils.ToastUtils;
 import com.micro.mysegmentdefault.view.recyclerview.RecycleViewDivider2;
 import com.micro.mysegmentdefault.view.recyclerview.RecyclerRefreshLayout;
 import com.micro.mysegmentdefault.view.widget.EmptyLayout;
@@ -34,14 +36,17 @@ import static com.micro.mysegmentdefault.view.widget.EmptyLayout.NODATA;
  * interface :
  */
 
-public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
-        E extends BaseRefreshModel,
-        D extends BaseDataInterface>
+
+public abstract class BaseRefreshFragment<
+                      T extends BaseRefreshPresenter,
+                      E extends BaseRefreshModel,
+                      D extends BaseDataInterface>
+
         extends BaseFragment<T, E>
         implements RecyclerRefreshLayout.SuperRefreshLayoutListener, BaseRefreshView<D> {
 
     //默认page值
-    protected static final int PAGE_STEP = 1;
+    protected static final int PAGE_STEP = Constant.PAGE_STEP;
 
     //当前Page值
     private int mStartPages = 1;
@@ -139,7 +144,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         if (startPages == PAGE_STEP) {
             if (CommonUtils.collectionIsNull(mDataList)) {
                 LogUtils.d("startPages:" + startPages + ",mDataList is null");
-                defaultSetEmptyPage();
+                whenGetNullContent();
                 return;
             }
 
@@ -162,6 +167,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
         mRefreshLayout.onComplete();
     }
 
+
     @Override
     public void getRequestError(int startPage) {
         if (startPage > PAGE_STEP) {
@@ -170,9 +176,7 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
             mBaseRecyclerAdapter.setState(BaseRecyclerAdapter.STATE_LOAD_ERROR, true);
         } else {
             if(null == mEmptyLayout) return;
-
-            mEmptyLayout.setVisibility(View.VISIBLE);
-            mEmptyLayout.setErrorType(NETWORK_ERROR);
+            whenGetNullContent();
         }
     }
 
@@ -203,6 +207,16 @@ public abstract class BaseRefreshFragment<T extends BaseRefreshPresenter,
             mEmptyLayout.setVisibility(View.VISIBLE);
         }
     }
+
+
+    private void whenGetNullContent() {
+        if(mBaseRecyclerAdapter.getCount() > 0) {
+            ToastUtils.showMessage(getContext(),R.string.state_load_error);
+        }else {
+            defaultSetEmptyPage();
+        }
+    }
+
 
     /**
      * 默认显示空页面

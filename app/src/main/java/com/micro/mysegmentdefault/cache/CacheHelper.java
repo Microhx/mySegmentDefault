@@ -1,5 +1,6 @@
 package com.micro.mysegmentdefault.cache;
 
+import com.micro.mysegmentdefault.entity.CacheStateBean;
 import com.micro.mysegmentdefault.utils.MD5Utils;
 
 /**
@@ -24,8 +25,15 @@ public class CacheHelper {
         return helper;
     }
 
-    public boolean cacheExist(int type, String channel, int startPage) {
-        return cacheDB.cacheExist(keepCacheName(type,channel,startPage));
+    /**
+     * 判断缓存是否存在 是否过期 是否为今天第一次请求
+     * @param type
+     * @param channel
+     * @param startPage
+     * @return
+     */
+    public CacheStateBean getCacheInfo(int type, String channel, int startPage) {
+        return cacheDB.getCacheInfo(keepCacheName(type,channel,startPage));
     }
 
 
@@ -48,7 +56,6 @@ public class CacheHelper {
     public void saveCache(int type,String channel,int startPage,String cacheInfo) {
         cacheDB.saveCache(keepCacheName(type,channel,startPage), cacheInfo);
     }
-
 
     public static String keepCacheName(int type,String channel,int startPage) {
         return MD5Utils.md5(type + "_" + channel +"__" + startPage);

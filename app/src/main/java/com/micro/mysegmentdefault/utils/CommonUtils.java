@@ -2,7 +2,6 @@ package com.micro.mysegmentdefault.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -14,12 +13,11 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.entity.SearchDataEntity;
+import com.micro.mysegmentdefault.entity.NewToutiaoListData;
 import com.micro.mysegmentdefault.network.Api;
 
 import java.util.Collection;
 import java.util.List;
-
-import retrofit2.Retrofit;
 
 /**
  * author : micro_hx <p>
@@ -82,6 +80,12 @@ public class CommonUtils {
         if (collectionIsNull(list)) return "";
         return "#" + list.get(0).name;
     }
+
+    public static String getToutiaoTagTagList(List<NewToutiaoListData.NewsTypes> list) {
+        if (collectionIsNull(list)) return "";
+        return "#" + list.get(0).name;
+    }
+
 
     public static String convertList2String(List<String> list) {
         StringBuilder sb = new StringBuilder();

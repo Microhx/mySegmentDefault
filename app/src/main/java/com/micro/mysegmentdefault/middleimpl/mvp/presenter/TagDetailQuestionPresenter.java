@@ -1,16 +1,9 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
-import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
-import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
+import com.micro.mysegmentdefault.base.mvp.presenter.BaseListCachePresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
-import com.micro.mysegmentdefault.entity.PageEntity;
-import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
-import com.micro.mysegmentdefault.middle.CommonContract;
-import com.micro.mysegmentdefault.utils.LogUtils;
-
-import java.util.List;
-
-import rx.functions.Action1;
+import com.micro.mysegmentdefault.entity.NewQuestionListData;
+import com.micro.mysegmentdefault.middleimpl.mvp.model.TagDetailQuestionModel;
 
 /**
  * author : micro_hx <p>
@@ -20,30 +13,6 @@ import rx.functions.Action1;
  * interface :
  */
 
-public class TagDetailQuestionPresenter extends
-        BaseRefreshPresenter<BaseRefreshView<TagDetailQuestionEntity.Item>,BaseRefreshModel<TagDetailQuestionEntity>> {
+public class TagDetailQuestionPresenter extends BaseListCachePresenter<BaseRefreshView,TagDetailQuestionModel,NewQuestionListData> {
 
-    @Override
-    public void getCommonListDatas(int type, String channel, final int startPages) {
-        mModel.getCommentListDatas(type, channel, startPages).subscribe(new Action1<TagDetailQuestionEntity>() {
-            @Override
-            public void call(TagDetailQuestionEntity tagDetailQuestionEntity) {
-                if(null != tagDetailQuestionEntity && tagDetailQuestionEntity.status == 0) {
-                    List<TagDetailQuestionEntity.Item> itemList = tagDetailQuestionEntity.data.rows;
-                    PageEntity page = tagDetailQuestionEntity.data.page;
-
-                    mView.getCommonListDatas(startPages,itemList,page);
-
-                }else {
-                    mView.getRequestError(startPages);
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                LogUtils.d("TagDetailQuestion error:" + throwable);
-                mView.getRequestError(startPages);
-            }
-        });
-    }
 }

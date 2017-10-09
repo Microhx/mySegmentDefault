@@ -41,7 +41,6 @@ public class UserTagDetailActivity extends BaseActivity<TagDetailPresenter,TagDe
     public static final String TAG_NAME = "tag_name";
     public static final String TAG_ID = "tag_id";
 
-
     @Bind(R.id.id_pub_title)
     PublicHeadLayout mTitle ;
 

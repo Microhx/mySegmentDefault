@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.SegmentApplication;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
+import com.micro.mysegmentdefault.entity.NewQuestionListData;
 import com.micro.mysegmentdefault.ui.QuestionDetailActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
-public class TagDetailQuestionRecyclerAdapter extends BaseRecyclerAdapter<TagDetailQuestionEntity.Item> {
+public class TagDetailQuestionRecyclerAdapter extends BaseRecyclerAdapter<NewQuestionListData> {
 
     public static final int GREEN_BACKGROUND_COLOR = Color.parseColor("#EFF9F6");
     public static final int GRAY_BACKGROUND_COLOR = Color.parseColor("#C8C7C8");
@@ -49,7 +49,7 @@ public class TagDetailQuestionRecyclerAdapter extends BaseRecyclerAdapter<TagDet
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, TagDetailQuestionEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, NewQuestionListData item, int position) {
         QuestionViewHolder questionHolder = (QuestionViewHolder) holder;
         questionHolder.mTvTitle.setText(item.title);
         questionHolder.mTvPublishTime.setText(item.createdDate);
@@ -68,7 +68,7 @@ public class TagDetailQuestionRecyclerAdapter extends BaseRecyclerAdapter<TagDet
         addTagItemsListeners(questionHolder,item);
     }
 
-    private void addTagItemsListeners(QuestionViewHolder questionHolder, final TagDetailQuestionEntity.Item  item) {
+    private void addTagItemsListeners(QuestionViewHolder questionHolder, final NewQuestionListData  item) {
         questionHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,11 +77,11 @@ public class TagDetailQuestionRecyclerAdapter extends BaseRecyclerAdapter<TagDet
         });
     }
 
-    private void addTagItems(QuestionViewHolder questionHolder, TagDetailQuestionEntity.Item item) {
+    private void addTagItems(QuestionViewHolder questionHolder, NewQuestionListData item) {
         questionHolder.mTagLayout.removeAllViews();
 
         if(!CommonUtils.collectionIsNull(item.tags)) {
-            for(TagDetailQuestionEntity.Tag tag : item.tags) {
+            for(NewQuestionListData.Tag tag : item.tags) {
                 TextView tv = new TextView(SegmentApplication.getApplication());
                 tv.setBackgroundColor(GREEN_BACKGROUND_COLOR);
                 tv.setText(tag.name);

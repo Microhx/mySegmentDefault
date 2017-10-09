@@ -1,17 +1,9 @@
 package com.micro.mysegmentdefault.middleimpl.mvp.presenter;
 
-import com.micro.mysegmentdefault.base.mvp.model.BaseRefreshModel;
-import com.micro.mysegmentdefault.base.mvp.presenter.BaseRefreshPresenter;
+import com.micro.mysegmentdefault.base.mvp.presenter.BaseListCachePresenter;
 import com.micro.mysegmentdefault.base.mvp.view.BaseRefreshView;
-import com.micro.mysegmentdefault.entity.HomeDataEntity;
-import com.micro.mysegmentdefault.entity.PageEntity;
-import com.micro.mysegmentdefault.entity.TitleEntity;
-import com.micro.mysegmentdefault.middle.CommonContract;
-import com.micro.mysegmentdefault.utils.LogUtils;
-
-import java.util.List;
-
-import rx.functions.Action1;
+import com.micro.mysegmentdefault.entity.NewToutiaoListData;
+import com.micro.mysegmentdefault.middleimpl.mvp.model.HomeModel;
 
 /**
  * author : micro_hx <p>
@@ -21,26 +13,8 @@ import rx.functions.Action1;
  * interface :
  */
 
-public class ToutiaoPresenter extends BaseRefreshPresenter<BaseRefreshView<HomeDataEntity.Item>,BaseRefreshModel<HomeDataEntity>>{
+public class ToutiaoPresenter extends BaseListCachePresenter<BaseRefreshView,HomeModel,NewToutiaoListData>{
 
-    @Override
-    public void getCommonListDatas(int type, String channel, final int startPages) {
-        mModel.getCommentListDatas(type,channel,startPages).
-              subscribe(new Action1<HomeDataEntity>() {
-            @Override
-            public void call(HomeDataEntity homeDataEntity) {
-                if(null != homeDataEntity && null!=homeDataEntity.data) {
-                    List<HomeDataEntity.Item> itemList = homeDataEntity.data.rows;
-                    PageEntity pageEntity = homeDataEntity.data.page;
-                    mView.getCommonListDatas(startPages,itemList,pageEntity);
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                LogUtils.d("homePresenter,get data error:" + throwable);
-                mView.getRequestError(startPages);
-            }
-        });
-    }
+    //TODO
+
 }

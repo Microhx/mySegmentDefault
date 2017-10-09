@@ -13,4 +13,5 @@ import rx.Observable;
 public interface BaseRefreshModel<D> extends BaseModel {
 
     Observable<D> getCommentListDatas(int type, String channel, int startPages) ;
+
 }

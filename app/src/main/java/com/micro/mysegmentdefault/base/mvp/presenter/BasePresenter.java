@@ -16,20 +16,13 @@ public abstract class BasePresenter<T,E>  {
     public T mView ;
     public E mModel ;
 
-
     public void setVM(T t , E e) {
         this.mView = t ;
         this.mModel = e ;
         this.onStart();
     }
 
-    public void onStart() {
-
-    }
-
-
-
-
+    public void onStart() {}
 
 
 }

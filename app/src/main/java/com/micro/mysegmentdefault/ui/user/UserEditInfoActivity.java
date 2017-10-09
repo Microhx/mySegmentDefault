@@ -45,7 +45,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEditModel> implements PictureChooseDialog.PictureChooseInterface, UserEditContract.AbsUserEditView, SexChooseDialog.OnSexChooseInterface, TagListLayout.onItemClickListener {
+public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEditModel> implements
+        PictureChooseDialog.PictureChooseInterface,
+        UserEditContract.AbsUserEditView,
+        SexChooseDialog.OnSexChooseInterface,
+        TagListLayout.onItemClickListener {
 
     @Bind(R.id.id_iv_user_icon)
     CircleImageView mUserIcon;

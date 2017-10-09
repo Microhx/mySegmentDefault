@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.utils;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * author : micro_hx <p>
@@ -18,11 +19,11 @@ public class ClassUtils {
             return ((Class<T>) ((ParameterizedType)
                     (o.getClass().getGenericSuperclass())).getActualTypeArguments()[i]).newInstance();
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         } catch (ClassCastException e) {
-             e.printStackTrace();
+            // e.printStackTrace();
         }
         return null;
     }
@@ -36,6 +37,31 @@ public class ClassUtils {
         }
         return null;
     }
+
+
+    public static ParameterizedType type(final Class raw, final Type... types) {
+        return new ParameterizedType() {
+            @Override
+            public Type[] getActualTypeArguments() {
+                return types;
+            }
+
+            @Override
+            public Type getRawType() {
+                return raw;
+            }
+
+            @Override
+            public Type getOwnerType() {
+                return null;
+            }
+        } ;
+    }
+
+
+
+
+
 
 
 }

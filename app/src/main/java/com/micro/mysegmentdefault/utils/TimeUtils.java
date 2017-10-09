@@ -1,7 +1,5 @@
 package com.micro.mysegmentdefault.utils;
 
-import android.os.SystemClock;
-
 /**
  * author : micro_hx <p>
  * desc : 时间操作对象<p>
@@ -20,6 +18,18 @@ public class TimeUtils {
 
         return System.currentTimeMillis();
     }
+
+
+    /**
+     * 获取差值时间
+     * @param setTime
+     * @return
+     */
+    public static long getCurrentOffsetTime(long setTime) {
+        return System.currentTimeMillis() - setTime ;
+    }
+
+
 
 
 }

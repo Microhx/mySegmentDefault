@@ -67,11 +67,10 @@ public abstract class AbBaseAttentionActivity<T extends BaseRefreshPresenter,
     }
 
 
-    protected static final int GREEN_BACKGROUND_COLOR = Color.parseColor("#EFF9F6");
-    protected static final int GRAY_BACKGROUND_COLOR = Color.parseColor("#EFEEF0");
+    public static final int GREEN_BACKGROUND_COLOR = Color.parseColor("#EFF9F6");
+    public static final int GRAY_BACKGROUND_COLOR = Color.parseColor("#EFEEF0");
 
-    protected static final int GREEN_TEXT_COLOR = Color.parseColor("#0C9F69");
-    protected static final int GRAY_TEXT_COLOR = Color.parseColor("#9D9C9D");
-
+    public static final int GREEN_TEXT_COLOR = Color.parseColor("#0C9F69");
+    public static final int GRAY_TEXT_COLOR = Color.parseColor("#9D9C9D");
 
 }

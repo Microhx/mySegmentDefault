@@ -1,10 +1,15 @@
 package com.micro.mysegmentdefault.cache;
 
+import android.text.TextUtils;
+
 import com.micro.mysegmentdefault.base.SegmentApplication;
 import com.micro.mysegmentdefault.entity.CacheBean;
+import com.micro.mysegmentdefault.entity.CacheStateBean;
 import com.micro.mysegmentdefault.greendao.gen.CacheBeanDao;
 import com.micro.mysegmentdefault.greendao.gen.DaoMaster;
 import com.micro.mysegmentdefault.greendao.gen.DaoSession;
+import com.micro.mysegmentdefault.utils.Constant;
+import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.TimeUtils;
 
 /**
@@ -43,9 +48,25 @@ public class CacheDBImpl implements CacheDB {
     }
 
     @Override
-    public boolean cacheExist(String cacheName) {
+    public CacheStateBean getCacheInfo(String cacheName) {
+        CacheStateBean stateBean = new CacheStateBean();
+
         CacheBeanDao cacheBeanDao = mDaoSession.getCacheBeanDao();
-        return cacheBeanDao.load(cacheName) != null ;
+        final CacheBean cacheBean = cacheBeanDao.load(cacheName);
+        stateBean.cacheBean = cacheBean;
+        stateBean.isNormal = false;
+
+        if(cacheBean != null && !TextUtils.isEmpty(cacheBean.getCacheInfo())) {
+            //缓存存在 此时需要判断时间的有效性 判断缓存5m之后过期时间
+
+            LogUtils.d("-----cacheSetting time------" + cacheBean.getAddTime() + "----set time----" + TimeUtils.getCurrentOffsetTime(cacheBean.getAddTime()));
+
+            if(TimeUtils.getCurrentOffsetTime(cacheBean.getAddTime()) < Constant.CACHE_DEAD_TIME) {
+                stateBean.isNormal = true ;
+            }
+        }
+
+        return stateBean;
     }
 
     @Override
@@ -70,6 +91,6 @@ public class CacheDBImpl implements CacheDB {
         bean.setCacheName(cacheName);
         bean.setOther("");
 
-        cacheBeanDao.insert(bean);
+        cacheBeanDao.insertOrReplace(bean);
     }
 }

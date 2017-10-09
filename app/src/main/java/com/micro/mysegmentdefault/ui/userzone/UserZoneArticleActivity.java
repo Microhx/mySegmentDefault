@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
-import com.micro.mysegmentdefault.entity.ArticleDataEntity;
+import com.micro.mysegmentdefault.entity.NewCategoryListData;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.ArticleModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ArticlePresenter;
 import com.micro.mysegmentdefault.network.Api;
@@ -26,7 +26,7 @@ import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
  * interface :
  */
 
-public class UserZoneArticleActivity extends AbBaseAttentionActivity<ArticlePresenter,ArticleModel,ArticleDataEntity.Item> {
+public class UserZoneArticleActivity extends AbBaseAttentionActivity<ArticlePresenter,ArticleModel,NewCategoryListData> {
 
     private String uid;
 
@@ -60,7 +60,7 @@ public class UserZoneArticleActivity extends AbBaseAttentionActivity<ArticlePres
     }
 
     @Override
-    protected void convertData(ViewHolderHelper holder, final ArticleDataEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final NewCategoryListData item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title).
                 setTextView(R.id.id_tv_content,item.excerpt).
                 setTextView(R.id.id_tv_vote_comment,item.votes + "人点赞  " + item.bookmarks + "人收藏").

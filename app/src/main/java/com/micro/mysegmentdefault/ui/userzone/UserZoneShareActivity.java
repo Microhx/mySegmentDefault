@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.micro.mysegmentdefault.R;
-import com.micro.mysegmentdefault.entity.HomeDataEntity;
+import com.micro.mysegmentdefault.entity.NewToutiaoListData;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.HomeModel;
 import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ToutiaoPresenter;
 import com.micro.mysegmentdefault.network.Api;
@@ -27,7 +27,7 @@ import com.micro.mysegmentdefault.view.recyclerview.ViewHolderHelper;
  * interface :
  */
 
-public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresenter, HomeModel, HomeDataEntity.Item> {
+public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresenter, HomeModel, NewToutiaoListData> {
 
     @Override
     protected int getItemLayoutId() {
@@ -60,14 +60,13 @@ public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresen
         return uid;
     }
 
-
     @Override
-    protected void convertData(ViewHolderHelper holder, final HomeDataEntity.Item item, int position) {
+    protected void convertData(ViewHolderHelper holder, final NewToutiaoListData item, int position) {
         holder.setTextView(R.id.id_tv_title,item.title).
                 setTextView(R.id.id_tv_time,item.user.name + " " + item.createdDate).
                 setTextView(R.id.id_tv_vote,item.votesWord).
                 setTextView(R.id.id_tv_comment,item.comments).
-                setTextView(R.id.id_tv_tag, CommonUtils.getArticleTagList(item.newsTypes));
+                setTextView(R.id.id_tv_tag, CommonUtils.getToutiaoTagTagList(item.newsTypes));
 
         if(TextUtils.isEmpty(item.readFirstImg)) {
             holder.setViewGone(R.id.id_iv_icon,true);
@@ -86,7 +85,6 @@ public class UserZoneShareActivity extends AbBaseAttentionActivity<ToutiaoPresen
                 }else{
                     ToastUtils.showMessage(mContext,"url无效");
                 }
-
             }
         }) ;
     }

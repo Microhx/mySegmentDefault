@@ -19,6 +19,15 @@ public class Constant {
     public static String TOKEN = "2927cd6b640080e1aa291d3cc251c622_4b8c564889c1b70b679b61f6eb347a40";
 
 
+    //首页
+    public static final int PAGE_STEP = 1 ;
+
+    //缓存失效时间为5m
+    public static final long CACHE_DEAD_TIME = 1000 * 5 * 60  ;
+
+
+
+
 
 
 }

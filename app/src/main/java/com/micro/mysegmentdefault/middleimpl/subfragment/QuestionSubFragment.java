@@ -1,8 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.subfragment;
 
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.TagDetailDataEntity;
-import com.micro.mysegmentdefault.entity.TagDetailQuestionEntity;
+import com.micro.mysegmentdefault.entity.NewQuestionListData;
 import com.micro.mysegmentdefault.middle.BaseRefreshFragment;
 import com.micro.mysegmentdefault.middleimpl.adapter.TagDetailQuestionRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.TagDetailQuestionModel;
@@ -16,7 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.TagDetailQuestionPres
  * interface :
  */
 
-public class QuestionSubFragment extends BaseRefreshFragment<TagDetailQuestionPresenter,TagDetailQuestionModel,TagDetailQuestionEntity.Item> {
+public class QuestionSubFragment extends BaseRefreshFragment<TagDetailQuestionPresenter,TagDetailQuestionModel,NewQuestionListData> {
 
     private String mTagId;
     private int mPosition ;
@@ -28,7 +27,7 @@ public class QuestionSubFragment extends BaseRefreshFragment<TagDetailQuestionPr
     }
 
     @Override
-    protected BaseRecyclerAdapter getRecyclerAdapter() {
+    protected BaseRecyclerAdapter<NewQuestionListData> getRecyclerAdapter() {
         return new TagDetailQuestionRecyclerAdapter(getActivity());
     }
 
@@ -36,7 +35,6 @@ public class QuestionSubFragment extends BaseRefreshFragment<TagDetailQuestionPr
     protected String getDefaultChannel() {
         return mTagId;
     }
-
 
     @Override
     protected int getCommonType() {

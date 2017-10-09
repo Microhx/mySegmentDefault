@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.ArticleDataEntity;
+import com.micro.mysegmentdefault.entity.NewCategoryListData;
 import com.micro.mysegmentdefault.ui.ArticleDetailActivity;
 
 import butterknife.Bind;
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
-public class NewsRecyclerAdapter extends BaseRecyclerAdapter<ArticleDataEntity.Item> {
+public class NewsRecyclerAdapter extends BaseRecyclerAdapter<NewCategoryListData> {
 
     public NewsRecyclerAdapter(Context ctx) {
         super(ctx);
@@ -35,7 +35,7 @@ public class NewsRecyclerAdapter extends BaseRecyclerAdapter<ArticleDataEntity.I
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final ArticleDataEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final NewCategoryListData item, int position) {
         NewsViewHolder newsHolder = (NewsViewHolder) holder;
 
         newsHolder.id_tv_title.setText(item.title);

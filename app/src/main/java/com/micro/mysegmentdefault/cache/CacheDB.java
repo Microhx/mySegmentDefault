@@ -1,5 +1,7 @@
 package com.micro.mysegmentdefault.cache;
 
+import com.micro.mysegmentdefault.entity.CacheStateBean;
+
 /**
  * author : micro_hx <p>
  * desc : <p>
@@ -10,7 +12,7 @@ package com.micro.mysegmentdefault.cache;
 
 public interface CacheDB {
 
-     boolean cacheExist(String cacheName) ;
+     CacheStateBean getCacheInfo(String cacheName) ;
 
 
      String getTargetCache(String cacheName) ;

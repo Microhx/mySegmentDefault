@@ -5,15 +5,14 @@ import com.micro.mysegmentdefault.entity.ActionDataEntity;
 import com.micro.mysegmentdefault.entity.ActivityDetailDataEntity;
 import com.micro.mysegmentdefault.entity.ArticleDetailEntity;
 import com.micro.mysegmentdefault.entity.BaseDataEntity;
+import com.micro.mysegmentdefault.entity.BaseRequestData;
 import com.micro.mysegmentdefault.entity.CommonResult;
 import com.micro.mysegmentdefault.entity.DiscoverDataEntity;
 import com.micro.mysegmentdefault.entity.FollowDataEntity;
-import com.micro.mysegmentdefault.entity.HomeDataEntity;
 import com.micro.mysegmentdefault.entity.LocationDataEntity;
 import com.micro.mysegmentdefault.entity.MessageDataEntity;
 import com.micro.mysegmentdefault.entity.NewCollectionDataEntity;
 import com.micro.mysegmentdefault.entity.NewsCommentDataEntity;
-import com.micro.mysegmentdefault.entity.ArticleDataEntity;
 import com.micro.mysegmentdefault.entity.NewsDetailDataEntity;
 import com.micro.mysegmentdefault.entity.NoteDataEntity;
 import com.micro.mysegmentdefault.entity.NoteDetailDataEntity;
@@ -46,6 +45,9 @@ import com.micro.mysegmentdefault.entity.UserPrivateEventDataEntity;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDetailDataEntity;
 import com.micro.mysegmentdefault.entity.UserRecordEntity;
 import com.micro.mysegmentdefault.entity.UserTimeLineDataEntity;
+import com.micro.mysegmentdefault.entity.NewCategoryListData;
+import com.micro.mysegmentdefault.entity.NewQuestionListData;
+import com.micro.mysegmentdefault.entity.NewToutiaoListData;
 
 import java.util.Map;
 
@@ -80,7 +82,7 @@ public interface ApiService {
      */
 
     @GET("news/{path}")
-    Observable<HomeDataEntity> getHomeDataEntityList(
+    Observable<BaseRequestData<NewToutiaoListData>> getHomeDataEntityList(
                                                      @Path(("path")) String path,
                                                      @Query("token") String token,
                                                      @Query("channel") String channel,
@@ -88,11 +90,11 @@ public interface ApiService {
 
     //https://api.segmentfault.com/article/newest?page=1
     @GET("article/{path}")
-    Observable<ArticleDataEntity> getNewsBaseDataEntityList(@Path("path") String path, @Query("page") String page);
+    Observable<BaseRequestData<NewCategoryListData>> getNewsBaseDataEntityList(@Path("path") String path, @Query("page") String page);
 
     //https://api.segmentfault.com/article/tagged/1040000000089449?page=1
     @GET("article/tagged/{path}")
-    Observable<ArticleDataEntity> getNewsExtendsDataEntityList(@Path("path") String path, @Query("page") String page);
+    Observable<BaseRequestData<NewCategoryListData>> getNewsExtendsDataEntityList(@Path("path") String path, @Query("page") String page);
 
     //获取热门tag标签路径
     @GET("tag/hottest")
@@ -111,14 +113,14 @@ public interface ApiService {
 
     //标签详情中问题
     @GET("/question/tagged/{path}")
-    Observable<TagDetailQuestionEntity> getTagDetailQuestionEntity(@Path("path") String tagId,
+    Observable<BaseRequestData<NewQuestionListData>> getTagDetailQuestionEntity(@Path("path") String tagId,
                                                                    @Query("page") String page);
 
 
     //标签详情中问题
     @GET("/question/{path}")
-    Observable<TagDetailQuestionEntity> getTagRecommendEntity(@Path("path") String tagId,
-                                                              @Query("page") String page);  //recomment
+    Observable<BaseRequestData<NewQuestionListData>> getTagRecommendEntity(@Path("path") String tagId,
+                                                                           @Query("page") String page);  //recomment
 
 
     @GET("/article/tagged/{path}")
@@ -426,12 +428,12 @@ public interface ApiService {
                                                                       @Query("page") int page);
 
     @GET("user/{uid}/articles")
-    Observable<ArticleDataEntity> getUserZoneArticleDataEntity(@Path("uid") String uid,
+    Observable<BaseRequestData<NewCategoryListData>> getUserZoneArticleDataEntity(@Path("uid") String uid,
                                                                @Query("token") String token,
                                                                @Query("page") int page);
 
     @GET("user/{uid}/news")
-    Observable<HomeDataEntity> getUserZoneShareDataEntity(@Path("uid") String uid,
+    Observable<BaseRequestData<NewToutiaoListData>> getUserZoneShareDataEntity(@Path("uid") String uid,
                                                           @Query("token") String token,
                                                           @Query("page") int page);
 

@@ -1,7 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.subfragment;
 
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.ArticleDataEntity;
+import com.micro.mysegmentdefault.entity.NewCategoryListData;
 import com.micro.mysegmentdefault.middle.BaseRefreshFragment;
 import com.micro.mysegmentdefault.middleimpl.adapter.NewsRecyclerAdapter;
 import com.micro.mysegmentdefault.middleimpl.mvp.model.ArticleModel;
@@ -15,7 +15,7 @@ import com.micro.mysegmentdefault.middleimpl.mvp.presenter.ArticlePresenter;
  * interface :
  */
 
-public class ArticleSubFragment extends BaseRefreshFragment<ArticlePresenter, ArticleModel, ArticleDataEntity.Item> {
+public class ArticleSubFragment extends BaseRefreshFragment<ArticlePresenter, ArticleModel, NewCategoryListData> {
 
     private int mPosition;
     private String mChannel;
@@ -29,7 +29,7 @@ public class ArticleSubFragment extends BaseRefreshFragment<ArticlePresenter, Ar
     }
 
     @Override
-    protected BaseRecyclerAdapter<ArticleDataEntity.Item> getRecyclerAdapter() {
+    protected BaseRecyclerAdapter<NewCategoryListData> getRecyclerAdapter() {
         return new NewsRecyclerAdapter(getActivity());
     }
 

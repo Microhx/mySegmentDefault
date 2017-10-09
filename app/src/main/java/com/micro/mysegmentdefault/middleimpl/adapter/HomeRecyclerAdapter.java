@@ -12,11 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
-import com.micro.mysegmentdefault.base.SegmentApplication;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
-import com.micro.mysegmentdefault.entity.HomeDataEntity;
+import com.micro.mysegmentdefault.entity.NewToutiaoListData;
 import com.micro.mysegmentdefault.ui.SchemeActivity;
-import com.micro.mysegmentdefault.ui.ToutiaoDataDetailActivity;
 import com.micro.mysegmentdefault.utils.CommonUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 
@@ -31,7 +29,7 @@ import butterknife.ButterKnife;
  * interface :
  */
 
-public class HomeRecyclerAdapter extends BaseRecyclerAdapter<HomeDataEntity.Item> {
+public class HomeRecyclerAdapter extends BaseRecyclerAdapter<NewToutiaoListData> {
 
     public HomeRecyclerAdapter(Context ctx) {
         super(ctx);
@@ -43,13 +41,18 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<HomeDataEntity.Item
     }
 
     @Override
-    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final HomeDataEntity.Item item, int position) {
+    protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final NewToutiaoListData item, int position) {
         HomeRecyclerViewHolder homeHolder = (HomeRecyclerViewHolder) holder;
         homeHolder.id_tv_title.setText(item.title);
-        homeHolder.id_tv_time.setText(item.user.name + " " + item.createdDate);
         homeHolder.id_tv_vote.setText(item.votesWord);
         homeHolder.id_tv_comment.setText(item.comments);
-        homeHolder.id_tv_tag.setText(CommonUtils.getArticleTagList(item.newsTypes));
+        homeHolder.id_tv_tag.setText(CommonUtils.getToutiaoTagTagList(item.newsTypes));
+
+        if(null == item.user){
+            homeHolder.id_tv_time.setText(item.createdDate);
+        }else{
+            homeHolder.id_tv_time.setText(item.user.name + " " + item.createdDate);
+        }
 
         if(TextUtils.isEmpty(item.readFirstImg)){
             homeHolder.id_iv_icon.setVisibility(View.GONE);

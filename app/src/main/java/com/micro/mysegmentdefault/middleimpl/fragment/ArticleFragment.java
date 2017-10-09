@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BasePagerAdapter;
 import com.micro.mysegmentdefault.base.module.BaseFragment;

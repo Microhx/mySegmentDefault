@@ -97,7 +97,7 @@
     <string name="str_user_intro">个人简介</string>
     <string name="str_user_city">所在城市</string>
     <string name="str_default_city">上海</string>
-    <string name="str_add_project_and_article"><![CDATA[+添加项目&著作]]></string>
+    <string name="str_add_project_and_article"><![CDATA[添加项目&著作]]></string>
     <string name="str_add_project_and_article_shorter"><![CDATA[添加项目&著作]]></string>
     <string name="str_add_skill">+添加擅长技能</string>
     <string name="str_add_study">+添加学习经历</string>
