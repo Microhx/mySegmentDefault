@@ -14,7 +14,7 @@
         android:textColor="@color/text_third_color"
         android:textSize="10sp"/>
 
-    <com.micro.mysegmentdefault.view.widget.CircleImageView
+    <ImageView
         android:id="@+id/id_iv_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"

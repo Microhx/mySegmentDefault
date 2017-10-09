@@ -139,7 +139,7 @@ public class UserZoneActivity extends BaseActivity<UserZonePresenter,UserZoneMod
     @Override
     public void loadUserZoneData(UserDataEntity entity) {
         ImageUtils.showUrlImageFixXY(entity.data.avatarUrl,mImageViewBg);
-        ImageUtils.showUrlImage(entity.data.avatarUrl,mImageUserIcon);
+        ImageUtils.showUserCircleImageUrl(entity.data.avatarUrl,mImageUserIcon);
 
         mToolBarLayout.setTitle(entity.data.name);
         mTvGold.setText(entity.data.summaryBadges.gold);

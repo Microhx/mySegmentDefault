@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
@@ -12,7 +13,6 @@ import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDataEntity;
 import com.micro.mysegmentdefault.ui.user.message.UserPrivateEventDetailActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,7 +40,7 @@ public class UserPrivateEventRecyclerAdapter extends BaseRecyclerAdapter<UserPri
     protected void onBindDefaultViewHolder(RecyclerView.ViewHolder holder, final UserPrivateEventDataEntity.DataItem item, int position) {
         UserPrivateEventViewHolder privateHolder = (UserPrivateEventViewHolder) holder;
 
-        ImageUtils.showUrlImage(item.triggerUser.get(0).avatarUrl,privateHolder.mIconImage);
+        ImageUtils.showUserCircleImageUrl(item.triggerUser.get(0).avatarUrl,privateHolder.mIconImage);
         privateHolder.mTvTime.setText(item.lastMessage.createdDate);
         privateHolder.mTvTitle.setText(item.triggerUser.get(0).name);
         privateHolder.mTvContent.setText(item.lastMessage.content.content);
@@ -58,7 +58,7 @@ public class UserPrivateEventRecyclerAdapter extends BaseRecyclerAdapter<UserPri
     public class UserPrivateEventViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.id_iv_image)
-        CircleImageView mIconImage ;
+        ImageView mIconImage ;
 
         @Bind(R.id.id_tv_time)
         TextView mTvTime ;

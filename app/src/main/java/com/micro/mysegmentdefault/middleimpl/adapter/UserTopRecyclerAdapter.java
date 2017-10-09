@@ -14,8 +14,6 @@ import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.TopUserEntity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.utils.LogUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,7 +42,7 @@ public class UserTopRecyclerAdapter extends BaseRecyclerAdapter<TopUserEntity.Us
         UserTopViewHolder userHolder = (UserTopViewHolder) holder;
         userHolder.mTvUserName.setText(item.name);
         userHolder.mTvUserScore.setText("+"+item.incr);
-        ImageUtils.showUrlImage(item.avatarUrl,userHolder.mUserIcon);
+        ImageUtils.showUserCircleImageUrl(item.avatarUrl,userHolder.mUserIcon);
 
         if(position <= 2 ) {
             userHolder.mRankTv.setVisibility(View.GONE);
@@ -82,7 +80,7 @@ public class UserTopRecyclerAdapter extends BaseRecyclerAdapter<TopUserEntity.Us
         TextView mRankTv ;
 
         @Bind(R.id.id_iv_icon)
-        CircleImageView mUserIcon;
+        ImageView mUserIcon;
 
         @Bind(R.id.id_iv_username)
         TextView mTvUserName ;

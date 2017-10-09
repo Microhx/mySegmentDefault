@@ -5,13 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.UserPrivateEventDetailDataEntity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 /**
  * author : micro_hx <p>
@@ -40,21 +40,21 @@ public class UserPrivateEventDetailRecyclerAdapter extends BaseRecyclerAdapter<U
             DetailViewHolder detailHolder = (DetailViewHolder) holder;
             detailHolder.mTvTime.setText(item.createdDate);
             detailHolder.mTvContent.setText(item.content);
-            ImageUtils.showUrlImage(mUserPhoto,detailHolder.mIvIcon);
+            ImageUtils.showUserCircleImageUrl(mUserPhoto,detailHolder.mIvIcon);
     }
 
     class DetailViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvTime;
         TextView mTvContent;
-        CircleImageView mIvIcon;
+        ImageView mIvIcon;
 
         public DetailViewHolder(View itemView) {
             super(itemView);
 
             mTvTime = (TextView) itemView.findViewById(R.id.id_tv_time);
             mTvContent = (TextView) itemView.findViewById(R.id.id_tv_content);
-            mIvIcon = (CircleImageView) itemView.findViewById(R.id.id_iv_icon);
+            mIvIcon = (ImageView) itemView.findViewById(R.id.id_iv_icon);
         }
     }
 

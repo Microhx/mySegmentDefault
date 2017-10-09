@@ -278,7 +278,7 @@ public class UserCollectionDetailActivity extends AbBaseAttentionActivity<
         mHeaderTitle.setText(mCollectionTitle);
         mHeaderUserName.setText(mCollectUserName);
         mHeaderAttentionCount.setText("共" + mCollectionNumber + "人关注");
-        ImageUtils.showUrlImage(mCollectUserIcon,mHeaderUserIcon);
+        ImageUtils.showUserCircleImageUrl(mCollectUserIcon,mHeaderUserIcon);
     }
 
 

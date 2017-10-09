@@ -11,12 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.micro.mysegmentdefault.view.widget.CircleImageView
+        <ImageView
             android:id="@+id/id_iv_user_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/tab_mine_normal"/>
-
 
         <TextView
             android:id="@+id/id_tv_title"
@@ -26,9 +25,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="XXX 回到了问题"
             android:textSize="12sp"/>
-
 
         <TextView
             android:id="@+id/id_tv_time"
@@ -36,7 +33,6 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="5小时前"
             android:textColor="@color/text_third_color"
             android:textSize="12sp"/>
 

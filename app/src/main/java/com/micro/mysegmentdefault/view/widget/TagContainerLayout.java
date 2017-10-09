@@ -3,6 +3,7 @@ package com.micro.mysegmentdefault.view.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -206,6 +207,7 @@ public class TagContainerLayout extends ViewGroup {
             tv.setBackgroundResource(R.color.app_shallow_theme_color);
             tv.setTextColor(getResources().getColor(R.color.app_theme_color));
             tv.setText(tag.name);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
             tv.setPadding(10,5,10,5);
             addView(tv,getDefaultParams());
         }

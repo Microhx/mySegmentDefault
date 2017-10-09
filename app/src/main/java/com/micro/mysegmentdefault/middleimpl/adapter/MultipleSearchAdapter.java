@@ -80,14 +80,14 @@ public class MultipleSearchAdapter extends MultiViewTypeAdapter<SearchDataEntity
 
             case "article":
                 holder.setTextView(R.id.id_tv_username,item.user.name);
-                holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl);
+                holder.setUserCicrleImageView(R.id.id_iv_user_icon,item.user.avatarUrl);
                 holder.setTextView(R.id.id_tv_qus_title,item.title);
                 holder.setTextView(R.id.id_tv_qus_content,item.excerpt);
                 holder.setTextView(R.id.id_tv_qus_comment, item.votes+"人点赞 " + item.bookmarks+"人收藏");
                 break;
 
             case "user":
-                holder.setImageView(R.id.id_iv_user_icon,item.avatarUrl);
+                holder.setUserCicrleImageView(R.id.id_iv_user_icon,item.avatarUrl);
                 holder.setTextView(R.id.id_iv_user_name,item.name);
                 holder.setTextView(R.id.id_tv_user_id," @"+item.slug);
                 holder.setTextView(R.id.id_tv_rank,item.rank);

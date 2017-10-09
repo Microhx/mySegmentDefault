@@ -99,9 +99,7 @@ public abstract class BaseRefreshFragment<
     /**
      * 顶部View#BottomLayout
      */
-    protected void initBottomLayout() {
-
-    }
+    protected void initBottomLayout() {}
 
 
     protected void defaultSettingLayoutDecoration() {

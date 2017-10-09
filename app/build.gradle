@@ -62,7 +62,7 @@ dependencies {
     //for Retrofit String convert
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'
     //Glide
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:glide:4.0.0'
     //eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
     compile files('libs/jangod-template.jar')

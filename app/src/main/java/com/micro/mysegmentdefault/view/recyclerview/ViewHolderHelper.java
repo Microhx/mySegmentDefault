@@ -128,6 +128,15 @@ public class ViewHolderHelper extends RecyclerView.ViewHolder {
 
     }
 
+    public ViewHolderHelper setUserCicrleImageView(int id , String url) {
+        ImageView iv = getView(id);
+        ImageUtils.showUserCircleImageUrl(url,iv);
+        return this ;
+    }
+
+
+
+
 
     public ViewHolderHelper setImageViewDrawable(int id, Drawable drawable) {
         ImageView iv = getView(id);

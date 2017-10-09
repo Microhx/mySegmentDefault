@@ -39,11 +39,11 @@ public class UserAttentionPersonActivity extends
 
     @Override
     protected void convertData(ViewHolderHelper holder,final UserAttentionPersonDataEntity.AttentionPersonItem item , int position) {
-        holder.setImageView(R.id.id_iv_icon,item.avatarUrl).
-                setTextView(R.id.id_tv_title,item.name).
+        holder.setUserCicrleImageView(R.id.id_iv_icon, item.avatarUrl).
+                setTextView(R.id.id_tv_title, item.name).
                 setTextView(R.id.id_tv_slug, "@" + item.slug).
                 setTextView(R.id.id_tv_reputation, "声望 " + item.likedVotes).
-                setTextView(R.id.id_tv_fans,"粉丝 " + item.followedUsers);
+                setTextView(R.id.id_tv_fans, "粉丝 " + item.followedUsers);
 
         holder.setItemViewOnClickListener(new View.OnClickListener() {
             @Override

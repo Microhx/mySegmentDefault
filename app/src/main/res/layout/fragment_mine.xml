@@ -36,11 +36,10 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
 
-            <com.micro.mysegmentdefault.view.widget.CircleImageView
+            <ImageView
                 android:id="@+id/id_iv_user_icon"
                 android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/ic_avatar"/>
+                android:layout_height="45dp"/>
 
             <TextView
                 android:id="@+id/id_tv_user_name"

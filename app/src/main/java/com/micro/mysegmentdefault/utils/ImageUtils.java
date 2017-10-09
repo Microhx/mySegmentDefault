@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.SegmentApplication;
 import com.micro.mysegmentdefault.network.Api;
@@ -22,6 +23,7 @@ import com.micro.mysegmentdefault.network.Api;
 
 public class ImageUtils {
 
+    static int PLACE_COLOR = Color.parseColor("#e6e6e6");
     static int errorImage ;
 
     static {
@@ -30,19 +32,6 @@ public class ImageUtils {
         }else{
             errorImage = R.drawable.error_404;
         }
-    }
-
-
-    public static void showLocalUserImage(String url , ImageView iv) {
-        Glide.with(SegmentApplication.getApplication())
-                .load(url)
-                .centerCrop()//裁剪
-                .crossFade(0)
-                .priority(Priority.LOW)
-                .placeholder(new ColorDrawable(Color.parseColor("#e6e6e6")))
-                .error(R.drawable.ic_avatar)
-                .dontAnimate()
-                .into(iv);
     }
 
     //https://segmentfault.com/img/bVMGY5?w=900&h=500
@@ -60,19 +49,13 @@ public class ImageUtils {
 
         Glide.with(SegmentApplication.getApplication())
                 .load(url)
-                .centerCrop()//裁剪
-                .crossFade(0)
-                .priority(Priority.LOW)
-                .placeholder(new ColorDrawable(Color.parseColor("#e6e6e6")))
-                .error(errorImage)
-                .dontAnimate()
+                .apply(RequestOptions.centerCropTransform().placeholder(new ColorDrawable(PLACE_COLOR)).error(errorImage).dontAnimate())
                 .into(iv);
     }
 
-
-    public static void showUrlImageFixXY(String url, ImageView iv) {
-        if(TextUtils.isEmpty(url)) {
-            iv.setImageDrawable(new ColorDrawable(Color.parseColor("#e6e6e6")));
+    public static void showUserCircleImageUrl(String url , ImageView iv) {
+        if (TextUtils.isEmpty(url)) {
+            iv.setImageDrawable(SegmentApplication.getApplication().getResources().getDrawable(R.drawable.ic_avatar));
             return;
         }
 
@@ -82,11 +65,28 @@ public class ImageUtils {
 
         Glide.with(SegmentApplication.getApplication())
                 .load(url)
-                .crossFade(0)
-                .priority(Priority.LOW)
-                .placeholder(new ColorDrawable(Color.parseColor("#e6e6e6")))
-                .error(new ColorDrawable(Color.parseColor("#e6e6e6")))
-                .dontAnimate()
+                .apply(RequestOptions.
+                        circleCropTransform().
+                        placeholder(R.drawable.ic_avatar).
+                        error(R.drawable.ic_avatar).
+                        dontAnimate())
+                .into(iv);
+    }
+
+
+    public static void showUrlImageFixXY(String url, ImageView iv) {
+        if(TextUtils.isEmpty(url)) {
+            iv.setImageDrawable(new ColorDrawable(PLACE_COLOR));
+            return;
+        }
+
+        if(!url.startsWith("https://") && !url.startsWith("http://")) {
+            url = Api.BASE_URL + url;
+        }
+
+        Glide.with(SegmentApplication.getApplication())
+                .load(url)
+                .apply(RequestOptions.fitCenterTransform().placeholder(new ColorDrawable(PLACE_COLOR)).error(errorImage).dontAnimate())
                 .into(iv);
     }
 

@@ -107,7 +107,7 @@ public class UserNewsCommentRecyclerAdapter extends BaseRecyclerAdapter<NewsComm
 
     private void initDataSetting(NewsCommentDataEntity.CommentItem item, NewsCommentViewHolder commentHolder, int position) {
         //用户评论头像
-        ImageUtils.showUrlImage(item.user.avatarUrl, commentHolder.mIvUserIcon);
+        ImageUtils.showUserCircleImageUrl(item.user.avatarUrl, commentHolder.mIvUserIcon);
         commentHolder.mTvUserName.setText(item.user.name);
         commentHolder.mTvPublishTime.setText(item.createdDate);
         commentHolder.mTvComment.setText(item.originalText);

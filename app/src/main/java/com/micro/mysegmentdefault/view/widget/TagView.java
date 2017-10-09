@@ -61,14 +61,14 @@ public class TagView extends View {
         //Todo all Resources
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setTextSize(35);
+        mTextPaint.setTextSize(22);
         mTextHeight = (int) (mTextPaint.descent() - mTextPaint.ascent()) / 2;
 
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBgPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-        mTextPaddingLeft = mTextPaddingBottom = mTextPaddingTop = mTextPaddingRight = 30;
-        mNumberPaddingLeft = mNumberPaddingRight = mNumberPaddingBottom = mNumberPaddingTop = 20;
+        mTextPaddingLeft = mTextPaddingBottom = mTextPaddingTop = mTextPaddingRight = 20;
+        mNumberPaddingLeft = mNumberPaddingRight = mNumberPaddingBottom = mNumberPaddingTop = 12;
 
         mTextColor = Color.parseColor("#77C8AB");
         mTextBgColor = Color.parseColor("#23039A63");

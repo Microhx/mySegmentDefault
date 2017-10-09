@@ -1,6 +1,7 @@
 package com.micro.mysegmentdefault.middleimpl.fragment;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
@@ -8,13 +9,12 @@ import com.micro.mysegmentdefault.base.module.BaseFragment;
 import com.micro.mysegmentdefault.entity.MessageEvent;
 import com.micro.mysegmentdefault.logic.UserLogic;
 import com.micro.mysegmentdefault.ui.setting.SettingActivity;
-import com.micro.mysegmentdefault.ui.user.attention.UserAttentionActivity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
+import com.micro.mysegmentdefault.ui.user.attention.UserAttentionActivity;
 import com.micro.mysegmentdefault.ui.user.collection.UserCollectionActivity;
 import com.micro.mysegmentdefault.ui.user.message.UserMessageActivity;
 import com.micro.mysegmentdefault.ui.user.message.UserPrivateEventActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
 public class MineFragment extends BaseFragment {
 
     @Bind(R.id.id_iv_user_icon)
-    CircleImageView mUserIcon;
+    ImageView mUserIcon;
 
     @Bind(R.id.id_tv_user_name)
     TextView mTvUserName;
@@ -108,7 +108,8 @@ public class MineFragment extends BaseFragment {
 
     private void initUserSetting() {
         if (UserLogic.checkUserLogin()) {
-            ImageUtils.showUrlImage(UserLogic.getUserPhoto(), mUserIcon);
+            //ImageUtils.showUrlImage();
+            ImageUtils.showUserCircleImageUrl(UserLogic.getUserPhoto(), mUserIcon);
             mTvUserName.setText(UserLogic.getUserName());
         } else {
             mUserIcon.setImageResource(R.drawable.ic_avatar);

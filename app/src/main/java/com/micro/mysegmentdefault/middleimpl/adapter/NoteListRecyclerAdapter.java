@@ -2,19 +2,16 @@ package com.micro.mysegmentdefault.middleimpl.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.NoteDataEntity;
-import com.micro.mysegmentdefault.ui.NoteDetailActivity;
-import com.micro.mysegmentdefault.ui.comment.CommonWebActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -56,7 +53,7 @@ public class NoteListRecyclerAdapter extends BaseRecyclerAdapter<NoteDataEntity.
             noteHolder.mUserHead.setVisibility(View.VISIBLE);
             noteHolder.mUserName.setVisibility(View.VISIBLE);
 
-            ImageUtils.showUrlImage(item.user.avatarUrl, noteHolder.mUserHead);
+            ImageUtils.showUserCircleImageUrl(item.user.avatarUrl, noteHolder.mUserHead);
             noteHolder.mUserName.setText(item.user.name);
             noteHolder.mUserComment.setText(item.forks + "人建分支、" + item.bookmarks + "人收藏");
         }
@@ -73,7 +70,7 @@ public class NoteListRecyclerAdapter extends BaseRecyclerAdapter<NoteDataEntity.
     class NoteListViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.id_iv_user_icon)
-        CircleImageView mUserHead;
+        ImageView mUserHead;
 
         @Bind(R.id.id_tv_username)
         TextView mUserName;

@@ -13,7 +13,6 @@ import com.micro.mysegmentdefault.base.module.BaseFragment;
 public class FragmentUtils {
 
     public static BaseFragment getBaseFragmentByIndex(int index) {
-
         switch (index) {
             default:
             case 0:

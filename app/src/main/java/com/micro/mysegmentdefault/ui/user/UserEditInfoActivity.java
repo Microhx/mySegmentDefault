@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
@@ -32,7 +33,6 @@ import com.micro.mysegmentdefault.utils.FileUtils;
 import com.micro.mysegmentdefault.utils.ImageUtils;
 import com.micro.mysegmentdefault.utils.LogUtils;
 import com.micro.mysegmentdefault.utils.PermissionUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 import com.micro.mysegmentdefault.view.widget.TagContainerLayout;
 import com.micro.mysegmentdefault.view.widget.TagListLayout;
 
@@ -52,7 +52,7 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
         TagListLayout.onItemClickListener {
 
     @Bind(R.id.id_iv_user_icon)
-    CircleImageView mUserIcon;
+    ImageView mUserIcon;
 
     @Bind(R.id.id_tv_username)
     TextView mTvUserName;
@@ -420,7 +420,7 @@ public class UserEditInfoActivity extends BaseActivity<UserEditPresenter, UserEd
     @Override
     public void loadUserDetailInfo(UserDetailDataEntity entity) {
         mUserData = entity.data;
-        ImageUtils.showUrlImage(mUserData.avatarUrl, mUserIcon);
+        ImageUtils.showUserCircleImageUrl(mUserData.avatarUrl, mUserIcon);
         mTvUserName.setText(mUserData.name);
         mTvSex.setText(getSexValue(CommonUtils.safeParseInt(mUserData.profileGender)));
         mTvSex.setTag(mUserData.profileGender);

@@ -68,7 +68,7 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
         ((TextView)holder.getView(R.id.id_tv_title)).setMovementMethod(LinkMovementMethod.getInstance());
 
         if(holder.getItemViewType() == 1) {  //文章 专栏 问题
-            holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
+            holder.setUserCicrleImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
                     setTextView(R.id.id_tv_title, CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
                     setTextView(R.id.id_tv_question_title,item.title).
@@ -85,7 +85,7 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
             holder.setViewVisiable(R.id.id_tv_other,"article".equals(item.rootObjectType));
 
         } else if(holder.getItemViewType() == 2) { //头条
-            holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
+            holder.setUserCicrleImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
                     setTextView(R.id.id_tv_title,CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
                     setTextView(R.id.id_tv_head,item.excerpt).
@@ -97,8 +97,8 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
                 holder.setImageView(R.id.id_iv_image,item.object.readFirstImg);
             }
 
-        }else {   //TODO 用户图像为圆形
-            holder.setImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
+        }else {
+            holder.setUserCicrleImageView(R.id.id_iv_user_icon,item.user.avatarUrl).
                     setTextView(R.id.id_tv_title,CommonUtils.replaceTargetWordWithAppThemeColor(item.sentence,UserLogic.getUserName(),item.user.url)).
                     setTextView(R.id.id_tv_time,item.date).
                     setTextView(R.id.id_tv_question_title,item.title).
@@ -135,10 +135,6 @@ public class UserTimeLineAdapter extends MultiViewTypeAdapter<UserTimeLineDataEn
                 }
             }
         });
-
-
-
-
 
     }
 

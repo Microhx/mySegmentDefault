@@ -46,7 +46,7 @@
                         android:textAppearance="@style/CoordinatorLayoutAppearance"
                         android:visibility="invisible"/>
 
-                    <com.micro.mysegmentdefault.view.widget.CircleImageView
+                    <ImageView
                         android:id="@+id/id_iv_user_icon"
                         android:layout_width="48dp"
                         android:layout_height="48dp"

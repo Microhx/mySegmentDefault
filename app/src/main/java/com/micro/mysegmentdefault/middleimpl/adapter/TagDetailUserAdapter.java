@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.micro.mysegmentdefault.R;
@@ -13,7 +14,6 @@ import com.micro.mysegmentdefault.base.adapter.BaseRecyclerAdapter;
 import com.micro.mysegmentdefault.entity.TagDetailUserEntity;
 import com.micro.mysegmentdefault.ui.user.UserZoneActivity;
 import com.micro.mysegmentdefault.utils.ImageUtils;
-import com.micro.mysegmentdefault.view.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,7 +43,7 @@ public class TagDetailUserAdapter extends BaseRecyclerAdapter<TagDetailUserEntit
         UserViewHolder userHolder = (UserViewHolder) holder;
         userHolder.mTvTitle.setText(item.name);
 
-        ImageUtils.showUrlImage(item.avatarUrl, userHolder.mUserIcon);
+        ImageUtils.showUserCircleImageUrl(item.avatarUrl, userHolder.mUserIcon);
         userHolder.mTvScore.setText("+" + item.incr);
 
         if(position == 0) {
@@ -73,7 +73,7 @@ public class TagDetailUserAdapter extends BaseRecyclerAdapter<TagDetailUserEntit
         TextView mTvTitle;
 
         @Bind(R.id.id_iv_user_icon)
-        CircleImageView mUserIcon;
+        ImageView mUserIcon;
 
         @Bind(R.id.id_tv_score)
         TextView mTvScore;
