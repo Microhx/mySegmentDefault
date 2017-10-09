@@ -30,7 +30,6 @@ android {
         schemaVersion 1 //数据库版本号
         daoPackage 'com.micro.mysegmentdefault.greendao.gen'  //自动生成的工具类包名
         targetGenDir 'src/main/java'  //路径
-
     }
 
 }
