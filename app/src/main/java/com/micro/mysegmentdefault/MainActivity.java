@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -38,6 +39,7 @@ public class MainActivity extends BaseMainActivity implements OnTabSelectListene
 
         changeFragment(0);
     }
+
 
     private void initFragments() {
         mFragmentManager = getSupportFragmentManager();

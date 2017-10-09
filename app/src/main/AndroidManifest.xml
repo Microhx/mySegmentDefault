@@ -15,13 +15,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.UserTagManageActivity"/>
         <activity android:name=".ui.UserSearchTagActivity"/>
         <activity android:name=".ui.UserTagDetailActivity"/>
@@ -50,6 +52,7 @@
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.user.UserNewNoteActivity"
             android:windowSoftInputMode="adjustResize"/>
@@ -84,16 +87,11 @@
         <activity android:name=".ui.write.CreateSpecialColumnActivity"/>
         <activity android:name=".ui.user.UserNewsCommentReplyActivity"/>
         <activity android:name=".ui.TagInformationActivity"/>
-        <activity android:name=".ui.userzone.UserTimeLineActivity" />
-
-        <activity android:name=".ui.userzone.UserZoneQuestionActivity" />
-
-        <activity android:name=".ui.userzone.UserZoneAnswerActivity" />
-
-        <activity android:name=".ui.userzone.UserZoneArticleActivity" />
-
-        <activity android:name=".ui.userzone.UserZoneShareActivity" />
-
+        <activity android:name=".ui.userzone.UserTimeLineActivity"/>
+        <activity android:name=".ui.userzone.UserZoneQuestionActivity"/>
+        <activity android:name=".ui.userzone.UserZoneAnswerActivity"/>
+        <activity android:name=".ui.userzone.UserZoneArticleActivity"/>
+        <activity android:name=".ui.userzone.UserZoneShareActivity"/>
         <activity android:name=".ui.userzone.UserZoneCollectionActivity"/>
 
 
