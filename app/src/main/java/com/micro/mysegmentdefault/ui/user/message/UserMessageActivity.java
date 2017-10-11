@@ -2,6 +2,7 @@ package com.micro.mysegmentdefault.ui.user.message;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.micro.mysegmentdefault.R;
 import com.micro.mysegmentdefault.base.module.BaseActivity;
@@ -9,6 +10,7 @@ import com.micro.mysegmentdefault.middleimpl.adapter.UserMessageAdapter;
 import com.micro.mysegmentdefault.view.widget.PublicHeadLayout;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * author : micro_hx <p>
@@ -35,7 +37,6 @@ public class UserMessageActivity extends BaseActivity implements ViewPager.OnPag
     //当前的viewPager位置
     private int mCurrentPosition = -1 ;
 
-
     @Override
     protected void initViews() {
         mTitleLayout.setTitle(R.string.str_user_message);
@@ -53,7 +54,6 @@ public class UserMessageActivity extends BaseActivity implements ViewPager.OnPag
     @Override
     protected int getContentViewId() {
         return R.layout.activity_user_tag_manage;
-
     }
 
 
@@ -67,13 +67,15 @@ public class UserMessageActivity extends BaseActivity implements ViewPager.OnPag
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
     @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onPageScrollStateChanged(int state) {}
 
+
+    @OnClick(R.id.id_iv_back)
+    public void onCall(View v) {
+        finish();
     }
+
 }

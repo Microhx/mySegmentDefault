@@ -8,6 +8,7 @@ package com.micro.mysegmentdefault.utils;
  * interface :
  */
 
+@Deprecated
 public enum CLICK_TYPE {
 
     //点击用户中心
